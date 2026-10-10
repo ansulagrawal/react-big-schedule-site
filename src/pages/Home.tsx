@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <>
       <section className="hero-mesh">
-        <div className="mx-auto max-w-6xl px-4 pb-24 pt-36 text-center">
+        <div className="mx-auto max-w-6xl px-4 pb-24 pt-44 text-center">
           <h1 className="mx-auto max-w-5xl text-5xl font-extrabold leading-[1.05] tracking-tight sm:text-7xl">
             Crafting the Future of Calendars &amp; Scheduling
           </h1>
