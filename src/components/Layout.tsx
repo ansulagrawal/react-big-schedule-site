@@ -1,8 +1,8 @@
-import { type ReactNode, useEffect, useState } from 'react';
+import { type CSSProperties, type ReactNode, useEffect, useState } from 'react';
 import Footer from './Footer';
 import Logo from './Logo';
-import { useSite } from '../site';
-import ThemePicker from './ThemePicker';
+import { PALETTE, useSite } from '../site';
+import ThemePanel from './ThemePanel';
 import ThemeSwitch from './ThemeSwitch';
 
 const links = [
@@ -22,14 +22,22 @@ export default function Layout({ route, children }: { route: string; children: R
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
-  const { theme } = useSite();
+  const { theme, look, palette } = useSite();
+  const colours = look !== 'default' && palette ? PALETTE[palette] : undefined;
   const base = `/${route.split('/')[1] ?? ''}`;
 
   return (
-    <div className={`site-bg min-h-screen antialiased ${theme === 'light' ? 'site-light' : ''}`}>
+    <div
+      className={`site-bg min-h-screen antialiased ${theme === 'light' ? 'site-light' : ''}`}
+      style={
+        colours
+          ? ({ '--site-btn': colours.a, '--site-ga': colours.a, '--site-gb': colours.b, '--site-ink-dark': `color-mix(in srgb, ${colours.a} 55%, white)`, '--site-ink': theme === 'light' ? colours.a : `color-mix(in srgb, ${colours.a} 55%, white)` } as CSSProperties)
+          : undefined
+      }
+    >
       <div className="flex h-9 items-center justify-center keep-white bg-black/50 px-4 text-xs text-white/90">
         <span>New in v9: TypeScript, no antd, a brand-new Calendar.</span>
-        <a href="#/docs" className="ml-2 font-semibold text-[#ff8a4b] hover:underline">
+        <a href="#/docs" className="ml-2 font-semibold text-[var(--site-ink-dark)] hover:underline">
           Read the upgrade guide →
         </a>
       </div>
@@ -47,14 +55,14 @@ export default function Layout({ route, children }: { route: string; children: R
               <a
                 key={href}
                 href={href}
-                className={base === href.slice(1) ? 'text-[#ff8a4b]' : 'text-white/85 hover:text-white'}
+                className={base === href.slice(1) ? 'text-[var(--site-ink)]' : 'text-white/85 hover:text-white'}
               >
                 {label}
               </a>
             ))}
           </div>
           <div className="flex items-center gap-4 justify-self-end">
-            <ThemePicker />
+            <ThemePanel />
             <ThemeSwitch />
           <a
             href={GITHUB}

@@ -5,7 +5,7 @@ import LiveCalendar from '../components/LiveCalendar';
 
 const Heading = ({ eyebrow, title, sub }: { eyebrow: string; title: string; sub?: string }) => (
   <div className="mx-auto mb-10 max-w-2xl text-center">
-    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#ff8a4b]">{eyebrow}</p>
+    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--site-ink)]">{eyebrow}</p>
     <h2 className="mt-3 text-4xl font-extrabold tracking-tight sm:text-5xl">{title}</h2>
     {sub && <p className="mt-4 text-white/65">{sub}</p>}
   </div>
@@ -128,7 +128,7 @@ export default function Home() {
               ['0', 'UI library\ndependencies'],
             ].map(([n, label], i) => (
               <div key={n + label} className={`flex items-center gap-3 ${i ? 'border-l border-white/30 pl-10' : ''}`}>
-                <span className="text-5xl font-bold text-amber-100">{n}</span>
+                <span className="text-5xl font-bold text-[var(--site-ink)]">{n}</span>
                 <span className="whitespace-pre-line text-left text-sm leading-tight text-white/85">{label}</span>
               </div>
             ))}
@@ -138,7 +138,7 @@ export default function Home() {
             TypeScript, with nothing to unlearn.
           </p>
           <div className="mt-9 flex justify-center gap-3">
-            <a href="#/docs" className="rounded-full bg-[#a3202c] px-6 py-3 font-semibold text-white hover:bg-[#b9262f]">
+            <a href="#/docs" className="rounded-full keep-white site-btn px-6 py-3 font-semibold text-white">
               Get started
             </a>
             <a href="#/demos" className="rounded-full border border-white/40 px-6 py-3 font-semibold text-white hover:bg-white/10">
@@ -160,7 +160,7 @@ export default function Home() {
             ['MIT', 'open-source licence'],
           ].map(([n, l]) => (
             <div key={l}>
-              <div className="text-3xl font-extrabold text-amber-100">{n}</div>
+              <div className="text-3xl font-extrabold text-[var(--site-ink)]">{n}</div>
               <div className="mt-1 text-xs uppercase tracking-wider text-white/50">{l}</div>
             </div>
           ))}
@@ -168,7 +168,7 @@ export default function Home() {
       </section>
 
       <section className="mx-auto mt-24 max-w-6xl px-4">
-        <Heading eyebrow="Live demo" title="Drag it, theme it, make it yours" sub="Everything on this page is the real library. Change the theme, the accent color and the corner radius." />
+        <Heading eyebrow="Live demo" title="Drag it, theme it, make it yours" sub="Everything on this page is the real library. Pick a theme and palette in the navbar, and change the corner radius." />
         <LiveCalendar height={680} />
       </section>
 
@@ -214,7 +214,7 @@ export default function Home() {
               <ul className="mt-4 space-y-2.5 text-sm text-white/70">
                 {items.map(i => (
                   <li key={i} className="flex gap-2">
-                    <span className="text-[#ff8a4b]">›</span>
+                    <span className="text-[var(--site-ink)]">›</span>
                     {i}
                   </li>
                 ))}
@@ -231,7 +231,7 @@ export default function Home() {
             The MIT-licensed core includes the resource timeline. Pro adds export, undo and redo, a conflict engine and priority support.
           </p>
           <div className="mt-7 flex justify-center gap-3">
-            <a href="#/docs" className="rounded-full bg-[#a3202c] px-6 py-3 font-semibold hover:bg-[#b9262f]">
+            <a href="#/docs" className="rounded-full keep-white site-btn px-6 py-3 font-semibold">
               Get started
             </a>
             <a href="#/pricing" className="rounded-full border border-white/40 px-6 py-3 font-semibold hover:bg-white/10">

@@ -2,7 +2,6 @@ import { type CSSProperties, useState } from 'react';
 import { Calendar, type CalendarEvent, type CalendarProps, type CalendarViewName } from 'react-big-schedule';
 import { makeEvents } from '../sample';
 import { useSite } from '../site';
-import ColorDropdown from './ColorDropdown';
 
 export type Theme = 'default' | 'dark' | 'light';
 
@@ -12,7 +11,6 @@ export interface LookProps {
   theme: Theme;
   look?: string;
   palette?: string;
-  accent?: string;
   radius?: number;
 }
 
@@ -21,8 +19,7 @@ export function CalendarView({
   theme,
   look,
   palette,
-  accent,
-  radius = 6,
+  radius,
   height = 640,
   initialView = 'dayGridMonth',
   views = VIEWS,
@@ -34,7 +31,7 @@ export function CalendarView({
   const [events, setEvents] = useState<CalendarEvent[]>(() => (Array.isArray(initialEvents) ? initialEvents : makeEvents()));
   const [log, setLog] = useState('Drag, resize, click or select something');
   const patch = (next: CalendarEvent) => setEvents(list => list.map(e => (e.id === next.id ? next : e)));
-  const style = { ...(accent ? { '--rbs-accent': accent } : {}), '--rbs-radius': `${radius}px` } as CSSProperties;
+  const style = (radius === undefined ? {} : { '--rbs-radius': `${radius}px` }) as CSSProperties;
   const dynamic = initialEvents !== undefined && !Array.isArray(initialEvents);
   return (
     <div>
@@ -73,14 +70,12 @@ export function CalendarView({
 export default function LiveCalendar({
   height = 640,
   initialView = 'dayGridMonth',
-  customizer = true,
 }: {
   height?: number;
   initialView?: CalendarViewName;
-  customizer?: boolean;
 }) {
   // theme comes from the navbar switch; colour and radius are shared with the demos page
-  const { theme, look, palette, accent, setAccent, radius, setRadius } = useSite();
+  const { theme, look, palette, radius } = useSite();
 
   return (
     <div
@@ -88,20 +83,7 @@ export default function LiveCalendar({
         theme === 'light' ? 'border-[#e6e2da] bg-[#f3f0ea] text-slate-900' : 'border-white/10 bg-[#14161c] text-white'
       }`}
     >
-      {customizer && (
-        <div className="mb-4 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-semibold uppercase tracking-wider opacity-60">Color</span>
-            <ColorDropdown value={accent} onChange={setAccent} />
-          </div>
-          <label className="flex items-center gap-2">
-            <span className="text-xs font-semibold uppercase tracking-wider opacity-60">Radius</span>
-            <input type="range" min={0} max={16} value={radius} onChange={e => setRadius(Number(e.target.value))} />
-          </label>
-          <span className="ml-auto text-xs opacity-60">Switch light / dark in the navbar</span>
-        </div>
-      )}
-      <CalendarView theme={theme} look={look} palette={palette} accent={accent} radius={radius} height={height} initialView={initialView} />
+      <CalendarView theme={theme} look={look} palette={palette} radius={radius} height={height} initialView={initialView} />
     </div>
   );
 }

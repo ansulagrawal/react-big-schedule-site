@@ -33,7 +33,7 @@ export default function Pricing() {
                 <li key={i}>✓ {i}</li>
               ))}
             </ul>
-            <a href={t.cta[1]} className="rounded-lg bg-[#a3202c] px-4 py-2 text-center font-medium text-white hover:bg-[#b9262f]">
+            <a href={t.cta[1]} className="rounded-lg keep-white site-btn px-4 py-2 text-center font-medium text-white">
               {t.cta[0]}
             </a>
           </div>

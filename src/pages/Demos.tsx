@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
 import Code from '../components/Code';
-import ColorDropdown from '../components/ColorDropdown';
 import { type Demo, demos, groups, type Status } from '../demos/registry';
 import { useSite } from '../site';
 
@@ -30,7 +29,7 @@ function StatusChip({ status }: { status: Status }) {
 export default function Demos() {
   const id = useDemoId();
   const demo: Demo = demos.find(d => d.id === id) ?? (demos[0] as Demo);
-  const { theme, look, palette, accent, setAccent, radius, setRadius } = useSite();
+  const { theme, look, palette, radius } = useSite();
   const [showCode, setShowCode] = useState(false);
   const live = Boolean(demo.render);
   const byGroup = useMemo(() => groups.map(g => [g, demos.filter(d => d.group === g)] as const), []);
@@ -93,18 +92,6 @@ export default function Demos() {
         </header>
 
         <div className="mb-5 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
-          {live && (
-            <>
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-semibold uppercase tracking-wider text-white/45">Color</span>
-                <ColorDropdown value={accent} onChange={setAccent} />
-              </div>
-              <label className="flex items-center gap-2">
-                <span className="text-xs font-semibold uppercase tracking-wider text-white/45">Radius</span>
-                <input type="range" min={0} max={16} value={radius} onChange={e => setRadius(Number(e.target.value))} />
-              </label>
-            </>
-          )}
           <button
             type="button"
             hidden={!live}
@@ -124,7 +111,7 @@ export default function Demos() {
 
         {demo.render ? (
           <div key={demo.id} className="card p-4">
-            {demo.render({ theme, look, palette, accent, radius })}
+            {demo.render({ theme, look, palette, radius })}
           </div>
         ) : (
           <div className="card p-10 text-center">
@@ -141,7 +128,7 @@ export default function Demos() {
               </a>
               <a
                 href="https://github.com/ansulagrawal/react-big-schedule/discussions"
-                className="rounded-full bg-[#a3202c] px-5 py-2 text-sm font-semibold hover:bg-[#b9262f]"
+                className="rounded-full keep-white site-btn px-5 py-2 text-sm font-semibold"
               >
                 Tell us you want it
               </a>

@@ -11,8 +11,7 @@ export default function TimelineDemo({
   theme,
   look,
   palette,
-  accent,
-  radius = 6,
+  radius,
   viewType = ViewType.Week,
   config,
   events = DemoData.events,
@@ -36,7 +35,7 @@ export default function TimelineDemo({
     d.setEvents(events);
     setData(copyOf(d));
   };
-  const style = { ...(accent ? { '--rbs-accent': accent } : {}), '--rbs-radius': `${radius}px` } as CSSProperties;
+  const style = (radius === undefined ? {} : { '--rbs-radius': `${radius}px` }) as CSSProperties;
 
   return (
     <DndScheduler

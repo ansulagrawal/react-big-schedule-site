@@ -13,9 +13,17 @@ export const LOOKS = {
 } as const;
 export type Look = keyof typeof LOOKS;
 
-export const SWATCH: Record<string, string> = {
-  blue: '#1677ff', green: '#16a34a', purple: '#6750a4', red: '#dc2626', amber: '#d97706',
-  emerald: '#059669', indigo: '#4f46e5', rose: '#e11d48', classic: '#3788d8',
+/** Main colour of each palette (matches the library's css) and the secondary used for the page glows. */
+export const PALETTE: Record<string, { a: string; b: string }> = {
+  blue: { a: '#1677ff', b: '#06b6d4' },
+  green: { a: '#15803d', b: '#14b8a6' },
+  purple: { a: '#6750a4', b: '#ec4899' },
+  red: { a: '#dc2626', b: '#f97316' },
+  amber: { a: '#b45309', b: '#f43f5e' },
+  emerald: { a: '#047857', b: '#0ea5e9' },
+  indigo: { a: '#4f46e5', b: '#d946ef' },
+  rose: { a: '#e11d48', b: '#f59e0b' },
+  classic: { a: '#3788d8', b: '#f59e0b' },
 };
 
 interface Site {
@@ -26,10 +34,9 @@ interface Site {
   /** Theme of the calendars and timelines only; the page itself stays dark. */
   theme: CalTheme;
   setTheme: (t: CalTheme) => void;
-  accent?: string;
-  setAccent: (c?: string) => void;
-  radius: number;
-  setRadius: (r: number) => void;
+  /** Corner radius override in px; undefined lets the chosen look decide. */
+  radius?: number;
+  setRadius: (r?: number) => void;
 }
 
 const KEY = 'rbs-site-calendar-theme';
@@ -58,8 +65,7 @@ const Ctx = createContext<Site | null>(null);
 export function SiteProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<CalTheme>(read);
   const [lp, setLp] = useState(readLook);
-  const [accent, setAccent] = useState<string | undefined>();
-  const [radius, setRadius] = useState(6);
+  const [radius, setRadius] = useState<number | undefined>();
   useEffect(() => {
     try {
       localStorage.setItem(KEY, theme);
@@ -80,14 +86,15 @@ export function SiteProvider({ children }: { children: ReactNode }) {
       setTheme,
       look: lp.look,
       palette: lp.palette ?? (LOOKS[lp.look].base || undefined),
-      setLook: (look: Look) => setLp({ look }),
+      setLook: (look: Look) => {
+        setLp({ look });
+        setRadius(undefined);
+      },
       setPalette: (palette: string) => setLp(v => ({ ...v, palette })),
-      accent,
-      setAccent,
       radius,
       setRadius,
     }),
-    [theme, lp, accent, radius]
+    [theme, lp, radius]
   );
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }
