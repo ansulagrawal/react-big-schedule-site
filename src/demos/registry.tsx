@@ -1,4 +1,8 @@
 import dayjs from 'dayjs';
+import 'dayjs/locale/de';
+import 'dayjs/locale/es';
+import 'dayjs/locale/fr';
+import 'dayjs/locale/ja';
 import { type ReactNode, useState } from 'react';
 import { Calendar, type CalendarEvent, type SchedulerEvent, ViewType } from 'react-big-schedule';
 import { CalendarView, type LookProps } from '../components/LiveCalendar';
@@ -136,6 +140,25 @@ const iconEvents: CalendarEvent[] = [
   { id: 'i4', title: 'Gym', start: day(2, '18:00'), end: day(2, '19:00'), extendedProps: { icon: '🏋️', where: '' } },
 ];
 
+
+/** Month names, weekdays and the first day of the week follow the dayjs locale. */
+function LocaleDemo(look: LookProps) {
+  const [locale, setLocale] = useState('de');
+  return (
+    <div>
+      <label className="mb-3 flex items-center gap-2 px-4 pt-4 text-sm">
+        Locale
+        <select value={locale} onChange={e => setLocale(e.target.value)} className="rounded-lg border border-white/20 bg-[#1b1b1b] px-2 py-1 text-white">
+          {['en', 'de', 'fr', 'es', 'ja'].map(l => (
+            <option key={l}>{l}</option>
+          ))}
+        </select>
+      </label>
+      <CalendarView {...look} height={620} initialView="dayGridMonth" locale={locale} firstDay={locale === 'en' || locale === 'ja' ? 0 : 1} />
+    </div>
+  );
+}
+
 const cal = (initialView: string, views: string[], extra = '') =>
   `import { Calendar } from 'react-big-schedule';
 import 'react-big-schedule/dist/css/style.css';
@@ -230,6 +253,9 @@ export const demos: Demo[] = [
   slotDuration={15}
   businessHours={{ daysOfWeek: [1, 2, 3, 4, 5], startTime: '09:00', endTime: '17:00' }}
 />` },
+  { id: 'locale', title: 'Locale', group: 'Options', status: 'free', blurb: 'Month and weekday names and the first day of the week follow the dayjs locale.', render: l => <LocaleDemo {...l} />, code: `import 'dayjs/locale/de';
+
+<Calendar events={events} locale="de" firstDay={1} />` },
   { id: 'custom-content', title: 'Custom event content', group: 'Options', status: 'free', blurb: 'Render anything inside an event: icons, places, badges, from extendedProps.', render: l => <CalendarView {...l} height={620} initialView="timeGridWeek" events={iconEvents} eventContent={a => (<span className="flex min-w-0 items-center gap-1"><span>{String(a.event.extendedProps?.icon ?? '')}</span><span className="truncate font-medium">{a.event.title}</span>{a.event.extendedProps?.where ? <span className="truncate opacity-75">· {String(a.event.extendedProps.where)}</span> : null}</span>)} />, code: `<Calendar
   events={[{ id: 1, title: 'Team lunch', start, end, extendedProps: { icon: '🍜', where: 'Canteen' } }]}
   eventContent={({ event }) => (
