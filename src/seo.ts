@@ -1,6 +1,6 @@
 import { demos } from './demos/registry';
 
-export const SITE = 'https://react-big-schedule.ansulagrawal.com';
+export const SITE = 'https://react-big-schedule.vercel.app';
 
 export const HOME = {
   title: 'React Big Schedule · The React calendar and scheduler',

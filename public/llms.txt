@@ -4,14 +4,14 @@
 
 ## Docs
 
-- [Documentation](https://react-big-schedule.ansulagrawal.com/docs): install, Calendar and Scheduler usage, theming, upgrade guide
-- [Live demos](https://react-big-schedule.ansulagrawal.com/demos): every view, resource timeline, event sources, recurrence, time zones, theming
-- [Pricing](https://react-big-schedule.ansulagrawal.com/pricing): the core is free; Pro add-ons are planned
+- [Documentation](https://react-big-schedule.vercel.app/docs): install, Calendar and Scheduler usage, theming, upgrade guide
+- [Live demos](https://react-big-schedule.vercel.app/demos): every view, resource timeline, event sources, recurrence, time zones, theming
+- [Pricing](https://react-big-schedule.vercel.app/pricing): the core is free; Pro add-ons are planned
 
 ## For AI assistants
 
-- [llms-full.txt](https://react-big-schedule.ansulagrawal.com/llms-full.txt): the complete API reference in one plain-text file
-- [Agent skill](https://react-big-schedule.ansulagrawal.com/skills/react-big-schedule/SKILL.md): a SKILL.md that teaches a coding agent how to use the library correctly
+- [llms-full.txt](https://react-big-schedule.vercel.app/llms-full.txt): the complete API reference in one plain-text file
+- [Agent skill](https://react-big-schedule.vercel.app/skills/react-big-schedule/SKILL.md): a SKILL.md that teaches a coding agent how to use the library correctly
 
 ## Source
 

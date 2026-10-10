@@ -9,7 +9,7 @@ fs.writeFileSync(
   'public/llms-full.txt',
   `# React Big Schedule: full reference
 
-> Free, MIT-licensed React calendar and resource scheduler (v9). Site: https://react-big-schedule.ansulagrawal.com . Source: https://github.com/ansulagrawal/react-big-schedule
+> Free, MIT-licensed React calendar and resource scheduler (v9). Site: https://react-big-schedule.vercel.app . Source: https://github.com/ansulagrawal/react-big-schedule
 
 ${skill.trim().replace(/^# .*\n/, '')}
 

@@ -1,9 +1,9 @@
 # React Big Schedule: full reference
 
-> Free, MIT-licensed React calendar and resource scheduler (v9). Site: https://react-big-schedule.ansulagrawal.com . Source: https://github.com/ansulagrawal/react-big-schedule
+> Free, MIT-licensed React calendar and resource scheduler (v9). Site: https://react-big-schedule.vercel.app . Source: https://github.com/ansulagrawal/react-big-schedule
 
 
-Free MIT React calendar (`<Calendar>`) and resource timeline (`<Scheduler>`). ESM only, strict TypeScript, React 18+ peer dependency, no UI library. Docs: https://react-big-schedule.ansulagrawal.com/docs . Full API text: https://react-big-schedule.ansulagrawal.com/llms-full.txt
+Free MIT React calendar (`<Calendar>`) and resource timeline (`<Scheduler>`). ESM only, strict TypeScript, React 18+ peer dependency, no UI library. Docs: https://react-big-schedule.vercel.app/docs . Full API text: https://react-big-schedule.vercel.app/llms-full.txt
 
 ## Install and import
 

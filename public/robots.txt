@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://react-big-schedule.ansulagrawal.com/sitemap.xml
+Sitemap: https://react-big-schedule.vercel.app/sitemap.xml
