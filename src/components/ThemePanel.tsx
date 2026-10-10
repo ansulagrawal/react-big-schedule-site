@@ -74,13 +74,13 @@ export default function ThemePanel() {
         aria-haspopup="dialog"
         aria-expanded={open}
         onClick={() => setOpen(o => !o)}
-        className="inline-flex items-center gap-2 rounded-full border border-white/25 px-3.5 py-1.5 text-sm font-medium text-white hover:bg-white/10"
+        className="inline-flex items-center gap-2 rounded-full border border-white/25 px-2.5 py-1.5 text-sm font-medium text-white hover:bg-white/10 sm:px-3.5"
       >
         <span
           className="h-3.5 w-3.5 rounded-full ring-2 ring-white/30"
           style={{ background: current ?? 'conic-gradient(#d9703f, #5f8a73, #6366f1, #d9703f)' }}
         />
-        Theme
+        <span className="hidden sm:inline">Theme</span>
         <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true" className={`transition-transform ${open ? 'rotate-180' : ''}`}>
           <path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
         </svg>
@@ -90,7 +90,7 @@ export default function ThemePanel() {
         <div
           role="dialog"
           aria-label="Theme"
-          className="absolute right-0 top-full z-50 mt-2 w-90 rounded-2xl border border-white/15 bg-[#1b1b1b] p-4 text-white shadow-2xl"
+          className="fixed inset-x-4 top-18 z-50 rounded-2xl border border-white/15 bg-[#1b1b1b] p-4 text-white shadow-2xl"
         >
           <p className="text-xs font-semibold uppercase tracking-wider text-white/50">Style</p>
           <div className="mt-2 grid grid-cols-3 gap-2.5">
