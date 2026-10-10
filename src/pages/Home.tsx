@@ -68,7 +68,7 @@ data.setEvents(events);
   },
   {
     title: 'Themes in CSS variables',
-    text: 'Light, dark and classic out of the box. Re-skin by overriding a few variables, no UI library, no build step.',
+    text: 'Default (transparent, follows your page), dark and light out of the box. Re-skin by overriding a few variables, no UI library, no build step.',
     code: `<Calendar theme="dark" events={events} />
 
 .my-app {

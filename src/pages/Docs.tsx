@@ -51,7 +51,7 @@ data.setEvents(events);
       </Section>
 
       <Section id="theming" title="Theming">
-        <p className="text-white/65">Set <code className="rounded bg-white/10 px-1.5 py-0.5 text-[13px]">theme</code> to light, dark or classic, or override the CSS variables.</p>
+        <p className="text-white/65">Set <code className="rounded bg-white/10 px-1.5 py-0.5 text-[13px]">theme</code> to default (transparent), dark or light, or override the CSS variables.</p>
         <Code>{`.my-app {
   --rbs-accent: #7c3aed;
   --rbs-radius: 10px;

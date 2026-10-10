@@ -6,7 +6,7 @@ import LiveCalendar from '../components/LiveCalendar';
 const DndScheduler = wrapperFun(Scheduler);
 
 function make() {
-  const data = new SchedulerData(dayjs(), ViewType.Week, false, false, { theme: 'dark' });
+  const data = new SchedulerData(dayjs(), ViewType.Week, false, false, { theme: 'default' });
   data.setResources(DemoData.resources);
   data.setEvents(DemoData.events);
   return data;

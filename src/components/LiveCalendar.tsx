@@ -3,7 +3,7 @@ import { Calendar, type CalendarEvent, type CalendarViewName } from 'react-big-s
 import { makeEvents } from '../sample';
 import ColorDropdown from './ColorDropdown';
 
-const THEMES = ['light', 'dark', 'classic'] as const;
+const THEMES = ['default', 'dark', 'light'] as const;
 type Theme = (typeof THEMES)[number];
 
 const VIEWS: CalendarViewName[] = ['dayGridMonth', 'timeGridWeek', 'timeGridDay', 'listWeek', 'multiMonthYear'];
@@ -17,13 +17,13 @@ export default function LiveCalendar({
   initialView?: CalendarViewName;
   customizer?: boolean;
 }) {
-  const [theme, setTheme] = useState<Theme>('dark');
+  const [theme, setTheme] = useState<Theme>('default');
   const [accent, setAccent] = useState<string | undefined>();
   const [radius, setRadius] = useState(6);
   const [events, setEvents] = useState<CalendarEvent[]>(makeEvents);
   const [log, setLog] = useState('Drag, resize, click or select something');
   const patch = (next: CalendarEvent) => setEvents(list => list.map(e => (e.id === next.id ? next : e)));
-  const panelDark = theme === 'dark';
+  const panelDark = theme !== 'light';
   const style = { ...(accent ? { '--rbs-accent': accent } : {}), '--rbs-radius': `${radius}px` } as CSSProperties;
 
   const chip = (active: boolean) =>
@@ -38,7 +38,11 @@ export default function LiveCalendar({
   return (
     <div
       className={`rounded-2xl border p-4 ${
-        panelDark ? 'border-white/10 bg-[#101010] text-white' : 'border-slate-200 bg-slate-50 text-slate-900'
+        theme === 'light'
+          ? 'border-slate-200 bg-slate-50 text-slate-900'
+          : theme === 'dark'
+            ? 'border-white/10 bg-[#101010] text-white'
+            : 'border-white/10 bg-transparent text-white'
       }`}
     >
       {customizer && (
