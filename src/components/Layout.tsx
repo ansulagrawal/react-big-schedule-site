@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { type ReactNode, useEffect, useState } from 'react';
 import Footer from './Footer';
 import Logo from './Logo';
 
@@ -11,6 +11,16 @@ const links = [
 const GITHUB = 'https://github.com/ansulagrawal/react-big-schedule';
 
 export default function Layout({ route, children }: { route: string; children: ReactNode }) {
+  // the bar is transparent at the very top and gets its background after a little scrolling
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+  const base = `/${route.split('/')[1] ?? ''}`;
+
   return (
     <div className="site-bg min-h-screen antialiased">
       <div className="flex h-9 items-center justify-center bg-black/50 px-4 text-xs text-white/90">
@@ -19,7 +29,11 @@ export default function Layout({ route, children }: { route: string; children: R
           Read the upgrade guide →
         </a>
       </div>
-      <header className="sticky top-0 z-40 border-b border-white/10 bg-[#1a1a1a]/70 text-white backdrop-blur-md">
+      <header
+        className={`sticky top-0 z-40 border-b text-white transition-[background-color,backdrop-filter,border-color] duration-200 ${
+          scrolled ? 'border-white/10 bg-[#1a1a1a]/75 backdrop-blur-md' : 'border-transparent bg-transparent'
+        }`}
+      >
         <nav className="grid h-16 w-full grid-cols-[1fr_auto_1fr] items-center px-6 lg:px-10">
           <a href="#/" aria-label="React Big Schedule home" className="justify-self-start">
             <Logo />
@@ -29,7 +43,7 @@ export default function Layout({ route, children }: { route: string; children: R
               <a
                 key={href}
                 href={href}
-                className={route === href.slice(1) ? 'text-[#ff8a4b]' : 'text-white/85 hover:text-white'}
+                className={base === href.slice(1) ? 'text-[#ff8a4b]' : 'text-white/85 hover:text-white'}
               >
                 {label}
               </a>

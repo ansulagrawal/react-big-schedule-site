@@ -27,7 +27,7 @@ function App() {
     window.addEventListener('hashchange', onChange);
     return () => window.removeEventListener('hashchange', onChange);
   }, []);
-  const Page = routes[route] ?? Home;
+  const Page = routes[`/${route.split('/')[1] ?? ''}`] ?? Home;
   return (
     <Layout route={route}>
       <Page />
