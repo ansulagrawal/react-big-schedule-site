@@ -4,7 +4,7 @@ import type { CalendarEvent } from 'react-big-schedule';
 const at = (offset: number, time: string) => dayjs().add(offset, 'day').format(`YYYY-MM-DD[T]${time}`);
 const day = (offset: number) => dayjs().add(offset, 'day').format('YYYY-MM-DD');
 
-export const makeEvents = (): CalendarEvent[] => [
+const base = (): CalendarEvent[] => [
   { id: 1, title: 'Standup', start: at(0, '09:00'), end: at(0, '09:30'), color: '#6366f1' },
   { id: 2, title: 'Design review', start: at(0, '11:00'), end: at(0, '12:00'), color: '#8b5cf6' },
   { id: 3, title: 'Sprint planning', start: at(1, '10:00'), end: at(1, '11:30'), color: '#06b6d4' },
@@ -18,3 +18,31 @@ export const makeEvents = (): CalendarEvent[] => [
   { id: 11, title: 'Planning', start: at(-6, '10:00'), end: at(-6, '11:00'), color: '#6366f1' },
   { id: 12, title: 'Hiring', start: at(10, '14:00'), end: at(10, '15:00'), color: '#14b8a6' },
 ];
+
+const COLORS = ['#6366f1', '#8b5cf6', '#06b6d4', '#f97316', '#22c55e', '#3b82f6', '#ec4899', '#f59e0b', '#14b8a6', '#ef4444'];
+
+// a handful of events in every month of the current year so the year views are never empty
+const monthly = [
+  { title: 'Team sync', d: 3, from: '09:30', to: '10:00' },
+  { title: 'Product review', d: 8, from: '14:00', to: '15:30' },
+  { title: 'Workshop', d: 12, from: '10:00', to: '12:00' },
+  { title: 'Offsite', d: 15, days: 2 },
+  { title: '1:1', d: 19, from: '11:00', to: '11:30' },
+  { title: 'Demo day', d: 22, from: '16:00', to: '17:00' },
+  { title: 'Planning', d: 26, from: '09:00', to: '10:30' },
+];
+
+const yearEvents = (): CalendarEvent[] => {
+  const year = dayjs().year();
+  return Array.from({ length: 12 }, (_, m) => dayjs(new Date(year, m, 1))).flatMap((first, m) =>
+    monthly.map((e, i): CalendarEvent => {
+      const date = first.date(e.d);
+      const color = COLORS[(m + i) % COLORS.length];
+      return e.days
+        ? { id: 1000 + m * 10 + i, title: e.title, start: date.format('YYYY-MM-DD'), end: date.add(e.days + 1, 'day').format('YYYY-MM-DD'), allDay: true, color }
+        : { id: 1000 + m * 10 + i, title: e.title, start: date.format(`YYYY-MM-DD[T]${e.from}`), end: date.format(`YYYY-MM-DD[T]${e.to}`), color };
+    })
+  );
+};
+
+export const makeEvents = (): CalendarEvent[] => [...base(), ...yearEvents()];
