@@ -1,4 +1,36 @@
-import { useState } from 'react';
+import { type ReactNode, useState } from 'react';
+
+// One pass, first alternative wins. Small on purpose (JS/TSX/JSX + CSS-ish); no highlighter dependency.
+const TOKEN =
+  /(?<comment>\/\/.*|\/\*[\s\S]*?\*\/)|(?<string>'(?:\\.|[^'\\\n])*'|"(?:\\.|[^"\\\n])*"|`(?:\\.|[^`\\])*`)|(?<tag>(?<![\w$])<\/?[A-Za-z][\w.]*(?=[\s>/]))|(?<keyword>\b(?:import|from|export|default|const|let|var|function|return|if|else|new|type|interface|as|async|await|true|false|null|undefined)\b)|(?<number>\b\d+(?:\.\d+)?\b)|(?<attr>[A-Za-z_][\w-]*(?==))|(?<fn>[A-Za-z_$][\w$]*(?=\())|(?<type>\b[A-Z][\w$]*)/g;
+
+const COLOR: Record<string, string> = {
+  comment: 'italic text-slate-500',
+  string: 'text-emerald-300',
+  tag: 'text-sky-300',
+  keyword: 'text-violet-300',
+  number: 'text-amber-300',
+  attr: 'text-orange-300',
+  fn: 'text-yellow-200',
+  type: 'text-cyan-300',
+};
+
+function highlight(src: string): ReactNode[] {
+  const out: ReactNode[] = [];
+  let last = 0;
+  for (const m of src.matchAll(TOKEN)) {
+    const kind = Object.entries(m.groups ?? {}).find(([, v]) => v !== undefined)?.[0] ?? '';
+    if (m.index > last) out.push(src.slice(last, m.index));
+    out.push(
+      <span key={m.index} className={COLOR[kind]}>
+        {m[0]}
+      </span>
+    );
+    last = m.index + m[0].length;
+  }
+  out.push(src.slice(last));
+  return out;
+}
 
 export default function Code({ children, title }: { children: string; title?: string }) {
   const [copied, setCopied] = useState(false);
@@ -17,7 +49,7 @@ export default function Code({ children, title }: { children: string; title?: st
         </button>
       </div>
       <pre className="overflow-x-auto p-4 text-[13px] leading-relaxed text-slate-100">
-        <code>{children}</code>
+        <code>{title === 'terminal' ? children : highlight(children)}</code>
       </pre>
     </div>
   );
