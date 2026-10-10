@@ -36,7 +36,7 @@ export default function Layout({ route, children }: { route: string; children: R
         }
       >
         <nav className="grid h-16 w-full grid-cols-[1fr_auto_1fr] items-center px-6 lg:px-10">
-          <a href="#/" aria-label="Home" className="justify-self-start">
+          <a href="#/" aria-label="React Big Schedule home" className="justify-self-start">
             <Logo />
           </a>
           <div className="flex items-center gap-8 text-sm font-medium">
