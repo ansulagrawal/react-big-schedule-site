@@ -177,6 +177,17 @@ export const demos: Demo[] = [
   { id: 'resource-grouped', title: 'Grouped header', group: 'Resources', status: 'free', blurb: 'Month and week-number rows above the day cells, nested resources.', render: l => <TimelineDemo {...l} viewType={ViewType.Quarter} config={{ showMonthRow: true, showWeekNumber: true }} />, code: `${timeline('Quarter')}\n\n// config: { showMonthRow: true, showWeekNumber: true }` },
   { id: 'resource-cadence', title: 'Month columns', group: 'Resources', status: 'free', blurb: 'One column per week, month, quarter or year with a summary row.', render: l => <TimelineDemo {...l} viewType={ViewType.Month} />, code: timeline('Month') },
 
+  { id: 'resource-weekends', title: 'Hide weekends', group: 'Resources', status: 'free', blurb: 'Drop Saturday and Sunday columns from the timeline with one option.', render: l => <TimelineDemo {...l} viewType={ViewType.Week} config={{ displayWeekend: false }} />, code: `const data = new SchedulerData(new Date(), ViewType.Week, false, false, {
+  displayWeekend: false,
+});` },
+  { id: 'resource-infinite', title: 'Infinite scroll', group: 'Resources', status: 'free', blurb: 'Scroll to either end of the day and the neighbouring day loads, with the position kept.', render: l => <TimelineDemo {...l} viewType={ViewType.Day} infinite config={{ dayCellWidth: 90, views: [{ viewName: 'Day', viewType: ViewType.Day, showAgenda: false, isEventPerspective: false }] }} />, code: `const data = new SchedulerData(new Date(), ViewType.Day, false, false, { dayCellWidth: 90 });
+
+<DndScheduler
+  schedulerData={data}
+  onScrollRight={(d, content, max) => { d.next(); refresh(d); content.scrollLeft = max - 10; }}
+  onScrollLeft={(d, content) => { d.prev(); refresh(d); content.scrollLeft = 10; }}
+/>` },
+
   // ---- Data & behaviour ----
   { id: 'event-sources', title: 'Event sources', group: 'Data', status: 'free', blurb: 'An async function (or a JSON feed) is called for the visible range; stale requests are cancelled.', render: l => <EventSourcesDemo {...l} />, code: `<Calendar
   events={async ({ start, end }, signal) => {

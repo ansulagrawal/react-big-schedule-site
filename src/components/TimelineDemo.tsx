@@ -18,8 +18,9 @@ export default function TimelineDemo({
   radius,
   viewType = ViewType.Week,
   config,
+  infinite,
   events = DemoData.events,
-}: LookProps & { viewType?: ViewType; config?: Partial<SchedulerConfig>; events?: SchedulerEvent[] }) {
+}: LookProps & { infinite?: boolean; viewType?: ViewType; config?: Partial<SchedulerConfig>; events?: SchedulerEvent[] }) {
   const [data, setData] = useState(() => {
     const d = new SchedulerData(new Date(), viewType, false, false, { theme, look, palette, ...config });
     d.setResources(DemoData.resources);
@@ -44,6 +45,8 @@ export default function TimelineDemo({
   return (
     <div className="p-3.5">
       <DndScheduler
+        onScrollRight={infinite ? (d, content, max) => { d.next(); next(d); content.scrollLeft = max - 10; } : undefined}
+        onScrollLeft={infinite ? (d, content) => { d.prev(); next(d); content.scrollLeft = 10; } : undefined}
         schedulerData={data}
         style={style}
         prevClick={d => {
