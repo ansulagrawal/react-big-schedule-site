@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import Code from '../components/Code';
 import ColorDropdown from '../components/ColorDropdown';
-import { THEMES, type Theme } from '../components/LiveCalendar';
 import { type Demo, demos, groups, type Status } from '../demos/registry';
+import { useSite } from '../site';
 
 const badge: Record<Status, [string, string] | null> = {
   free: null,
@@ -30,9 +30,7 @@ function StatusChip({ status }: { status: Status }) {
 export default function Demos() {
   const id = useDemoId();
   const demo: Demo = demos.find(d => d.id === id) ?? (demos[0] as Demo);
-  const [theme, setTheme] = useState<Theme>('default');
-  const [accent, setAccent] = useState<string | undefined>();
-  const [radius, setRadius] = useState(6);
+  const { theme, accent, setAccent, radius, setRadius } = useSite();
   const [showCode, setShowCode] = useState(false);
   const live = Boolean(demo.render);
   const byGroup = useMemo(() => groups.map(g => [g, demos.filter(d => d.group === g)] as const), []);
@@ -97,21 +95,6 @@ export default function Demos() {
         <div className="mb-5 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
           {live && (
             <>
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-semibold uppercase tracking-wider text-white/45">Theme</span>
-                {THEMES.map(t => (
-                  <button
-                    key={t}
-                    type="button"
-                    onClick={() => setTheme(t)}
-                    className={`rounded-full border px-3 py-1 capitalize ${
-                      theme === t ? 'border-transparent bg-white text-slate-900' : 'border-white/20 text-white/80 hover:bg-white/10'
-                    }`}
-                  >
-                    {t}
-                  </button>
-                ))}
-              </div>
               <div className="flex items-center gap-2">
                 <span className="text-xs font-semibold uppercase tracking-wider text-white/45">Color</span>
                 <ColorDropdown value={accent} onChange={setAccent} />

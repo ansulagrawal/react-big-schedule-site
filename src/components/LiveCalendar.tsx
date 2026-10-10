@@ -1,10 +1,10 @@
 import { type CSSProperties, useState } from 'react';
 import { Calendar, type CalendarEvent, type CalendarProps, type CalendarViewName } from 'react-big-schedule';
 import { makeEvents } from '../sample';
+import { useSite } from '../site';
 import ColorDropdown from './ColorDropdown';
 
-export const THEMES = ['default', 'dark', 'light'] as const;
-export type Theme = (typeof THEMES)[number];
+export type Theme = 'default' | 'dark' | 'light';
 
 const VIEWS: CalendarViewName[] = ['dayGridMonth', 'timeGridWeek', 'timeGridDay', 'listWeek', 'multiMonthYear'];
 
@@ -73,40 +73,17 @@ export default function LiveCalendar({
   initialView?: CalendarViewName;
   customizer?: boolean;
 }) {
-  const [theme, setTheme] = useState<Theme>('default');
-  const [accent, setAccent] = useState<string | undefined>();
-  const [radius, setRadius] = useState(6);
-  const panelDark = theme !== 'light';
-
-  const chip = (active: boolean) =>
-    `rounded-full border px-3 py-1 text-sm capitalize transition ${
-      active
-        ? 'border-transparent bg-white text-slate-900'
-        : panelDark
-          ? 'border-white/20 text-white/80 hover:bg-white/10'
-          : 'border-slate-300 text-slate-700 hover:bg-slate-100'
-    }`;
+  // theme comes from the navbar switch; colour and radius are shared with the demos page
+  const { theme, accent, setAccent, radius, setRadius } = useSite();
 
   return (
     <div
       className={`rounded-2xl border p-4 ${
-        theme === 'light'
-          ? 'border-slate-200 bg-slate-50 text-slate-900'
-          : theme === 'dark'
-            ? 'border-white/10 bg-[#101010] text-white'
-            : 'border-white/10 bg-transparent text-white'
+        theme === 'light' ? 'border-slate-200 bg-slate-50 text-slate-900' : 'border-white/10 bg-[#101010] text-white'
       }`}
     >
       {customizer && (
         <div className="mb-4 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-semibold uppercase tracking-wider opacity-60">Theme</span>
-            {THEMES.map(t => (
-              <button key={t} type="button" onClick={() => setTheme(t)} className={chip(theme === t)}>
-                {t}
-              </button>
-            ))}
-          </div>
           <div className="flex items-center gap-2">
             <span className="text-xs font-semibold uppercase tracking-wider opacity-60">Color</span>
             <ColorDropdown value={accent} onChange={setAccent} />
@@ -115,10 +92,10 @@ export default function LiveCalendar({
             <span className="text-xs font-semibold uppercase tracking-wider opacity-60">Radius</span>
             <input type="range" min={0} max={16} value={radius} onChange={e => setRadius(Number(e.target.value))} />
           </label>
+          <span className="ml-auto text-xs opacity-60">Switch light / dark in the navbar</span>
         </div>
       )}
       <CalendarView theme={theme} accent={accent} radius={radius} height={height} initialView={initialView} />
-
     </div>
   );
 }

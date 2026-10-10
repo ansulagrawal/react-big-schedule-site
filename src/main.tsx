@@ -8,6 +8,7 @@ import Demos from './pages/Demos';
 import Docs from './pages/Docs';
 import Home from './pages/Home';
 import Pricing from './pages/Pricing';
+import { SiteProvider } from './site';
 
 const routes: Record<string, () => React.JSX.Element> = {
   '/': Home,
@@ -37,6 +38,8 @@ function App() {
 
 createRoot(document.getElementById('root') as HTMLElement).render(
   <StrictMode>
-    <App />
+    <SiteProvider>
+      <App />
+    </SiteProvider>
   </StrictMode>,
 );
