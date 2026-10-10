@@ -13,31 +13,42 @@ const features = [
 export default function Home() {
   return (
     <>
-      <section className="relative overflow-hidden bg-gradient-to-b from-indigo-50 via-white to-white">
-        <div className="mx-auto max-w-6xl px-4 pb-16 pt-20 text-center">
-          <p className="mx-auto mb-4 w-fit rounded-full border border-indigo-200 bg-white px-3 py-1 text-xs font-medium text-brand">
-            v9 · MIT · React 18/19
-          </p>
-          <h1 className="mx-auto max-w-3xl text-5xl font-bold tracking-tight sm:text-6xl">
-            The React calendar and scheduler,{' '}
-            <span className="bg-gradient-to-r from-brand to-brand-2 bg-clip-text text-transparent">resource timeline included</span>
+      <section className="hero-mesh">
+        <div className="mx-auto max-w-6xl px-4 pb-24 pt-36 text-center">
+          <h1 className="mx-auto max-w-5xl text-5xl font-extrabold leading-[1.05] tracking-tight sm:text-7xl">
+            Crafting the Future of Calendars &amp; Scheduling
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-lg text-slate-600">
-            Month, week, day, list and year views, drag and drop, themes and a free resource timeline. Free and open source.
+          <div className="mx-auto mt-12 flex max-w-xl items-center justify-center gap-10">
+            {[
+              ['12', 'Views\nbuilt in'],
+              ['3', 'Themes,\nyour tokens'],
+              ['0', 'UI library\ndependencies'],
+            ].map(([n, label], i) => (
+              <div key={n + label} className={`flex items-center gap-3 ${i ? 'border-l border-white/30 pl-10' : ''}`}>
+                <span className="text-5xl font-bold text-amber-100">{n}</span>
+                <span className="whitespace-pre-line text-left text-sm leading-tight text-white/85">{label}</span>
+              </div>
+            ))}
+          </div>
+          <p className="mx-auto mt-10 max-w-2xl text-lg leading-relaxed text-white/80">
+            A free, open-source React calendar and resource timeline: month, week, day, list and year views, drag and drop, themes
+            and TypeScript, with nothing to unlearn.
           </p>
-          <div className="mt-8 flex justify-center gap-3">
-            <a href="#/docs" className="rounded-lg bg-brand px-5 py-2.5 font-medium text-white shadow hover:opacity-90">
+          <div className="mt-9 flex justify-center gap-3">
+            <a href="#/docs" className="rounded-full bg-[#a3202c] px-6 py-3 font-semibold text-white hover:bg-[#b9262f]">
               Get started
             </a>
-            <a href="#/demos" className="rounded-lg border border-slate-300 px-5 py-2.5 font-medium hover:bg-slate-50">
+            <a href="#/demos" className="rounded-full border border-white/40 px-6 py-3 font-semibold text-white hover:bg-white/10">
               View demos
             </a>
           </div>
-          <div className="mx-auto mt-6 max-w-md">
+          <div className="mx-auto mt-8 max-w-md">
             <Code>bun add react-big-schedule</Code>
           </div>
         </div>
       </section>
+
+      <div className="h-10" />
 
       <section className="mx-auto max-w-6xl px-4">
         <LiveCalendar />

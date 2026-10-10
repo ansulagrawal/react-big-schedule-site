@@ -8,9 +8,16 @@ const links = [
 ] as const;
 
 export default function Layout({ route, children }: { route: string; children: ReactNode }) {
+  const home = route === '/';
   return (
     <div className="min-h-screen bg-white text-slate-900 antialiased">
-      <header className="sticky top-0 z-30 border-b border-slate-200/70 bg-white/80 backdrop-blur">
+      <header
+        className={
+          home
+            ? 'absolute inset-x-0 top-0 z-30 text-white'
+            : 'sticky top-0 z-30 border-b border-slate-200/70 bg-white/80 backdrop-blur'
+        }
+      >
         <nav className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
           <a href="#/" aria-label="Home">
             <Logo />
@@ -20,14 +27,18 @@ export default function Layout({ route, children }: { route: string; children: R
               <a
                 key={href}
                 href={href}
-                className={route === href.slice(1) ? 'font-medium text-brand' : 'text-slate-600 hover:text-slate-900'}
+                className={route === href.slice(1)
+                    ? 'font-semibold text-brand'
+                    : home
+                      ? 'text-white/85 hover:text-white'
+                      : 'text-slate-600 hover:text-slate-900'}
               >
                 {label}
               </a>
             ))}
             <a
               href="https://github.com/ansulagrawal/react-big-schedule"
-              className="rounded-md border border-slate-300 px-3 py-1.5 hover:bg-slate-50"
+              className={`rounded-full px-4 py-1.5 font-medium ${home ? 'bg-[#a3202c] text-white hover:bg-[#b9262f]' : 'border border-slate-300 hover:bg-slate-50'}`}
             >
               GitHub
             </a>
