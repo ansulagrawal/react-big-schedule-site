@@ -139,3 +139,22 @@ html {
 .site-light [class*="bg-[#a3202c]"] {
   --color-white: #fff;
 }
+
+/* Calendar surfaces: soft slate (dark) and warm cream (light) instead of the library's pure black / white */
+.site-bg [data-rbs-theme="dark"],
+.site-bg [data-rbs-theme="dark"] :is(.rbs-container, .rbs-calendar, .rbs-add-more-popover-overlay) {
+  --rbs-surface: #1c1f27;
+  --rbs-border: #2d323d;
+  --rbs-group-bg: #232733;
+  --rbs-nonworking-bg: #212430;
+  --rbs-hover: rgb(255 255 255 / 0.08);
+}
+
+.site-bg [data-rbs-theme="light"],
+.site-bg [data-rbs-theme="light"] :is(.rbs-container, .rbs-calendar, .rbs-add-more-popover-overlay) {
+  --rbs-surface: #fbfaf7;
+  --rbs-border: #e6e2da;
+  --rbs-group-bg: #f3f0ea;
+  --rbs-nonworking-bg: #f1ece4;
+  --rbs-hover: rgb(20 22 28 / 0.06);
+}

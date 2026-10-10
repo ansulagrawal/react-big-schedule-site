@@ -79,7 +79,7 @@ export default function LiveCalendar({
   return (
     <div
       className={`rounded-2xl border p-4 ${
-        theme === 'light' ? 'border-slate-200 bg-slate-50 text-slate-900' : 'border-white/10 bg-[#101010] text-white'
+        theme === 'light' ? 'border-[#e6e2da] bg-[#f3f0ea] text-slate-900' : 'border-white/10 bg-[#14161c] text-white'
       }`}
     >
       {customizer && (
