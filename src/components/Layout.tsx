@@ -46,7 +46,7 @@ export default function Layout({ route, children }: { route: string; children: R
           scrolled ? 'border-white/10 bg-[#1a1a1a]/75 backdrop-blur-md' : 'border-transparent bg-transparent'
         }`}
       >
-        <nav className="grid h-16 w-full grid-cols-[1fr_auto_1fr] items-center px-6 lg:px-10">
+        <nav className="mx-auto grid h-16 w-full max-w-[88rem] grid-cols-[1fr_auto_1fr] items-center px-4 lg:px-8">
           <a href="#/" aria-label="React Big Schedule home" className="justify-self-start">
             <Logo />
           </a>
