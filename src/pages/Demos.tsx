@@ -37,7 +37,7 @@ export default function Demos() {
   return (
     <div className="mx-auto grid max-w-[88rem] gap-8 px-4 py-10 lg:grid-cols-[260px_minmax(0,1fr)] lg:px-8">
       {/* Sidebar (a select on small screens) */}
-      <aside className="lg:sticky lg:top-24 lg:max-h-[calc(100vh-7rem)] lg:self-start lg:overflow-y-auto lg:pr-2">
+      <aside className="lg:-ml-[5px] lg:sticky lg:top-24 lg:max-h-[calc(100vh-7rem)] lg:self-start lg:overflow-y-auto lg:pr-2">
         <select
           aria-label="Choose a demo"
           value={demo.id}
