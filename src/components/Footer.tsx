@@ -20,7 +20,7 @@ const columns: { title: string; links: [string, string][] }[] = [
       ['Upgrade to v9', '/docs'],
       ['Changelog', `${GH}/releases`],
       ['npm package', 'https://www.npmjs.com/package/react-big-schedule'],
-      ['Classic examples', 'https://react-big-schedule.vercel.app'],
+      ['Classic examples', 'https://react-big-schedule.ansulagrawal.com'],
     ],
   },
   {

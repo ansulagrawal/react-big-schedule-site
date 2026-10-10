@@ -1,0 +1,9 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "react-big-schedule",
+  "compatibility_date": "2026-10-01",
+  // dist/ is the pre-rendered site (one index.html per route); unknown URLs fall back to the SPA shell
+  "assets": { "directory": "./dist", "not_found_handling": "single-page-application" },
+  // Cloudflare creates the DNS record and certificate for this hostname on deploy (zone must be in this account)
+  "routes": [{ "pattern": "react-big-schedule.ansulagrawal.com", "custom_domain": true }]
+}
