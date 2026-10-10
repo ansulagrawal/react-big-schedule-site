@@ -90,7 +90,7 @@ export default function ThemePanel() {
         <div
           role="dialog"
           aria-label="Theme"
-          className="fixed inset-x-4 top-18 z-50 rounded-2xl border border-white/15 bg-[#1b1b1b] p-4 text-white shadow-2xl"
+          className="fixed inset-x-4 top-18 z-50 mx-auto max-w-90 rounded-2xl sm:absolute sm:inset-x-auto sm:mx-0 sm:right-0 sm:top-full sm:mt-2 sm:w-90 border border-white/15 bg-[#1b1b1b] p-4 text-white shadow-2xl"
         >
           <p className="text-xs font-semibold uppercase tracking-wider text-white/50">Style</p>
           <div className="mt-2 grid grid-cols-3 gap-2.5">
