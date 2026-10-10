@@ -43,7 +43,7 @@ export default function TimelineDemo({
   const style = (radius === undefined ? {} : { '--rbs-radius': `${radius}px` }) as CSSProperties;
 
   return (
-    <div className="p-3.5">
+    <div className="bg-panel p-3.5">
       <DndScheduler
         onScrollRight={infinite ? (d, content, max) => { d.next(); next(d); content.scrollLeft = max - 10; } : undefined}
         onScrollLeft={infinite ? (d, content) => { d.prev(); next(d); content.scrollLeft = 10; } : undefined}

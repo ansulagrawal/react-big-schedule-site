@@ -24,6 +24,12 @@ export function RouterProvider({ path: initial, children }: { path?: string; chi
     requestAnimationFrame(() => (url.hash && document.getElementById(url.hash.slice(1))?.scrollIntoView()) || (!url.hash && window.scrollTo(0, 0)));
   }, []);
 
+  // a pre-rendered page is replaced by the live app on load: jump to the #anchor again afterwards
+  useEffect(() => {
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    if (id) requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView());
+  }, []);
+
   useEffect(() => {
     const onPop = () => setPath(clean(window.location.pathname));
     const onClick = (e: MouseEvent) => {
