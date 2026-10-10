@@ -49,10 +49,10 @@ export default function Compare() {
         </thead>
         <tbody>
           {rows.map(r => (
-            <tr key={r.feature} className="border-b border-white/5 last:border-0 hover:bg-white/[0.03]">
+            <tr key={r.feature} className="border-b border-white/5 last:border-0 hover:bg-white/3">
               <td className="px-5 py-3 text-white/85">{r.feature}</td>
               {r.v.map((c, i) => (
-                <td key={LIBS[i]} className={`px-4 py-3 font-medium ${label[c][1]} ${i === 0 ? 'bg-white/[0.04]' : ''}`}>
+                <td key={LIBS[i]} className={`px-4 py-3 font-medium ${label[c][1]} ${i === 0 ? 'bg-white/4' : ''}`}>
                   {label[c][0]}
                 </td>
               ))}

@@ -19,7 +19,7 @@ function Tile({ look, accent }: { look: Look; accent: string }) {
   const cells = Array.from({ length: 14 }, (_, i) => i);
   return (
     <div
-      className="grid grid-cols-7 overflow-hidden bg-white/[0.04]"
+      className="grid grid-cols-7 overflow-hidden bg-white/4"
       style={{ borderRadius: k.r, border: `1px solid color-mix(in srgb, var(--color-white) ${k.line}%, transparent)` }}
       aria-hidden="true"
     >
@@ -90,7 +90,7 @@ export default function ThemePanel() {
         <div
           role="dialog"
           aria-label="Theme"
-          className="absolute right-0 top-full z-50 mt-2 w-[22.5rem] rounded-2xl border border-white/15 bg-[#1b1b1b] p-4 text-white shadow-2xl"
+          className="absolute right-0 top-full z-50 mt-2 w-90 rounded-2xl border border-white/15 bg-[#1b1b1b] p-4 text-white shadow-2xl"
         >
           <p className="text-xs font-semibold uppercase tracking-wider text-white/50">Style</p>
           <div className="mt-2 grid grid-cols-3 gap-2.5">

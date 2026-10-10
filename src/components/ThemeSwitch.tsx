@@ -12,7 +12,7 @@ export default function ThemeSwitch() {
       aria-label="Dark calendar theme"
       title={dark ? 'Calendars: dark (click for light)' : 'Calendars: light (click for dark)'}
       onClick={() => setTheme(dark ? 'light' : 'dark')}
-      className={`relative inline-flex h-8 w-[3.75rem] shrink-0 items-center rounded-full border transition-colors ${
+      className={`relative inline-flex h-8 w-15 shrink-0 items-center rounded-full border transition-colors ${
         dark ? 'border-white/25 bg-white/10' : 'border-slate-400/70 bg-slate-300/70'
       }`}
     >
@@ -23,7 +23,7 @@ export default function ThemeSwitch() {
         <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M13.5 10.2A6 6 0 0 1 5.8 2.5a6 6 0 1 0 7.7 7.7z" /></svg>
       </span>
       <span
-        className={`keep-white absolute top-0.5 h-6 w-6 rounded-full bg-white shadow-md ring-1 ring-black/10 transition-transform ${dark ? 'translate-x-[1.75rem]' : 'translate-x-0.5'}`}
+        className={`keep-white absolute top-0.5 h-6 w-6 rounded-full bg-white shadow-md ring-1 ring-black/10 transition-transform ${dark ? 'translate-x-7' : 'translate-x-0.5'}`}
       />
     </button>
   );

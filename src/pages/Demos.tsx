@@ -35,9 +35,9 @@ export default function Demos() {
   const byGroup = useMemo(() => groups.map(g => [g, demos.filter(d => d.group === g)] as const), []);
 
   return (
-    <div className="mx-auto grid max-w-[88rem] gap-8 px-4 py-10 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-x-3 lg:px-8">
+    <div className="mx-auto grid max-w-352 gap-8 px-4 py-10 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-x-3 lg:px-8">
       {/* Sidebar (a select on small screens) */}
-      <aside className="lg:-ml-[5px] lg:sticky lg:top-24 lg:max-h-[calc(100vh-7rem)] lg:self-start lg:overflow-y-auto lg:pr-2">
+      <aside className="lg:ml-[-5px] lg:sticky lg:top-24 lg:max-h-[calc(100vh-7rem)] lg:self-start lg:overflow-y-auto lg:pr-2">
         <select
           aria-label="Choose a demo"
           value={demo.id}

@@ -61,7 +61,7 @@ export default function Code({ children, title }: { children: string; title?: st
           {copied ? 'Copied' : 'Copy'}
         </button>
       </div>
-      <pre className={`overflow-x-auto p-4 text-[13px] leading-relaxed text-white/90 ${light ? '' : '[color-scheme:dark]'}`}>
+      <pre className={`overflow-x-auto p-4 text-[13px] leading-relaxed text-white/90 ${light ? '' : 'scheme-dark'}`}>
         <code>{title === 'terminal' ? children : highlight(children, light ? LIGHT : DARK)}</code>
       </pre>
     </div>

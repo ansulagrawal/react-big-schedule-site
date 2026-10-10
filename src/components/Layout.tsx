@@ -37,7 +37,7 @@ export default function Layout({ route, children }: { route: string; children: R
     >
       <div className="flex h-9 items-center justify-center keep-white bg-black/50 px-4 text-xs text-white/90">
         <span>New in v9: TypeScript, no antd, a brand-new Calendar.</span>
-        <a href="#/docs" className="ml-2 font-semibold text-[var(--site-ink-dark)] hover:underline">
+        <a href="#/docs" className="ml-2 font-semibold text-(--site-ink-dark) hover:underline">
           Read the upgrade guide →
         </a>
       </div>
@@ -46,7 +46,7 @@ export default function Layout({ route, children }: { route: string; children: R
           scrolled ? 'border-white/10 bg-[#1a1a1a]/75 backdrop-blur-md' : 'border-transparent bg-transparent'
         }`}
       >
-        <nav className="mx-auto grid h-16 w-full max-w-[88rem] grid-cols-[1fr_auto_1fr] items-center px-4 lg:px-8">
+        <nav className="mx-auto grid h-16 w-full max-w-352 grid-cols-[1fr_auto_1fr] items-center px-4 lg:px-8">
           <a href="#/" aria-label="React Big Schedule home" className="justify-self-start">
             <Logo />
           </a>
@@ -55,7 +55,7 @@ export default function Layout({ route, children }: { route: string; children: R
               <a
                 key={href}
                 href={href}
-                className={base === href.slice(1) ? 'text-[var(--site-ink)]' : 'text-white/85 hover:text-white'}
+                className={base === href.slice(1) ? 'text-(--site-ink)' : 'text-white/85 hover:text-white'}
               >
                 {label}
               </a>
