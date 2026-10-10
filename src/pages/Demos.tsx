@@ -30,7 +30,7 @@ function StatusChip({ status }: { status: Status }) {
 export default function Demos() {
   const id = useDemoId();
   const demo: Demo = demos.find(d => d.id === id) ?? (demos[0] as Demo);
-  const { theme, accent, setAccent, radius, setRadius } = useSite();
+  const { theme, look, palette, accent, setAccent, radius, setRadius } = useSite();
   const [showCode, setShowCode] = useState(false);
   const live = Boolean(demo.render);
   const byGroup = useMemo(() => groups.map(g => [g, demos.filter(d => d.group === g)] as const), []);
@@ -124,7 +124,7 @@ export default function Demos() {
 
         {demo.render ? (
           <div key={demo.id} className="card p-4">
-            {demo.render({ theme, accent, radius })}
+            {demo.render({ theme, look, palette, accent, radius })}
           </div>
         ) : (
           <div className="card p-10 text-center">

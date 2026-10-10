@@ -2,6 +2,7 @@ import { type ReactNode, useEffect, useState } from 'react';
 import Footer from './Footer';
 import Logo from './Logo';
 import { useSite } from '../site';
+import ThemePicker from './ThemePicker';
 import ThemeSwitch from './ThemeSwitch';
 
 const links = [
@@ -53,6 +54,7 @@ export default function Layout({ route, children }: { route: string; children: R
             ))}
           </div>
           <div className="flex items-center gap-4 justify-self-end">
+            <ThemePicker />
             <ThemeSwitch />
           <a
             href={GITHUB}

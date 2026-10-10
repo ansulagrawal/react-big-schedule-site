@@ -9,6 +9,8 @@ const copyOf = (d: SchedulerData) => Object.assign(Object.create(Object.getProto
 /** The resource timeline / vertical resource view on the current week's demo data. */
 export default function TimelineDemo({
   theme,
+  look,
+  palette,
   accent,
   radius = 6,
   viewType = ViewType.Week,
@@ -16,7 +18,7 @@ export default function TimelineDemo({
   events = DemoData.events,
 }: LookProps & { viewType?: ViewType; config?: Partial<SchedulerConfig>; events?: SchedulerEvent[] }) {
   const [data, setData] = useState(() => {
-    const d = new SchedulerData(new Date(), viewType, false, false, { theme, ...config });
+    const d = new SchedulerData(new Date(), viewType, false, false, { theme, look, palette, ...config });
     d.setResources(DemoData.resources);
     d.setEvents(events);
     return d;
@@ -25,8 +27,10 @@ export default function TimelineDemo({
   // theme is read from config on every render; keep it in sync with the page control
   useEffect(() => {
     data.config.theme = theme;
+    data.config.look = look;
+    data.config.palette = palette;
     setData(copyOf(data));
-  }, [theme]);
+  }, [theme, look, palette]);
 
   const next = (d: SchedulerData) => {
     d.setEvents(events);

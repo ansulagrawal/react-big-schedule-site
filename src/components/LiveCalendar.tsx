@@ -10,6 +10,8 @@ const VIEWS: CalendarViewName[] = ['dayGridMonth', 'timeGridWeek', 'timeGridDay'
 
 export interface LookProps {
   theme: Theme;
+  look?: string;
+  palette?: string;
   accent?: string;
   radius?: number;
 }
@@ -17,6 +19,8 @@ export interface LookProps {
 /** The library Calendar with a themed look and a one-line activity log; used by the home page and every calendar demo. */
 export function CalendarView({
   theme,
+  look,
+  palette,
   accent,
   radius = 6,
   height = 640,
@@ -42,6 +46,8 @@ export function CalendarView({
         dayMaxEvents
         {...rest}
         theme={theme}
+        look={look}
+        palette={palette}
         style={style}
         events={dynamic ? initialEvents : events}
         views={views}
@@ -74,7 +80,7 @@ export default function LiveCalendar({
   customizer?: boolean;
 }) {
   // theme comes from the navbar switch; colour and radius are shared with the demos page
-  const { theme, accent, setAccent, radius, setRadius } = useSite();
+  const { theme, look, palette, accent, setAccent, radius, setRadius } = useSite();
 
   return (
     <div
@@ -95,7 +101,7 @@ export default function LiveCalendar({
           <span className="ml-auto text-xs opacity-60">Switch light / dark in the navbar</span>
         </div>
       )}
-      <CalendarView theme={theme} accent={accent} radius={radius} height={height} initialView={initialView} />
+      <CalendarView theme={theme} look={look} palette={palette} accent={accent} radius={radius} height={height} initialView={initialView} />
     </div>
   );
 }
