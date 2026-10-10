@@ -78,3 +78,14 @@ html {
   background: rgb(255 255 255 / 0.04);
   border-radius: 1.25rem;
 }
+
+/* Colour glows repeated down the page (between sections), in a rotating palette: indigo, rose, teal, amber */
+.page-glows {
+  background-image:
+    radial-gradient(56vw 560px at 4% 700px, rgb(99 102 241 / 0.55), transparent 70%),
+    radial-gradient(52vw 520px at 98% 1100px, rgb(225 29 72 / 0.45), transparent 70%),
+    radial-gradient(54vw 540px at 2% 1540px, rgb(20 184 166 / 0.45), transparent 70%),
+    radial-gradient(50vw 500px at 100% 1920px, rgb(245 158 11 / 0.42), transparent 70%);
+  background-size: 100% 2300px;
+  background-repeat: repeat-y;
+}

@@ -19,7 +19,7 @@ export default function Layout({ route, children }: { route: string; children: R
           Read the upgrade guide →
         </a>
       </div>
-      <header className="relative z-30 text-white">
+      <header className="sticky top-0 z-40 border-b border-white/10 bg-[#1a1a1a]/70 text-white backdrop-blur-md">
         <nav className="grid h-16 w-full grid-cols-[1fr_auto_1fr] items-center px-6 lg:px-10">
           <a href="#/" aria-label="React Big Schedule home" className="justify-self-start">
             <Logo />
@@ -46,8 +46,10 @@ export default function Layout({ route, children }: { route: string; children: R
           </a>
         </nav>
       </header>
-      <main>{children}</main>
-      <Footer />
+      <div className="page-glows">
+        <main>{children}</main>
+        <Footer />
+      </div>
     </div>
   );
 }
