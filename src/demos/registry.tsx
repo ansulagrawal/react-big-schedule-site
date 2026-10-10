@@ -1,7 +1,8 @@
 import dayjs from 'dayjs';
 import { type ReactNode, useState } from 'react';
-import { type CalendarEvent, type SchedulerEvent, ViewType } from 'react-big-schedule';
+import { Calendar, type CalendarEvent, type SchedulerEvent, ViewType } from 'react-big-schedule';
 import { CalendarView, type LookProps } from '../components/LiveCalendar';
+import { SHADES } from '../sample';
 import TimelineDemo from '../components/TimelineDemo';
 
 export type Status = 'free' | 'pro' | 'soon';
@@ -95,6 +96,46 @@ const columnEvents: SchedulerEvent[] = [
   ['r7', 'Demo', '15:30', '16:30', '#d946ef'],
 ].map(([resourceId, title, a, b, bgColor], i) => ({ id: 800 + i, resourceId: resourceId as string, title: title as string, start: stamp(a as string), end: stamp(b as string), bgColor: bgColor as string }));
 
+
+/** Drag over empty time to create an event; click an event to delete it. */
+function SelectCreateDemo({ theme, look, palette, radius }: LookProps) {
+  const [events, setEvents] = useState<CalendarEvent[]>(() => [
+    { id: 'a', title: 'Drag across the grid to add an event', start: day(0, '10:00'), end: day(0, '11:30') },
+  ]);
+  const style = (radius === undefined ? {} : { '--rbs-radius': `${radius}px` }) as React.CSSProperties;
+  return (
+    <div>
+      <Calendar
+        events={events}
+        initialView="timeGridWeek"
+        views={['timeGridWeek', 'timeGridDay', 'dayGridMonth']}
+        theme={theme}
+        look={look}
+        palette={palette}
+        style={style}
+        height={620}
+        editable
+        selectable
+        nowIndicator
+        onSelect={({ start, end, allDay }) =>
+          setEvents(list => [...list, { id: `n${list.length}`, title: 'New event', start: start.format(), end: end.format(), allDay, color: SHADES[list.length % SHADES.length] }])
+        }
+        onEventClick={({ event }) => setEvents(list => list.filter(e => e.id !== event.id))}
+        onEventDrop={({ event }) => setEvents(list => list.map(e => (e.id === event.id ? event : e)))}
+        onEventResize={({ event }) => setEvents(list => list.map(e => (e.id === event.id ? event : e)))}
+      />
+      <p className="px-4 pb-3 text-xs opacity-60">Select a range to create, click an event to remove it, drag or resize to change it.</p>
+    </div>
+  );
+}
+
+const iconEvents: CalendarEvent[] = [
+  { id: 'i1', title: 'Flight to Berlin', start: day(0, '07:30'), end: day(0, '10:00'), extendedProps: { icon: '✈️', where: 'T3' } },
+  { id: 'i2', title: 'Team lunch', start: day(0, '12:30'), end: day(0, '13:30'), extendedProps: { icon: '🍜', where: 'Canteen' } },
+  { id: 'i3', title: 'Review', start: day(1, '15:00'), end: day(1, '16:00'), extendedProps: { icon: '🔍', where: 'Room 4' } },
+  { id: 'i4', title: 'Gym', start: day(2, '18:00'), end: day(2, '19:00'), extendedProps: { icon: '🏋️', where: '' } },
+];
+
 const cal = (initialView: string, views: string[], extra = '') =>
   `import { Calendar } from 'react-big-schedule';
 import 'react-big-schedule/dist/css/style.css';
@@ -157,6 +198,33 @@ export const demos: Demo[] = [
 ];
 
 <Calendar events={events} businessHours nowIndicator />` },
+
+  // ---- Options: small props that change a lot ----
+  { id: 'select-create', title: 'Select to create', group: 'Options', status: 'free', blurb: 'Drag over empty time to add an event, click one to remove it. Your state, your rules.', render: l => <SelectCreateDemo {...l} />, code: `<Calendar
+  events={events}
+  editable
+  selectable
+  onSelect={({ start, end, allDay }) => add({ title: 'New event', start: start.format(), end: end.format(), allDay })}
+  onEventClick={({ event }) => remove(event.id)}
+  onEventDrop={({ event }) => update(event)}
+  onEventResize={({ event }) => update(event)}
+/>` },
+  { id: 'read-only', title: 'Read only', group: 'Options', status: 'free', blurb: 'No dragging, resizing or selecting: a display-only calendar.', render: l => <CalendarView {...l} height={600} initialView="dayGridMonth" editable={false} selectable={false} />, code: `<Calendar events={events} editable={false} selectable={false} />` },
+  { id: 'hide-weekends', title: 'Hide weekends', group: 'Options', status: 'free', blurb: 'Five-day weeks in every view.', render: l => <CalendarView {...l} height={620} initialView="timeGridWeek" weekends={false} />, code: `<Calendar events={events} initialView="timeGridWeek" weekends={false} />` },
+  { id: 'week-numbers', title: 'Week numbers', group: 'Options', status: 'free', blurb: 'ISO week numbers down the side of the month grid.', render: l => <CalendarView {...l} height={640} initialView="dayGridMonth" weekNumbers firstDay={1} />, code: `<Calendar events={events} weekNumbers firstDay={1} /> // weeks start on Monday` },
+  { id: 'slot-range', title: 'Business hours and slots', group: 'Options', status: 'free', blurb: 'Limit the visible hours, set the slot size and shade the working week.', render: l => <CalendarView {...l} height={660} initialView="timeGridWeek" slotMinTime="08:00" slotMaxTime="19:00" slotDuration={15} scrollTime="08:00" businessHours={{ daysOfWeek: [1, 2, 3, 4, 5], startTime: '09:00', endTime: '17:00' }} />, code: `<Calendar
+  initialView="timeGridWeek"
+  slotMinTime="08:00"
+  slotMaxTime="19:00"
+  slotDuration={15}
+  businessHours={{ daysOfWeek: [1, 2, 3, 4, 5], startTime: '09:00', endTime: '17:00' }}
+/>` },
+  { id: 'custom-content', title: 'Custom event content', group: 'Options', status: 'free', blurb: 'Render anything inside an event: icons, places, badges, from extendedProps.', render: l => <CalendarView {...l} height={620} initialView="timeGridWeek" events={iconEvents} eventContent={a => (<span className="flex min-w-0 items-center gap-1"><span>{String(a.event.extendedProps?.icon ?? '')}</span><span className="truncate font-medium">{a.event.title}</span>{a.event.extendedProps?.where ? <span className="truncate opacity-75">· {String(a.event.extendedProps.where)}</span> : null}</span>)} />, code: `<Calendar
+  events={[{ id: 1, title: 'Team lunch', start, end, extendedProps: { icon: '🍜', where: 'Canteen' } }]}
+  eventContent={({ event }) => (
+    <span>{event.extendedProps?.icon} {event.title} · {event.extendedProps?.where}</span>
+  )}
+/>` },
 
   // ---- Pro: add-ons (scaffold exists, features landing one by one) ----
   { id: 'export', title: 'iCal, CSV and PDF export', group: 'Pro', status: 'pro', blurb: 'Download any range as .ics, .csv or a print-ready PDF.', note: 'iCal and CSV are built in the Pro package (in development); PDF export is planned.', code: `import { toICS, toCSV, downloadICS } from '@react-big-schedule/pro';
