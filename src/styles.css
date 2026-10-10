@@ -98,7 +98,7 @@ html {
 /* Light page theme: every white-based utility (text-white/65, border-white/10, bg-white/5 ...) reads --color-white, so flipping it to ink flips the whole page */
 .site-light {
   --color-white: #14161c;
-  background: #f6f4ef;
+  background: #ece8e0;
   color: #14161c;
 }
 
@@ -126,7 +126,7 @@ html {
 
 .site-light .card {
   border-color: rgb(0 0 0 / 0.1);
-  background: rgb(255 255 255 / 0.7);
+  background: color-mix(in srgb, #e4dfd4 70%, transparent);
 }
 
 .site-light footer {
@@ -134,11 +134,11 @@ html {
 }
 
 .site-light header[class*="bg-[#1a1a1a]/75"] {
-  background-color: rgb(246 244 239 / 0.8);
+  background-color: rgb(236 232 224 / 0.8);
 }
 
 .site-light [class*="bg-[#1b1b1b]"] {
-  background-color: #fff;
+  background-color: #f4f1ea;
 }
 
 /* things that stay dark or coloured keep white text */
@@ -155,7 +155,7 @@ html {
 
 .site-bg [data-rbs-theme="light"],
 .site-bg [data-rbs-theme="light"] :is(.rbs-container, .rbs-calendar, .rbs-add-more-popover-overlay) {
-  --rbs-surface: #fbfaf7;
+  --rbs-surface: #f1eee7;
 }
 
 .site-bg [data-rbs-theme="dark"]:is(:not([data-rbs-look]), [data-rbs-look="default"]),
@@ -168,9 +168,9 @@ html {
 
 .site-bg [data-rbs-theme="light"]:is(:not([data-rbs-look]), [data-rbs-look="default"]),
 .site-bg [data-rbs-theme="light"]:is(:not([data-rbs-look]), [data-rbs-look="default"]) :is(.rbs-container, .rbs-calendar, .rbs-add-more-popover-overlay) {
-  --rbs-border: #e6e2da;
-  --rbs-group-bg: #f3f0ea;
-  --rbs-nonworking-bg: #f1ece4;
+  --rbs-border: #d9d4c9;
+  --rbs-group-bg: #e7e3d9;
+  --rbs-nonworking-bg: #e9e4da;
   --rbs-hover: rgb(20 22 28 / 0.06);
 }
 

@@ -80,7 +80,7 @@ export default function LiveCalendar({
   return (
     <div
       className={`rounded-2xl border p-4 ${
-        theme === 'light' ? 'border-[#e6e2da] bg-[#f3f0ea] text-slate-900' : 'border-white/10 bg-[#14161c] text-white'
+        theme === 'light' ? 'border-[#d9d4c9] bg-[#e4dfd4] text-slate-900' : 'border-white/10 bg-[#14161c] text-white'
       }`}
     >
       <CalendarView theme={theme} look={look} palette={palette} radius={radius} height={height} initialView={initialView} />
