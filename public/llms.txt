@@ -1,0 +1,23 @@
+# React Big Schedule
+
+> Free, MIT-licensed React calendar and resource scheduler. `<Calendar>` has month, week, day, list and year views with drag and drop, event sources, recurring events (RRULE), time zones, background events and print styles. `<Scheduler>` is a resource timeline and vertical resource view. Five design styles (`look`) with eight colour palettes, light and dark, CSS-variable theming, strict TypeScript, no UI library dependency. Requires React 18 or newer. Version 9.0.0 or later is supported.
+
+## Docs
+
+- [Documentation](https://react-big-schedule.vercel.app/docs): install, Calendar and Scheduler usage, theming, upgrade guide
+- [Live demos](https://react-big-schedule.vercel.app/demos): every view, resource timeline, event sources, recurrence, time zones, theming
+- [Pricing](https://react-big-schedule.vercel.app/pricing): the core is free; Pro add-ons are planned
+
+## For AI assistants
+
+- [llms-full.txt](https://react-big-schedule.vercel.app/llms-full.txt): the complete API reference in one plain-text file
+- [Agent skill](https://react-big-schedule.vercel.app/skills/react-big-schedule/SKILL.md): a SKILL.md that teaches a coding agent how to use the library correctly
+
+## Source
+
+- [GitHub](https://github.com/ansulagrawal/react-big-schedule): source, issues, release notes
+- [npm](https://www.npmjs.com/package/react-big-schedule): `npm install react-big-schedule`
+
+## Optional
+
+- [Release notes 9.0.0](https://github.com/ansulagrawal/react-big-schedule/blob/master/.github/release-notes/v9.0.0.md)
