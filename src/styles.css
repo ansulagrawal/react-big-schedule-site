@@ -89,3 +89,38 @@ html {
   background-size: 100% 2300px;
   background-repeat: repeat-y;
 }
+
+/* Light page theme: every white-based utility (text-white/65, border-white/10, bg-white/5 ...) reads --color-white, so flipping it to ink flips the whole page */
+.site-light {
+  --color-white: #14161c;
+  background: #f6f4ef;
+  color: #14161c;
+}
+
+.site-light::before,
+.site-light::after {
+  opacity: 0.35;
+}
+
+.site-light .card {
+  border-color: rgb(0 0 0 / 0.1);
+  background: rgb(255 255 255 / 0.7);
+}
+
+.site-light footer {
+  background: rgb(0 0 0 / 0.04);
+}
+
+.site-light header[class*="bg-[#1a1a1a]/75"] {
+  background-color: rgb(246 244 239 / 0.8);
+}
+
+.site-light [class*="bg-[#1b1b1b]"] {
+  background-color: #fff;
+}
+
+/* things that stay dark or coloured keep white text */
+.site-light .keep-white,
+.site-light [class*="bg-[#a3202c]"] {
+  --color-white: #fff;
+}

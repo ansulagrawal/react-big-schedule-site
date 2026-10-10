@@ -41,7 +41,7 @@ export default function Code({ children, title }: { children: string; title?: st
     });
   };
   return (
-    <div className="overflow-hidden rounded-xl border border-white/10 bg-[#0d0d0d] text-left">
+    <div className="keep-white overflow-hidden rounded-xl border border-white/10 bg-[#0d0d0d] text-left">
       <div className="flex items-center justify-between border-b border-white/10 px-4 py-2 text-xs text-white/50">
         <span>{title ?? 'tsx'}</span>
         <button type="button" onClick={copy} className="rounded px-2 py-0.5 hover:bg-white/10 hover:text-white">

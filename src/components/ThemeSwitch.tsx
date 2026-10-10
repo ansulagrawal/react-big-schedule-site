@@ -23,7 +23,7 @@ export default function ThemeSwitch() {
         <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M13.5 10.2A6 6 0 0 1 5.8 2.5a6 6 0 1 0 7.7 7.7z" /></svg>
       </span>
       <span
-        className={`absolute top-0.5 h-6 w-6 rounded-full bg-white shadow transition-transform ${dark ? 'translate-x-[1.75rem]' : 'translate-x-0.5'}`}
+        className={`keep-white absolute top-0.5 h-6 w-6 rounded-full bg-white shadow transition-transform ${dark ? 'translate-x-[1.75rem]' : 'translate-x-0.5'}`}
       />
     </button>
   );

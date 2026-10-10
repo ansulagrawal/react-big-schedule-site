@@ -1,6 +1,7 @@
 import { type ReactNode, useEffect, useState } from 'react';
 import Footer from './Footer';
 import Logo from './Logo';
+import { useSite } from '../site';
 import ThemeSwitch from './ThemeSwitch';
 
 const links = [
@@ -20,11 +21,12 @@ export default function Layout({ route, children }: { route: string; children: R
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+  const { theme } = useSite();
   const base = `/${route.split('/')[1] ?? ''}`;
 
   return (
-    <div className="site-bg min-h-screen antialiased">
-      <div className="flex h-9 items-center justify-center bg-black/50 px-4 text-xs text-white/90">
+    <div className={`site-bg min-h-screen antialiased ${theme === 'light' ? 'site-light' : ''}`}>
+      <div className="flex h-9 items-center justify-center keep-white bg-black/50 px-4 text-xs text-white/90">
         <span>New in v9: TypeScript, no antd, a brand-new Calendar.</span>
         <a href="#/docs" className="ml-2 font-semibold text-[#ff8a4b] hover:underline">
           Read the upgrade guide →
