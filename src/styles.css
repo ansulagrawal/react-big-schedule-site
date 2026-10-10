@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/* palette-driven accents (set per page in Layout): usable as text-site-ink, bg-site-ink ... */
+@theme inline {
+  --color-site-ink: var(--site-ink);
+  --color-site-ink-dark: var(--site-ink-dark);
+}
+
 @theme {
   --font-sans: "Urbanist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --color-brand: #6366f1;

@@ -51,7 +51,7 @@ export default function Layout({ route, children }: { route: string; children: R
     >
       <div className="flex h-9 items-center justify-center keep-white bg-black/50 px-4 text-xs text-white/90">
         <span>New in v9: TypeScript, no antd, a brand-new Calendar.</span>
-        <a href="/docs" className="ml-2 font-semibold text-(--site-ink-dark) hover:underline">
+        <a href="/docs" className="ml-2 font-semibold text-site-ink-dark hover:underline">
           Read the upgrade guide →
         </a>
       </div>
@@ -69,7 +69,7 @@ export default function Layout({ route, children }: { route: string; children: R
               <a
                 key={href}
                 href={href}
-                className={base === href.slice(1) ? 'text-(--site-ink)' : 'text-white/85 hover:text-white'}
+                className={base === href.slice(1) ? 'text-site-ink' : 'text-white/85 hover:text-white'}
               >
                 {label}
               </a>

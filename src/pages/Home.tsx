@@ -5,7 +5,7 @@ import LiveCalendar from '../components/LiveCalendar';
 
 const Heading = ({ eyebrow, title, sub }: { eyebrow: string; title: string; sub?: string }) => (
   <div className="mx-auto mb-10 max-w-2xl text-center">
-    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-(--site-ink)">{eyebrow}</p>
+    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-site-ink">{eyebrow}</p>
     <h2 className="mt-3 text-4xl font-extrabold tracking-tight sm:text-5xl">{title}</h2>
     {sub && <p className="mt-4 text-white/65">{sub}</p>}
   </div>
@@ -128,7 +128,7 @@ export default function Home() {
               ['0', 'UI library\ndependencies'],
             ].map(([n, label], i) => (
               <div key={n + label} className={`flex items-center gap-3 ${i ? 'border-l border-white/30 pl-10' : ''}`}>
-                <span className="text-5xl font-bold text-(--site-ink)">{n}</span>
+                <span className="text-5xl font-bold text-site-ink">{n}</span>
                 <span className="whitespace-pre-line text-left text-sm leading-tight text-white/85">{label}</span>
               </div>
             ))}
@@ -160,7 +160,7 @@ export default function Home() {
             ['MIT', 'open-source licence'],
           ].map(([n, l]) => (
             <div key={l}>
-              <div className="text-3xl font-extrabold text-(--site-ink)">{n}</div>
+              <div className="text-3xl font-extrabold text-site-ink">{n}</div>
               <div className="mt-1 text-xs uppercase tracking-wider text-white/50">{l}</div>
             </div>
           ))}
@@ -214,7 +214,7 @@ export default function Home() {
               <ul className="mt-4 space-y-2.5 text-sm text-white/70">
                 {items.map(i => (
                   <li key={i} className="flex gap-2">
-                    <span className="text-(--site-ink)">›</span>
+                    <span className="text-site-ink">›</span>
                     {i}
                   </li>
                 ))}
