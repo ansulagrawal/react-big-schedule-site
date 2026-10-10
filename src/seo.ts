@@ -32,5 +32,6 @@ export function metaFor(path: string): Meta {
       url,
     };
   }
-  return { ...HOME, url };
+  if (path === '/') return { ...HOME, url };
+  return { title: 'Page not found · React Big Schedule', description: 'This page does not exist.', url };
 }

@@ -4,5 +4,71 @@
   "installCommand": "bun install",
   "outputDirectory": "dist",
   "trailingSlash": false,
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "redirects": [
+    {
+      "source": "/basic",
+      "destination": "/demos/resource-timeline",
+      "permanent": true
+    },
+    {
+      "source": "/read-only",
+      "destination": "/demos/read-only",
+      "permanent": true
+    },
+    {
+      "source": "/add-more",
+      "destination": "/demos/resource-timeline",
+      "permanent": true
+    },
+    {
+      "source": "/drag-and-drop",
+      "destination": "/demos/resource-timeline",
+      "permanent": true
+    },
+    {
+      "source": "/custom-time",
+      "destination": "/demos/resource-cadence",
+      "permanent": true
+    },
+    {
+      "source": "/resize-by-parent",
+      "destination": "/demos/resource-timeline",
+      "permanent": true
+    },
+    {
+      "source": "/vertical-view",
+      "destination": "/demos/resource-columns",
+      "permanent": true
+    },
+    {
+      "source": "/customization",
+      "destination": "/demos/custom-content",
+      "permanent": true
+    },
+    {
+      "source": "/grouped-header",
+      "destination": "/demos/resource-grouped",
+      "permanent": true
+    },
+    {
+      "source": "/cadence",
+      "destination": "/demos/resource-cadence",
+      "permanent": true
+    },
+    {
+      "source": "/hide-weekends",
+      "destination": "/demos/resource-weekends",
+      "permanent": true
+    },
+    {
+      "source": "/infinite-scroll",
+      "destination": "/demos/resource-infinite",
+      "permanent": true
+    },
+    {
+      "source": "/calendar",
+      "destination": "/demos/month",
+      "permanent": true
+    }
+  ]
 }

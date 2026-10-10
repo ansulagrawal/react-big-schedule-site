@@ -109,10 +109,10 @@ constructor(date=dayjs().format(DATE_FORMAT), viewType = ViewType.Week,
   view type, and will render the time window of the `2022-12` month in `ViewType.Month` view type.
 - `viewType` is the initial view type, now Scheduler supports `Day`, `Week`, `Month`, `Quarter`, `Year` 5 built-in view types,
   in addition Scheduler now supports `Custom`, `Custom1`, `Custom2` 3 custom view types at the same time, in which you can control
-  the time window yourself, refer to [this example](https://react-big-schedule.vercel.app/custom-time). `viewType`,
+  the time window yourself, refer to [this example](https://react-big-schedule.ansulagrawal.com/demos/resource-cadence). `viewType`,
   `showAgenda` and `isEventPerspective` are a group which should be contained in the SchedulerData.config.views array,
   and they together decide which view should be rendered. When `showAgenda` and `isEventPerspective` are both `false`,
-  Scheduler will render the resource view, refer to [this example](https://react-big-schedule.vercel.app/basic).
+  Scheduler will render the resource view, refer to [this example](https://react-big-schedule.ansulagrawal.com/demos/resource-timeline).
 - `showAgenda` is a bool value, if true, Scheduler will display the agenda view of current view type. Agenda view is
   read only.
 - `isEventPerspective` is a bool value, if true, Scheduler will display the task view of current view type. In
@@ -145,15 +145,15 @@ const prevClick = data => {
 
 #### Vertical resource view
 
-`ViewType.VerticalResource` shows resources as columns and time as rows. Events render and drag-to-create works across resources and time slots. Drag an event to another resource column and/or time row to move it (`moveEvent` receives the resource as `slotId`), and drag its top or bottom edge to change its start or end (`updateEventStart` / `updateEventEnd`). Row height grows with the number of overlapping events, like the horizontal views. Refer to [this example](https://react-big-schedule.vercel.app/vertical-view).
+`ViewType.VerticalResource` shows resources as columns and time as rows. Events render and drag-to-create works across resources and time slots. Drag an event to another resource column and/or time row to move it (`moveEvent` receives the resource as `slotId`), and drag its top or bottom edge to change its start or end (`updateEventStart` / `updateEventEnd`). Row height grows with the number of overlapping events, like the horizontal views. Refer to [this example](https://react-big-schedule.ansulagrawal.com/demos/resource-columns).
 
 #### Drop preview
 
-While an event, task or resource is dragged over a row, the cells where it would be placed are highlighted. Configure it in the `SchedulerData` config: `dropPreviewEnabled` (default `true`), `dropPreviewClassName` and `dropPreviewStyle` (an inline style object, e.g. `{ border: '2px dashed #52c41a', background: 'rgba(82, 196, 26, 0.16)' }`). Refer to [this example](https://react-big-schedule.vercel.app/drag-and-drop).
+While an event, task or resource is dragged over a row, the cells where it would be placed are highlighted. Configure it in the `SchedulerData` config: `dropPreviewEnabled` (default `true`), `dropPreviewClassName` and `dropPreviewStyle` (an inline style object, e.g. `{ border: '2px dashed #52c41a', background: 'rgba(82, 196, 26, 0.16)' }`). Refer to [this example](https://react-big-schedule.ansulagrawal.com/demos/resource-timeline).
 
 #### Weekly / monthly columns
 
-Columns are days or hours by default. A custom view (`ViewType.Custom`, `Custom1`, `Custom2`) picks its own cadence through `behaviors.getCustomDateFunc`, which returns `cellUnit: CellUnit.Week`, `CellUnit.Month`, `CellUnit.Quarter` or `CellUnit.Year` along with the date range. Events then span the week/month cells they overlap. Header text comes from `nonAgendaWeekCellHeaderFormat` / `nonAgendaMonthCellHeaderFormat` / `nonAgendaQuarterCellHeaderFormat` / `nonAgendaYearCellHeaderFormat` (use `|` to split a header into lines). Per-cell totals come from `behaviors.getSummaryFunc`. Refer to [this example](https://react-big-schedule.vercel.app/cadence).
+Columns are days or hours by default. A custom view (`ViewType.Custom`, `Custom1`, `Custom2`) picks its own cadence through `behaviors.getCustomDateFunc`, which returns `cellUnit: CellUnit.Week`, `CellUnit.Month`, `CellUnit.Quarter` or `CellUnit.Year` along with the date range. Events then span the week/month cells they overlap. Header text comes from `nonAgendaWeekCellHeaderFormat` / `nonAgendaMonthCellHeaderFormat` / `nonAgendaQuarterCellHeaderFormat` / `nonAgendaYearCellHeaderFormat` (use `|` to split a header into lines). Per-cell totals come from `behaviors.getSummaryFunc`. Refer to [this example](https://react-big-schedule.ansulagrawal.com/demos/resource-cadence).
 
 #### Theming
 
@@ -325,7 +325,7 @@ addResource(resource);
 ```
 
 Add the `resource` to the `SchedulerData.resources`, make sure that `resource.id` is not duplicated. Refer
-to [this example](https://react-big-schedule.vercel.app/customization).
+to [this example](https://react-big-schedule.ansulagrawal.com/demos/custom-content).
 
 #### addEventGroup
 
@@ -444,7 +444,7 @@ getViewEndDate();
 
 Returns a dayjs object with the endDate of the currently selected view.
 
-### Locale support(Refer to [this example](https://react-big-schedule.vercel.app/custom-time) for details.)
+### Locale support(Refer to [this example](https://react-big-schedule.ansulagrawal.com/demos/resource-cadence) for details.)
 
 #### SchedulerData.config.resourceName
 
@@ -501,7 +501,7 @@ Scheduler component. Without `parentRef` the window height is used.
 
 The max height of Scheduler. If the desired height is bigger than the max height, the header row of Scheduler will be
 frozen and vertical scroll bar will appear, but this won't happen when the max height is set to `0`. Refer
-to [this example](https://react-big-schedule.vercel.app/customization).
+to [this example](https://react-big-schedule.ansulagrawal.com/demos/custom-content).
 
 **If you are using `responsiveByParent`, you can omit this setting or set it to `0` to ensure the Scheduler height conforms to the parent container.**
 When conforming to the parent container, the Scheduler will fill the available space and scroll bars will appear as needed.
@@ -535,7 +535,7 @@ Width of Scheduler table cells in resource view and task view of different view 
 #### dayMaxEvents, weekMaxEvents, monthMaxEvents, yearMaxEvents, quarterMaxEvents
 
 Max events count of a cell in resource view and task view of different view types. A '+N more' will appear when exceeded.
-Refer to [this example](https://react-big-schedule.vercel.app/add-more).
+Refer to [this example](https://react-big-schedule.ansulagrawal.com/demos/resource-timeline).
 
 #### eventItemHeight
 
@@ -612,13 +612,13 @@ Controls whether to create new event item in resource view and task view.
 #### crossResourceMove
 
 Controls whether to cross-slot move an event item in resource view and task view. If `false`, the `slotId` and `slotName`
-won't change in the `moveEvent` method. Refer to [this example](https://react-big-schedule.vercel.app/customization).
+won't change in the `moveEvent` method. Refer to [this example](https://react-big-schedule.ansulagrawal.com/demos/custom-content).
 
 #### checkConflict
 
 Controls whether to check conflicts when creating, resizing or moving an event item in resource view and task view. If
 `true`, Scheduler will call the `conflictOccurred` function if given. Refer to
-[this example](https://react-big-schedule.vercel.app/customization).
+[this example](https://react-big-schedule.ansulagrawal.com/demos/custom-content).
 
 #### scrollToSpecialDayjsEnabled
 
@@ -708,7 +708,7 @@ getSummary(schedulerData, headerEvents, slotId, slotName, headerStart, headerEnd
 ```
 
 Method that defines the summary text displayed in the Scheduler cells.Refer
-to [this example](https://react-big-schedule.vercel.app/customization).
+to [this example](https://react-big-schedule.ansulagrawal.com/demos/custom-content).
 
 #### getCustomDateFunc
 
@@ -717,7 +717,7 @@ getCustomDate(schedulerData, num, (date = undefined));
 ```
 
 Method that controls the start and end of time window when current view type is Custom, Custom1 or Custom2.Refer
-to [this example](https://react-big-schedule.vercel.app/custom-time).
+to [this example](https://react-big-schedule.ansulagrawal.com/demos/resource-cadence).
 
 #### getNonAgendaViewBodyCellBgColorFunc
 
@@ -865,7 +865,7 @@ rightCustomHeader: PropTypes.object;
 ```
 
 Component you need to put in the Scheduler header, it could be a div or a react component. Refer
-to [this example](https://react-big-schedule.vercel.app/customization).
+to [this example](https://react-big-schedule.ansulagrawal.com/demos/custom-content).
 
 #### conflictOccurred
 
@@ -884,7 +884,7 @@ eventItemTemplateResolver: PropTypes.func;
 eventItemTemplateResolver(schedulerData, event, bgColor, isStart, isEnd, mustAddCssClass, mustBeHeight, agendaMaxEventWidth);
 ```
 
-Use this function, you can customize the event style. Refer to [this example](https://react-big-schedule.vercel.app/customization).
+Use this function, you can customize the event style. Refer to [this example](https://react-big-schedule.ansulagrawal.com/demos/custom-content).
 
 ### eventItemPopoverTemplateResolver
 
@@ -893,7 +893,7 @@ eventItemPopoverTemplateResolver: PropTypes.func;
 eventItemPopoverTemplateResolver(schedulerData, eventItem, title, start, end, statusColor);
 ```
 
-Use this function, you can customize the event's popover style. Refer to [this example](https://react-big-schedule.vercel.app/customization).
+Use this function, you can customize the event's popover style. Refer to [this example](https://react-big-schedule.ansulagrawal.com/demos/custom-content).
 
 #### slotItemTemplateResolver
 
@@ -922,7 +922,7 @@ nonAgendaCellHeaderTemplateResolver: PropTypes.func;
 nonAgendaCellHeaderTemplateResolver(schedulerData, item, formattedDateItems, style);
 ```
 
-Use this function, you can customize the table header cell style. Refer to [this example](https://react-big-schedule.vercel.app/customization).
+Use this function, you can customize the table header cell style. Refer to [this example](https://react-big-schedule.ansulagrawal.com/demos/custom-content).
 
 #### onScrollLeft, onScrollRight
 
@@ -933,7 +933,7 @@ onScrollRight: PropTypes.func;
 onScrollRight(schedulerData, schedulerContent, maxScrollLeft);
 ```
 
-Callback function fired when the scheduler content div scrolls to leftmost or rightmost. Refer to [this example](https://react-big-schedule.vercel.app/customization).
+Callback function fired when the scheduler content div scrolls to leftmost or rightmost. Refer to [this example](https://react-big-schedule.ansulagrawal.com/demos/custom-content).
 
 #### onScrollTop, onScrollBottom
 
@@ -944,7 +944,7 @@ onScrollBottom: PropTypes.func;
 onScrollBottom(schedulerData, schedulerContent, maxScrollTop);
 ```
 
-Callback function fired when the scheduler content div scrolls to topmost or bottommost. Refer to [this example](https://react-big-schedule.vercel.app/customization).
+Callback function fired when the scheduler content div scrolls to topmost or bottommost. Refer to [this example](https://react-big-schedule.ansulagrawal.com/demos/custom-content).
 
 #### slotClickedFunc
 
@@ -953,7 +953,7 @@ slotClickedFunc: PropTypes.func;
 ```
 
 If it's set, slots will be clickable, and will fire this function when a slot is clicked. Refer
-to [this example](https://react-big-schedule.vercel.app/customization).
+to [this example](https://react-big-schedule.ansulagrawal.com/demos/custom-content).
 
 #### dndSources
 
@@ -963,7 +963,7 @@ dndSources: PropTypes.array;
 
 DnDSource array that registered to Scheduler. Use [DnDSource](https://github.com/ansulagrawal/react-big-schedule/blob/master/src/components/DnDSource.js),
 we can simplify the drag and drop coding in React-Big-Scheduler. Refer
-to [this example](https://react-big-schedule.vercel.app/drag-and-drop).
+to [this example](https://react-big-schedule.ansulagrawal.com/demos/resource-timeline).
 
 #### onSetAddMoreState
 
@@ -974,7 +974,7 @@ onSetAddMoreState(newState);
 
 Callback function fired when a '+N more' is clicked, is used to control the visibility and the position of the `AddMorePopover`.
 `newState` is a json such as {headerItem: headerItem, left: 20, top: 20, height: 100}. Refer
-to [this example](https://react-big-schedule.vercel.app/add-more).
+to [this example](https://react-big-schedule.ansulagrawal.com/demos/resource-timeline).
 
 #### subtitleGetter
 

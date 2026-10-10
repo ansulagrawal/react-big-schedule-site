@@ -25,6 +25,16 @@ for (const route of routes) {
   fs.writeFileSync(file, out);
 }
 
+// real 404 page (Vercel serves 404.html with a 404 status for unknown URLs); kept out of search results
+{
+  const { html, meta } = render('/404');
+  const out = template
+    .replace('<div id="root"></div>', `<div id="root">${html}</div>`)
+    .replace(/<title>.*?<\/title>/, `<title>${esc(meta.title)}</title>`)
+    .replace('</head>', '  <meta name="robots" content="noindex" />\n  </head>');
+  fs.writeFileSync('dist/404.html', out);
+}
+
 const site = SITE ?? 'https://react-big-schedule.ansulagrawal.com';
 const today = new Date().toISOString().slice(0, 10);
 fs.writeFileSync(

@@ -14,5 +14,5 @@ fs.writeFileSync(
 ${skill.trim().replace(/^# .*\n/, '')}
 
 ## Scheduler API (detailed)
-${api}`,
+${api.replaceAll('](/', '](https://react-big-schedule.ansulagrawal.com/')}`,
 );
