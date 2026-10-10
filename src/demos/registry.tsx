@@ -89,7 +89,7 @@ const backgroundEvents: CalendarEvent[] = [
 
 // short events today, one or two per resource, so the vertical (resource columns) view reads like a day planner
 const stamp = (time: string) => `${dayjs().format('YYYY-MM-DD')} ${time}:00`;
-const columnEvents: SchedulerEvent[] = [
+export const columnEvents: SchedulerEvent[] = [
   ['r1', 'Stand-up', '09:00', '09:30', '#6366f1'],
   ['r1', 'Client call', '11:00', '12:30', '#14b8a6'],
   ['r2', 'Design review', '10:00', '11:30', '#e11d48'],
@@ -181,7 +181,8 @@ data.setResources(resources);
 data.setEvents(events);
 
 <DndScheduler schedulerData={data} prevClick={prev} nextClick={next}
-  onViewChange={change} onSelectDate={select} />`;
+  onViewChange={change} onSelectDate={select}
+  toggleExpandFunc={(d, slotId) => { d.toggleExpandStatus(slotId); setData(copyOf(d)); }} />`;
 
 export const demos: Demo[] = [
   // ---- Calendar: the same set FullCalendar shows, all free ----
@@ -196,7 +197,7 @@ export const demos: Demo[] = [
 
   // ---- Resources: premium at FullCalendar, free here ----
   { id: 'resource-timeline', title: 'Resource timeline', group: 'Resources', status: 'free', blurb: 'Rooms, people or machines down the side, time across. Premium elsewhere, free here.', render: l => <TimelineDemo {...l} viewType={ViewType.Week} />, code: timeline('Week') },
-  { id: 'resource-columns', title: 'Resource columns', group: 'Resources', status: 'free', blurb: 'A column per resource with time running down (the vertical resource view).', render: l => <TimelineDemo {...l} viewType={ViewType.VerticalResource} events={columnEvents} />, code: timeline('VerticalResource') },
+  { id: 'resource-columns', title: 'Resource columns', group: 'Resources', status: 'free', blurb: 'A column per resource with time running down (the vertical resource view).', render: l => <TimelineDemo {...l} viewType={ViewType.VerticalResource} events={columnEvents} config={{ dayStartFrom: 8, dayStopTo: 17 }} />, code: timeline('VerticalResource', ', false, false, { dayStartFrom: 8, dayStopTo: 17 }') },
   { id: 'resource-grouped', title: 'Grouped header', group: 'Resources', status: 'free', blurb: 'Month and week-number rows above the day cells, nested resources.', render: l => <TimelineDemo {...l} viewType={ViewType.Quarter} config={{ showMonthRow: true, showWeekNumber: true }} />, code: `${timeline('Quarter')}\n\n// config: { showMonthRow: true, showWeekNumber: true }` },
   { id: 'resource-cadence', title: 'Month columns', group: 'Resources', status: 'free', blurb: 'One column per week, month, quarter or year with a summary row.', render: l => <TimelineDemo {...l} viewType={ViewType.Month} />, code: timeline('Month') },
 

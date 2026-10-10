@@ -45,6 +45,11 @@ export default function TimelineDemo({
   return (
     <div className="bg-panel p-3.5">
       <DndScheduler
+        toggleExpandFunc={(d, slotId) => {
+          // no setEvents here: that would rebuild the rows and re-expand every group
+          d.toggleExpandStatus(slotId);
+          setData(copyOf(d));
+        }}
         onScrollRight={infinite ? (d, content, max) => { d.next(); next(d); content.scrollLeft = max - 10; } : undefined}
         onScrollLeft={infinite ? (d, content) => { d.prev(); next(d); content.scrollLeft = 10; } : undefined}
         schedulerData={data}

@@ -2,6 +2,7 @@ import Code from '../components/Code';
 import Compare from '../components/Compare';
 import { compact, useRegistryStats } from '../components/useRegistryStats';
 import LiveCalendar from '../components/LiveCalendar';
+import ResourceShowcase from '../components/ResourceShowcase';
 
 const Heading = ({ eyebrow, title, sub }: { eyebrow: string; title: string; sub?: string }) => (
   <div className="mx-auto mb-10 max-w-2xl text-center">
@@ -170,6 +171,11 @@ export default function Home() {
       <section className="mx-auto mt-24 max-w-6xl px-4">
         <Heading eyebrow="Live demo" title="Drag it, theme it, make it yours" sub="Everything on this page is the real library. Pick a theme and palette in the navbar, and change the corner radius." />
         <LiveCalendar height={680} />
+      </section>
+
+      <section className="mx-auto mt-28 max-w-6xl px-4">
+        <Heading eyebrow="Resource scheduling" title="Timeline and vertical resource views, free" sub="Plan rooms, people and machines on a timeline, or one column per resource. It is the real Scheduler, not a screenshot." />
+        <ResourceShowcase />
       </section>
 
       <section className="mx-auto mt-28 max-w-6xl px-4">
