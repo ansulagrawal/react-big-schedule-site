@@ -12,7 +12,7 @@
   "dependencies": {
     "dayjs": "^1.11.23",
     "react": "^19.3.0",
-    "react-big-schedule": "file:../.claude/worktrees/v9-headless",
+    "react-big-schedule": "file:../react-big-schedule",
     "react-dom": "^19.3.0"
   },
   "devDependencies": {
