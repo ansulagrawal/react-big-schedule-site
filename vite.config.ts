@@ -3,7 +3,9 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   plugins: [tailwindcss()],
-  // the library is linked from a sibling checkout during local dev: keep a single React copy
+  // keep a single copy of React and friends
   resolve: { dedupe: ['react', 'react-dom', 'react-dnd', 'react-dnd-html5-backend', 'dayjs'] },
+  // the server build (pre-render) bundles everything, including the library
+  ssr: { noExternal: true },
   server: { port: 5173 },
 });

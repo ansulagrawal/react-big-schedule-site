@@ -1,6 +1,7 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import Code from '../components/Code';
 import { type Demo, demos, groups, type Status } from '../demos/registry';
+import { useNavigate, usePath } from '../router';
 import { useSite } from '../site';
 
 const badge: Record<Status, [string, string] | null> = {
@@ -9,17 +10,7 @@ const badge: Record<Status, [string, string] | null> = {
   soon: ['SOON', 'bg-fuchsia-400/15 text-fuchsia-300'],
 };
 
-const readId = () => window.location.hash.split('/')[2] || demos[0]?.id || 'month';
-
-function useDemoId() {
-  const [id, setId] = useState(readId);
-  useEffect(() => {
-    const on = () => setId(readId());
-    window.addEventListener('hashchange', on);
-    return () => window.removeEventListener('hashchange', on);
-  }, []);
-  return id;
-}
+const useDemoId = () => usePath().split('/')[2] || demos[0]?.id || 'month';
 
 function StatusChip({ status }: { status: Status }) {
   const b = badge[status];
@@ -28,6 +19,7 @@ function StatusChip({ status }: { status: Status }) {
 
 export default function Demos() {
   const id = useDemoId();
+  const navigate = useNavigate();
   const demo: Demo = demos.find(d => d.id === id) ?? (demos[0] as Demo);
   const { theme, look, palette, radius } = useSite();
   const [showCode, setShowCode] = useState(false);
@@ -42,7 +34,7 @@ export default function Demos() {
           aria-label="Choose a demo"
           value={demo.id}
           onChange={e => {
-            window.location.hash = `/demos/${e.target.value}`;
+            navigate(`/demos/${e.target.value}`);
           }}
           className="w-full rounded-lg border border-white/20 bg-[#1b1b1b] px-3 py-2 text-sm lg:hidden"
         >
@@ -65,7 +57,7 @@ export default function Demos() {
                 {items.map(d => (
                   <li key={d.id}>
                     <a
-                      href={`#/demos/${d.id}`}
+                      href={`/demos/${d.id}`}
                       aria-current={d.id === demo.id ? 'page' : undefined}
                       className={`flex items-center justify-between gap-2 rounded-lg px-3 py-2 text-sm ${
                         d.id === demo.id ? 'bg-white/10 font-semibold text-white' : 'text-white/70 hover:bg-white/5 hover:text-white'
@@ -123,7 +115,7 @@ export default function Demos() {
                 : 'This is on the roadmap and not shipped yet. The code above is the API we are aiming for and can change.'}
             </p>
             <div className="mt-6 flex justify-center gap-3">
-              <a href="#/pricing" className="rounded-full border border-white/30 px-5 py-2 text-sm font-semibold hover:bg-white/10">
+              <a href="/pricing" className="rounded-full border border-white/30 px-5 py-2 text-sm font-semibold hover:bg-white/10">
                 About Pro
               </a>
               <a

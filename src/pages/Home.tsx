@@ -138,10 +138,10 @@ export default function Home() {
             TypeScript, with nothing to unlearn.
           </p>
           <div className="mt-9 flex justify-center gap-3">
-            <a href="#/docs" className="rounded-full keep-white site-btn px-6 py-3 font-semibold text-white">
+            <a href="/docs" className="rounded-full keep-white site-btn px-6 py-3 font-semibold text-white">
               Get started
             </a>
-            <a href="#/demos" className="rounded-full border border-white/40 px-6 py-3 font-semibold text-white hover:bg-white/10">
+            <a href="/demos" className="rounded-full border border-white/40 px-6 py-3 font-semibold text-white hover:bg-white/10">
               View demos
             </a>
           </div>
@@ -231,10 +231,10 @@ export default function Home() {
             The MIT-licensed core includes the resource timeline. Pro adds export, undo and redo, a conflict engine and priority support.
           </p>
           <div className="mt-7 flex justify-center gap-3">
-            <a href="#/docs" className="rounded-full keep-white site-btn px-6 py-3 font-semibold">
+            <a href="/docs" className="rounded-full keep-white site-btn px-6 py-3 font-semibold">
               Get started
             </a>
-            <a href="#/pricing" className="rounded-full border border-white/40 px-6 py-3 font-semibold hover:bg-white/10">
+            <a href="/pricing" className="rounded-full border border-white/40 px-6 py-3 font-semibold hover:bg-white/10">
               See pricing
             </a>
           </div>

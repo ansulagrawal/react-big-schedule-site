@@ -6,18 +6,18 @@ const columns: { title: string; links: [string, string][] }[] = [
   {
     title: 'Product',
     links: [
-      ['Demos', '#/demos'],
-      ['Docs', '#/docs'],
-      ['Pricing', '#/pricing'],
-      ['Compare', '#/#compare'],
-      ['Roadmap', '#/#roadmap'],
+      ['Demos', '/demos'],
+      ['Docs', '/docs'],
+      ['Pricing', '/pricing'],
+      ['Compare', '/#compare'],
+      ['Roadmap', '/#roadmap'],
     ],
   },
   {
     title: 'Resources',
     links: [
-      ['Getting started', '#/docs'],
-      ['Upgrade to v9', '#/docs'],
+      ['Getting started', '/docs'],
+      ['Upgrade to v9', '/docs'],
       ['Changelog', `${GH}/releases`],
       ['npm package', 'https://www.npmjs.com/package/react-big-schedule'],
       ['Classic examples', 'https://react-big-schedule.vercel.app'],
@@ -38,7 +38,7 @@ const columns: { title: string; links: [string, string][] }[] = [
     links: [
       ['MIT license', `${GH}/blob/master/LICENSE`],
       ['Security policy', `${GH}/blob/master/SECURITY.md`],
-      ['Pro licence', '#/pricing'],
+      ['Pro licence', '/pricing'],
     ],
   },
 ];

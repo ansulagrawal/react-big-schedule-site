@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://react-big-schedule.vercel.app/sitemap.xml

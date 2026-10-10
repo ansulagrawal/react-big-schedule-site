@@ -2,13 +2,14 @@ import { type CSSProperties, type ReactNode, useEffect, useState } from 'react';
 import Footer from './Footer';
 import Logo from './Logo';
 import { PALETTE, useSite } from '../site';
+import { metaFor } from '../seo';
 import ThemePanel from './ThemePanel';
 import ThemeSwitch from './ThemeSwitch';
 
 const links = [
-  ['#/demos', 'Demos'],
-  ['#/docs', 'Docs'],
-  ['#/pricing', 'Pricing'],
+  ['/demos', 'Demos'],
+  ['/docs', 'Docs'],
+  ['/pricing', 'Pricing'],
 ] as const;
 
 const GITHUB = 'https://github.com/ansulagrawal/react-big-schedule';
@@ -24,6 +25,19 @@ export default function Layout({ route, children }: { route: string; children: R
   }, []);
   const { theme, look, palette } = useSite();
   const colours = look !== 'default' && palette ? PALETTE[palette] : undefined;
+  // keep the tab title, description and canonical URL in step with the route (crawlers get the same values pre-rendered)
+  useEffect(() => {
+    const m = metaFor(route);
+    document.title = m.title;
+    const set = (sel: string, attr: string, value: string) => document.querySelector(sel)?.setAttribute(attr, value);
+    set('meta[name="description"]', 'content', m.description);
+    set('link[rel="canonical"]', 'href', m.url);
+    set('meta[property="og:title"]', 'content', m.title);
+    set('meta[property="og:description"]', 'content', m.description);
+    set('meta[property="og:url"]', 'content', m.url);
+    set('meta[name="twitter:title"]', 'content', m.title);
+    set('meta[name="twitter:description"]', 'content', m.description);
+  }, [route]);
   const base = `/${route.split('/')[1] ?? ''}`;
 
   return (
@@ -37,7 +51,7 @@ export default function Layout({ route, children }: { route: string; children: R
     >
       <div className="flex h-9 items-center justify-center keep-white bg-black/50 px-4 text-xs text-white/90">
         <span>New in v9: TypeScript, no antd, a brand-new Calendar.</span>
-        <a href="#/docs" className="ml-2 font-semibold text-(--site-ink-dark) hover:underline">
+        <a href="/docs" className="ml-2 font-semibold text-(--site-ink-dark) hover:underline">
           Read the upgrade guide →
         </a>
       </div>
@@ -47,7 +61,7 @@ export default function Layout({ route, children }: { route: string; children: R
         }`}
       >
         <nav className="mx-auto grid h-16 w-full max-w-352 grid-cols-[1fr_auto_1fr] items-center px-4 lg:px-8">
-          <a href="#/" aria-label="React Big Schedule home" className="justify-self-start">
+          <a href="/" aria-label="React Big Schedule home" className="justify-self-start">
             <Logo />
           </a>
           <div className="flex items-center gap-8 text-sm font-medium">

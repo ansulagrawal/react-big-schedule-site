@@ -4,7 +4,7 @@ const tiers = [
     price: 'Free',
     note: 'MIT licence, commercial use included',
     items: ['All calendar views', 'Resource timeline and vertical resource view', 'Drag and drop, resize, select', 'Themes, dark mode, print styles', 'Community support'],
-    cta: ['Get started', '#/docs'],
+    cta: ['Get started', '/docs'],
   },
   {
     name: 'Pro',
