@@ -36,7 +36,7 @@ const label: Record<Cell, [string, string]> = {
 export default function Compare() {
   return (
     <div className="card overflow-x-auto">
-      <table className="w-full min-w-[720px] border-collapse text-left text-sm">
+      <table className="w-full min-w-180 border-collapse text-left text-sm">
         <thead>
           <tr className="border-b border-white/10 text-xs uppercase tracking-wider text-white/50">
             <th className="px-5 py-4 font-semibold">Feature</th>
