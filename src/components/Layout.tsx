@@ -57,7 +57,7 @@ export default function Layout({ route, children }: { route: string; children: R
       </div>
       <header
         className={`sticky top-0 z-40 border-b text-white transition-[background-color,backdrop-filter,border-color] duration-200 ${
-          scrolled ? 'border-white/10 bg-[#1a1a1a]/75 backdrop-blur-md' : 'border-transparent bg-transparent'
+          scrolled ? 'border-white/10 bg-chrome/75 backdrop-blur-md' : 'border-transparent bg-transparent'
         }`}
       >
         <nav className="mx-auto flex h-16 w-full max-w-352 items-center justify-between gap-2 px-4 sm:grid sm:grid-cols-[1fr_auto_1fr] lg:px-8">

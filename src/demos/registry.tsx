@@ -63,7 +63,7 @@ function TimeZoneDemo(look: LookProps) {
     <div>
       <label className="mb-3 inline-flex items-center gap-2 text-sm text-white/70">
         Time zone
-        <select value={tz} onChange={e => setTz(e.target.value)} className="rounded-lg border border-white/20 bg-[#1b1b1b] px-2 py-1 text-white">
+        <select value={tz} onChange={e => setTz(e.target.value)} className="rounded-lg border border-white/20 bg-pop px-2 py-1 text-white">
           {['UTC', 'Asia/Kolkata', 'America/New_York', 'Europe/London', 'Asia/Tokyo', 'local'].map(z => (
             <option key={z}>{z}</option>
           ))}
@@ -148,7 +148,7 @@ function LocaleDemo(look: LookProps) {
     <div>
       <label className="mb-3 flex items-center gap-2 px-4 pt-4 text-sm">
         Locale
-        <select value={locale} onChange={e => setLocale(e.target.value)} className="rounded-lg border border-white/20 bg-[#1b1b1b] px-2 py-1 text-white">
+        <select value={locale} onChange={e => setLocale(e.target.value)} className="rounded-lg border border-white/20 bg-pop px-2 py-1 text-white">
           {['en', 'de', 'fr', 'es', 'ja'].map(l => (
             <option key={l}>{l}</option>
           ))}

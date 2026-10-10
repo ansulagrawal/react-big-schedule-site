@@ -36,7 +36,7 @@ export default function Demos() {
           onChange={e => {
             navigate(`/demos/${e.target.value}`);
           }}
-          className="w-full rounded-lg border border-white/20 bg-[#1b1b1b] px-3 py-2 text-sm lg:hidden"
+          className="w-full rounded-lg border border-white/20 bg-pop px-3 py-2 text-sm lg:hidden"
         >
           {byGroup.map(([g, items]) => (
             <optgroup key={g} label={g}>

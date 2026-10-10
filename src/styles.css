@@ -4,6 +4,12 @@
 @theme inline {
   --color-site-ink: var(--site-ink);
   --color-site-ink-dark: var(--site-ink-dark);
+  /* surfaces that change with the light / dark page theme */
+  --color-pop: var(--pop);
+  --color-chrome: var(--chrome);
+  --color-code: var(--code);
+  --color-panel: var(--panel);
+  --color-panel-line: var(--panel-line);
 }
 
 @theme {
@@ -28,6 +34,11 @@ html {
   --site-gb: #5f8a73;
   --site-ink: #ff8a4b;
   --site-ink-dark: #ff8a4b;
+  --pop: #1b1b1b; /* menus, selects, popovers */
+  --chrome: #1a1a1a; /* header bar */
+  --code: #111318; /* code blocks */
+  --panel: #1c1f27; /* calendar card */
+  --panel-line: rgb(255 255 255 / 0.1);
   position: relative;
   isolation: isolate;
   overflow-x: clip;
@@ -104,6 +115,11 @@ html {
 /* Light page theme: every white-based utility (text-white/65, border-white/10, bg-white/5 ...) reads --color-white, so flipping it to ink flips the whole page */
 .site-light {
   --color-white: #14161c;
+  --pop: #f4f1ea;
+  --chrome: #ece8e0;
+  --code: #f1eee7;
+  --panel: #f1eee7;
+  --panel-line: #d9d4c9;
   background: #ece8e0;
   color: #14161c;
 }
@@ -137,14 +153,6 @@ html {
 
 .site-light footer {
   background: rgb(0 0 0 / 0.04);
-}
-
-.site-light header[class*="bg-[#1a1a1a]/75"] {
-  background-color: rgb(236 232 224 / 0.8);
-}
-
-.site-light [class*="bg-[#1b1b1b]"] {
-  background-color: #f4f1ea;
 }
 
 /* things that stay dark or coloured keep white text */

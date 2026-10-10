@@ -78,11 +78,7 @@ export default function LiveCalendar({
   const { theme, look, palette, radius } = useSite();
 
   return (
-    <div
-      className={`live-cal overflow-hidden rounded-2xl border ${
-        theme === 'light' ? 'border-[#d9d4c9] bg-[#f1eee7] text-slate-900' : 'border-white/10 bg-[#1c1f27] text-white'
-      }`}
-    >
+    <div className="live-cal overflow-hidden rounded-2xl border border-panel-line bg-panel text-white">
       <CalendarView theme={theme} look={look} palette={palette} radius={radius} height={height} initialView={initialView} />
     </div>
   );

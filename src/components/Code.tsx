@@ -12,7 +12,7 @@ export default function Code({ children, title, lang = 'tsx' }: { children: stri
     });
   };
   return (
-    <div className={`overflow-hidden rounded-xl border border-white/10 text-left ${light ? 'bg-[#f1eee7] shadow-sm' : 'bg-[#111318]'}`}>
+    <div className="overflow-hidden rounded-xl border border-white/10 bg-code text-left shadow-sm">
       <div className="flex items-center justify-between border-b border-white/10 px-4 py-2 text-xs text-white/50">
         <span>{title ?? lang}</span>
         <button type="button" onClick={copy} className="rounded px-2 py-0.5 hover:bg-white/10 hover:text-white">
