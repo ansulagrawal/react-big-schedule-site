@@ -46,7 +46,7 @@ export default function Docs() {
       </header>
 
       <Section id="install" title="Install">
-        <Code>{`bun add react-big-schedule
+        <Code lang="bash">{`bun add react-big-schedule
 # peers: react >=18, react-dom >=18`}</Code>
         <p className="text-white/65">Import the stylesheet once. It contains the tokens, the themes, looks, palettes and the print styles.</p>
         <Code>{`import 'react-big-schedule/dist/css/style.css';`}</Code>
@@ -87,7 +87,7 @@ data.setEvents(events);
           <code className="rounded bg-white/10 px-1.5 py-0.5 text-[13px]">palette</code> (blue, green, purple, red, amber, emerald, indigo, rose). Fine-tune with CSS variables.
         </p>
         <Code>{`<Calendar theme="dark" look="material" palette="purple" />`}</Code>
-        <Code>{`.my-app {
+        <Code lang="css">{`.my-app {
   --rbs-accent: #7c3aed;
   --rbs-radius: 10px;
   --rbs-surface: #fffdf8;

@@ -1,4 +1,5 @@
 import { marked } from 'marked';
+import { highlightHtml } from '../highlight';
 import reference from '../../content/reference.md?raw';
 
 const slug = (s: string) => s.toLowerCase().replace(/<[^>]*>/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
@@ -8,6 +9,10 @@ const body = reference.slice(reference.indexOf('## Use and Setup')).replace(/###
 
 marked.use({
   renderer: {
+    code({ text, lang }) {
+      const l = (lang ?? '').split(/\s/)[0] || 'js';
+      return `<pre><code class="language-${l}">${highlightHtml(text, l)}</code></pre>\n`;
+    },
     heading({ tokens, depth }) {
       const text = this.parser.parseInline(tokens);
       // shift one level down: the page itself owns h1/h2

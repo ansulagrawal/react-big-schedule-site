@@ -206,3 +206,21 @@ html {
 .md table { display: block; overflow-x: auto; border-collapse: collapse; }
 .md th, .md td { border: 1px solid color-mix(in srgb, var(--color-white) 14%, transparent); padding: 0.4rem 0.7rem; text-align: left; }
 .md blockquote { border-left: 3px solid color-mix(in srgb, var(--color-white) 25%, transparent); padding-left: 1rem; }
+
+/* Syntax colours for code blocks (Code component and the markdown reference) */
+.tk-comment { color: #64748b; font-style: italic; }
+.tk-string { color: #6ee7b7; }
+.tk-tag { color: #7dd3fc; }
+.tk-keyword { color: #c4b5fd; }
+.tk-number { color: #fcd34d; }
+.tk-attr { color: #fdba74; }
+.tk-fn { color: #fef08a; }
+.tk-type { color: #67e8f9; }
+.tk-prop { color: #7dd3fc; }
+.site-light .tk-string { color: #047857; }
+.site-light .tk-tag, .site-light .tk-prop { color: #0369a1; }
+.site-light .tk-keyword { color: #6d28d9; }
+.site-light .tk-number { color: #b45309; }
+.site-light .tk-attr { color: #c2410c; }
+.site-light .tk-fn { color: #854d0e; }
+.site-light .tk-type { color: #0e7490; }
