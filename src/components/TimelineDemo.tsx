@@ -1,6 +1,10 @@
 import { type CSSProperties, useEffect, useState } from 'react';
 import { DemoData, Scheduler, SchedulerData, type SchedulerConfig, type SchedulerEvent, ViewType, wrapperFun } from 'react-big-schedule';
+import { SHADES } from '../sample';
 import type { LookProps } from './LiveCalendar';
+
+// event colours are shades of the palette accent, so a theme change recolours them
+const shaded = (list: SchedulerEvent[]) => list.map((e, i) => ({ ...e, bgColor: SHADES[i % SHADES.length] }));
 
 const DndScheduler = wrapperFun(Scheduler);
 
@@ -19,7 +23,7 @@ export default function TimelineDemo({
   const [data, setData] = useState(() => {
     const d = new SchedulerData(new Date(), viewType, false, false, { theme, look, palette, ...config });
     d.setResources(DemoData.resources);
-    d.setEvents(events);
+    d.setEvents(shaded(events));
     return d;
   });
 
@@ -32,31 +36,33 @@ export default function TimelineDemo({
   }, [theme, look, palette]);
 
   const next = (d: SchedulerData) => {
-    d.setEvents(events);
+    d.setEvents(shaded(events));
     setData(copyOf(d));
   };
   const style = (radius === undefined ? {} : { '--rbs-radius': `${radius}px` }) as CSSProperties;
 
   return (
-    <DndScheduler
-      schedulerData={data}
-      style={style}
-      prevClick={d => {
-        d.prev();
-        next(d);
-      }}
-      nextClick={d => {
-        d.next();
-        next(d);
-      }}
-      onSelectDate={(d, date) => {
-        d.setDate(date);
-        next(d);
-      }}
-      onViewChange={(d, view) => {
-        d.setViewType(view.viewType, view.showAgenda, view.isEventPerspective);
-        next(d);
-      }}
-    />
+    <div className="p-3.5">
+      <DndScheduler
+        schedulerData={data}
+        style={style}
+        prevClick={d => {
+          d.prev();
+          next(d);
+        }}
+        nextClick={d => {
+          d.next();
+          next(d);
+        }}
+        onSelectDate={(d, date) => {
+          d.setDate(date);
+          next(d);
+        }}
+        onViewChange={(d, view) => {
+          d.setViewType(view.viewType, view.showAgenda, view.isEventPerspective);
+          next(d);
+        }}
+      />
+    </div>
   );
 }

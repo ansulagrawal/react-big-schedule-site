@@ -182,3 +182,9 @@ html {
 .site-btn:hover {
   filter: brightness(1.12);
 }
+
+/* The calendar fills its card edge to edge (the card clips the corners); the padding is the calendar's own */
+:is(.site-bg .card, .live-cal) .rbs-calendar {
+  box-sizing: border-box;
+  padding: 14px 14px 6px;
+}

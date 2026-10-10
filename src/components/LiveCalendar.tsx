@@ -62,7 +62,7 @@ export function CalendarView({
           setLog(`Resized “${i.event.title}”`);
         }}
       />
-      <p className="mt-2 text-xs text-white/45">{log}</p>
+      <p className="px-4 pb-3 text-xs opacity-60">{log}</p>
     </div>
   );
 }
@@ -79,8 +79,8 @@ export default function LiveCalendar({
 
   return (
     <div
-      className={`rounded-2xl border p-4 ${
-        theme === 'light' ? 'border-[#d9d4c9] bg-[#e4dfd4] text-slate-900' : 'border-white/10 bg-[#14161c] text-white'
+      className={`live-cal overflow-hidden rounded-2xl border ${
+        theme === 'light' ? 'border-[#d9d4c9] bg-[#f1eee7] text-slate-900' : 'border-white/10 bg-[#1c1f27] text-white'
       }`}
     >
       <CalendarView theme={theme} look={look} palette={palette} radius={radius} height={height} initialView={initialView} />

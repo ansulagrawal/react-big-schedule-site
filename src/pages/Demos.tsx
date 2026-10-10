@@ -110,7 +110,7 @@ export default function Demos() {
         )}
 
         {demo.render ? (
-          <div key={demo.id} className="card p-4">
+          <div key={demo.id} className="card overflow-hidden">
             {demo.render({ theme, look, palette, radius })}
           </div>
         ) : (
