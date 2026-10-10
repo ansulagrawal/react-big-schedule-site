@@ -99,8 +99,23 @@ html {
 
 .site-light::before,
 .site-light::after {
-  opacity: 0.35;
+  opacity: 0.25;
 }
+
+.site-light .page-glows {
+  background-image:
+    radial-gradient(56vw 560px at 4% 700px, rgb(99 102 241 / 0.16), transparent 70%),
+    radial-gradient(52vw 520px at 98% 1100px, rgb(225 29 72 / 0.12), transparent 70%),
+    radial-gradient(54vw 540px at 2% 1540px, rgb(20 184 166 / 0.14), transparent 70%),
+    radial-gradient(50vw 500px at 100% 1920px, rgb(245 158 11 / 0.14), transparent 70%);
+}
+
+/* pastel text tones made for dark backgrounds need darker shades on the cream page */
+.site-light .text-emerald-300 { color: #047857; }
+.site-light .text-amber-300,
+.site-light .text-amber-100 { color: #b45309; }
+.site-light .text-sky-300 { color: #0369a1; }
+.site-light .text-orange-300 { color: #c2410c; }
 
 .site-light .card {
   border-color: rgb(0 0 0 / 0.1);
