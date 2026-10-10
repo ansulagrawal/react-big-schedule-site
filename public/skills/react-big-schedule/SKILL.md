@@ -5,7 +5,7 @@ description: Build calendars and resource schedulers in React with react-big-sch
 
 # react-big-schedule (v9)
 
-Free MIT React calendar (`<Calendar>`) and resource timeline (`<Scheduler>`). ESM only, strict TypeScript, React 18+ peer dependency, no UI library. Docs: https://react-big-schedule.vercel.app/docs . Full API text: https://react-big-schedule.vercel.app/llms-full.txt
+Free MIT React calendar (`<Calendar>`) and resource timeline (`<Scheduler>`). ESM only, strict TypeScript, React 18+ peer dependency, no UI library. Docs: https://react-big-schedule.ansulagrawal.com/docs . Full API text: https://react-big-schedule.ansulagrawal.com/llms-full.txt
 
 ## Install and import
 
