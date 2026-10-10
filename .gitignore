@@ -5,3 +5,6 @@ dist
 .claude/
 *.log
 dist-ssr
+
+# macOS
+.DS_Store
