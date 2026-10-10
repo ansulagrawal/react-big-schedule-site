@@ -12,7 +12,7 @@
   "dependencies": {
     "dayjs": "^1.11.23",
     "react": "^19.3.0",
-    "react-big-schedule": "file:../react-big-schedule",
+    "react-big-schedule": "^9.0.0",
     "react-dom": "^19.3.0"
   },
   "devDependencies": {
