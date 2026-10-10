@@ -6,7 +6,7 @@ import LiveCalendar from '../components/LiveCalendar';
 const DndScheduler = wrapperFun(Scheduler);
 
 function make() {
-  const data = new SchedulerData(dayjs('2022-12-22'), ViewType.Week, false, false, { theme: 'light' } as never);
+  const data = new SchedulerData(dayjs(), ViewType.Week, false, false, { theme: 'dark' });
   data.setResources(DemoData.resources);
   data.setEvents(DemoData.events);
   return data;
@@ -44,19 +44,19 @@ function Timeline() {
 
 export default function Demos() {
   return (
-    <div className="mx-auto max-w-6xl space-y-16 px-4 py-12">
-      <header>
-        <h1 className="text-4xl font-bold tracking-tight">Demos</h1>
-        <p className="mt-2 text-slate-600">Everything below is the real library running live. Drag events around.</p>
+    <div className="mx-auto max-w-6xl space-y-20 px-4 py-14">
+      <header className="text-center">
+        <h1 className="text-5xl font-extrabold tracking-tight">Demos</h1>
+        <p className="mt-3 text-white/65">Everything below is the real library running live. Drag events around.</p>
       </header>
       <section>
-        <h2 className="mb-4 text-2xl font-semibold">Calendar</h2>
-        <LiveCalendar height={700} />
+        <h2 className="mb-5 text-2xl font-bold">Calendar</h2>
+        <LiveCalendar height={720} />
       </section>
       <section>
-        <h2 className="mb-1 text-2xl font-semibold">Resource timeline</h2>
-        <p className="mb-4 text-sm text-slate-600">A paid feature elsewhere, free here.</p>
-        <div className="overflow-hidden rounded-2xl border border-slate-200 p-3">
+        <h2 className="text-2xl font-bold">Resource timeline</h2>
+        <p className="mb-5 mt-1 text-sm text-white/55">A paid feature elsewhere, free here.</p>
+        <div className="card overflow-hidden p-4">
           <Timeline />
         </div>
       </section>

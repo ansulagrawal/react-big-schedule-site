@@ -9,16 +9,16 @@ const Section = ({ id, title, children }: { id: string; title: string; children:
 
 export default function Docs() {
   return (
-    <div className="mx-auto max-w-3xl space-y-12 px-4 py-12">
+    <div className="mx-auto max-w-3xl space-y-14 px-4 py-14">
       <header>
-        <h1 className="text-4xl font-bold tracking-tight">Documentation</h1>
-        <p className="mt-2 text-slate-600">Supported from v9.0.0. Older versions are deprecated on npm.</p>
+        <h1 className="text-5xl font-extrabold tracking-tight">Documentation</h1>
+        <p className="mt-3 text-white/65">Supported from v9.0.0. Older versions are deprecated on npm.</p>
       </header>
 
       <Section id="install" title="Install">
         <Code>{`bun add react-big-schedule
 # peers: react >=18, react-dom >=18`}</Code>
-        <p className="text-slate-600">Import the stylesheet once. It contains the tokens, three themes and the print styles.</p>
+        <p className="text-white/65">Import the stylesheet once. It contains the tokens, three themes and the print styles.</p>
         <Code>{`import 'react-big-schedule/dist/css/style.css';`}</Code>
       </Section>
 
@@ -33,7 +33,7 @@ export default function Docs() {
   selectable
   onEventDrop={({ event }) => save(event)}
 />`}</Code>
-        <p className="text-slate-600">
+        <p className="text-white/65">
           Views: dayGridMonth, dayGridWeek, dayGridDay, timeGridWeek, timeGridDay, listDay, listWeek, listMonth, listYear,
           multiMonthYear, multiMonthStack, multiMonthContinuous.
         </p>
@@ -51,7 +51,7 @@ data.setEvents(events);
       </Section>
 
       <Section id="theming" title="Theming">
-        <p className="text-slate-600">Set <code>theme</code> to light, dark or classic, or override the CSS variables.</p>
+        <p className="text-white/65">Set <code className="rounded bg-white/10 px-1.5 py-0.5 text-[13px]">theme</code> to light, dark or classic, or override the CSS variables.</p>
         <Code>{`.my-app {
   --rbs-accent: #7c3aed;
   --rbs-radius: 10px;
@@ -60,10 +60,10 @@ data.setEvents(events);
       </Section>
 
       <Section id="upgrade" title="Upgrading to 9">
-        <ul className="list-disc space-y-1 pl-5 text-slate-600">
+        <ul className="list-disc space-y-1 pl-5 text-white/65">
           <li>antd is no longer a dependency; the header, popovers and calendar picker are built in.</li>
           <li>The package is ESM-only and ships its own generated type declarations.</li>
-          <li>Import the stylesheet from <code>react-big-schedule/dist/css/style.css</code>.</li>
+          <li>Import the stylesheet from <code className="rounded bg-white/10 px-1.5 py-0.5 text-[13px]">react-big-schedule/dist/css/style.css</code>.</li>
         </ul>
       </Section>
     </div>
