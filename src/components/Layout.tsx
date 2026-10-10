@@ -25,6 +25,8 @@ export default function Layout({ route, children }: { route: string; children: R
   const { theme, look, palette } = useSite();
   const colours = look !== 'default' && palette ? PALETTE[palette] : undefined;
   const base = `/${route.split('/')[1] ?? ''}`;
+  // the demos page is wider than the other pages; the header and footer line up with the content
+  const wide = base === '/demos';
 
   return (
     <div
@@ -46,7 +48,7 @@ export default function Layout({ route, children }: { route: string; children: R
           scrolled ? 'border-white/10 bg-[#1a1a1a]/75 backdrop-blur-md' : 'border-transparent bg-transparent'
         }`}
       >
-        <nav className="grid h-16 w-full grid-cols-[1fr_auto_1fr] items-center px-6 lg:px-10">
+        <nav className={`mx-auto grid h-16 w-full grid-cols-[1fr_auto_1fr] items-center ${wide ? 'max-w-[88rem] px-4 lg:px-8' : 'max-w-6xl px-6'}`}>
           <a href="#/" aria-label="React Big Schedule home" className="justify-self-start">
             <Logo />
           </a>
@@ -78,7 +80,7 @@ export default function Layout({ route, children }: { route: string; children: R
       </header>
       <div className="page-glows">
         <main>{children}</main>
-        <Footer />
+        <Footer wide={wide} />
       </div>
     </div>
   );
