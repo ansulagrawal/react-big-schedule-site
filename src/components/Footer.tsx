@@ -43,10 +43,10 @@ const columns: { title: string; links: [string, string][] }[] = [
   },
 ];
 
-export default function Footer({ wide = false }: { wide?: boolean }) {
+export default function Footer() {
   return (
     <footer className="mt-28 border-t border-white/10 bg-black/30">
-      <div className={`mx-auto grid ${wide ? 'max-w-[88rem] px-4 lg:px-8' : 'max-w-6xl px-6'} gap-10 py-14 md:grid-cols-[1.4fr_repeat(4,1fr)]`}>
+      <div className="mx-auto grid max-w-6xl gap-10 px-6 py-14 md:grid-cols-[1.4fr_repeat(4,1fr)]">
         <div>
           <Logo />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/60">
@@ -83,7 +83,7 @@ export default function Footer({ wide = false }: { wide?: boolean }) {
         ))}
       </div>
       <div className="border-t border-white/10">
-        <div className={`mx-auto flex ${wide ? 'max-w-[88rem] px-4 lg:px-8' : 'max-w-6xl px-6'} flex-wrap items-center justify-between gap-3 py-6 text-xs text-white/45`}>
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-6 py-6 text-xs text-white/45">
           <span>© {new Date().getFullYear()} React Big Schedule. Released under the MIT License.</span>
           <span>Created and maintained by Ansul Agrawal and contributors · Built with TypeScript</span>
         </div>
