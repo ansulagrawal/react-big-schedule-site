@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --color-brand: #6366f1;
+  --color-brand-2: #06b6d4;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.dark-surface {
+  background: #0b0d12;
+  color: #e6e8ee;
+}
