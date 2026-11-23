@@ -19,7 +19,7 @@ const rows: { feature: string; v: [Cell, Cell, Cell, Cell]; note?: string }[] = 
   { feature: 'iCal / CSV export', v: ['pro', 'partial', 'no', 'paid'] },
   { feature: 'Undo / redo history', v: ['pro', 'no', 'no', 'paid'] },
   { feature: 'Conflict / availability engine', v: ['pro', 'no', 'no', 'paid'] },
-  { feature: 'Touch long-press tuning', v: ['planned', 'yes', 'partial', 'paid'] },
+  { feature: 'Touch long-press tuning', v: ['yes', 'yes', 'partial', 'paid'] },
   { feature: 'Screen-reader audit (NVDA / JAWS / VoiceOver)', v: ['partial', 'yes', 'partial', 'paid'] },
   { feature: 'Gantt dependencies', v: ['planned', 'no', 'no', 'paid'] },
 ];

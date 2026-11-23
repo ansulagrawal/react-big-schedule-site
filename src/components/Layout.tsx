@@ -56,7 +56,10 @@ export default function Layout({ route, children }: { route: string; children: R
       }
     >
       <div className="print-hide flex h-9 items-center justify-center keep-white bg-black/50 px-4 text-xs text-white/90">
-        <span>New in v10: virtual rendering for 10,000+ events, faster view switching, keyboard move and resize.</span>
+        <span>
+          New in v10: virtual rendering for 10,000+ events, faster view switching, keyboard move and resize, touch
+          long-press.
+        </span>
         <a href="/docs" className="ml-2 font-semibold text-site-ink-dark hover:underline">
           Read the upgrade guide →
         </a>

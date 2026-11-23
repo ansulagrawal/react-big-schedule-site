@@ -101,9 +101,9 @@ const missed: { title: string; text: string; status: string; tone: string }[] = 
   },
   {
     title: 'The finishing touch',
-    text: 'Pointer-based drag and drop works on touch screens today. Long-press tuning and competing scroll panes get a dedicated pass next.',
-    status: 'Planned',
-    tone: 'text-fuchsia-300',
+    text: 'On touch screens a long press picks an event up while a plain swipe still scrolls. The delay is configurable, from 0 to as long as you like.',
+    status: 'Built in · free',
+    tone: 'text-emerald-300',
   },
 ];
 
@@ -118,12 +118,12 @@ const roadmap: [string, string[]][] = [
       'TypeScript source, no UI library',
       'Virtual rendering for 10k+ events, faster view switching',
       'Accessibility pass: keyboard move and resize, ARIA structure, contrast',
+      'Configurable touch long-press for dragging and selecting',
     ],
   ],
   [
     'Next',
     [
-      'Touch long-press and scroll-pane tuning',
       'Manual screen-reader pass (NVDA, JAWS, VoiceOver)',
       '“+N more” popover in time grid',
       'Resource columns in <Calendar>',
