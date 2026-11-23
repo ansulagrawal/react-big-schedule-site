@@ -27,9 +27,9 @@ export default function Demos() {
   const byGroup = useMemo(() => groups.map(g => [g, demos.filter(d => d.group === g)] as const), []);
 
   return (
-    <div className="mx-auto grid max-w-352 gap-8 px-4 py-10 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-x-3 lg:px-8">
+    <div className="demos-grid mx-auto grid max-w-352 gap-8 px-4 py-10 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-x-3 lg:px-8">
       {/* Sidebar (a select on small screens) */}
-      <aside className="lg:-ml-1.25 lg:sticky lg:top-24 lg:max-h-[calc(100vh-7rem)] lg:self-start lg:overflow-y-auto lg:pr-2">
+      <aside className="print-hide lg:-ml-1.25 lg:sticky lg:top-24 lg:max-h-[calc(100vh-7rem)] lg:self-start lg:overflow-y-auto lg:pr-2">
         <select
           aria-label="Choose a demo"
           value={demo.id}
@@ -83,7 +83,7 @@ export default function Demos() {
           <p className="mt-2 max-w-2xl text-white/65">{demo.blurb}</p>
         </header>
 
-        <div className="mb-5 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
+        <div className="print-hide mb-5 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
           <button
             type="button"
             hidden={!live}

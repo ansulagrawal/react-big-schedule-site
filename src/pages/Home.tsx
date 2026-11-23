@@ -89,9 +89,9 @@ const missed: { title: string; text: string; status: string; tone: string }[] = 
   },
   {
     title: 'Heavy loads, odd shapes',
-    text: 'Events are normalised once and bucketed per day, with memoised cells. Virtual rendering for 10,000 events on one day is on the roadmap.',
-    status: 'Planned',
-    tone: 'text-fuchsia-300',
+    text: 'Events are normalised once and bucketed per day, with memoised cells. Virtual rendering keeps 10,000+ events smooth: only the rows and events near the viewport are mounted.',
+    status: 'Built in · free',
+    tone: 'text-emerald-300',
   },
   {
     title: 'Print (on paper)',
@@ -108,8 +108,8 @@ const missed: { title: string; text: string; status: string; tone: string }[] = 
 ];
 
 const roadmap: [string, string[]][] = [
-  ['Shipped in v9', ['Calendar: month, week, day, list, year', 'Free resource timeline and vertical view', 'Event sources, recurrence, time zones', 'Themes, dark mode, print styles', 'TypeScript source, no UI library']],
-  ['Next', ['Virtual rendering for 10k+ events', 'Touch long-press and scroll-pane tuning', 'Screen-reader audit and fixes', '“+N more” popover in time grid', 'Resource columns in <Calendar>']],
+  ['Shipped', ['Calendar: month, week, day, list, year', 'Free resource timeline and vertical view', 'Event sources, recurrence, time zones', 'Themes, dark mode, print styles', 'TypeScript source, no UI library', 'Virtual rendering for 10k+ events, faster view switching']],
+  ['Next', ['Touch long-press and scroll-pane tuning', 'Screen-reader audit and fixes', '“+N more” popover in time grid', 'Resource columns in <Calendar>']],
   ['Pro (coming soon)', ['iCal and CSV export, PDF export', 'Undo / redo and conflict engine', 'Nested resource tree, Gantt dependencies', 'Google and Outlook sync', 'Priority support']],
 ];
 

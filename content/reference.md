@@ -103,7 +103,6 @@ We would like to acknowledge the following projects for their inspiration and co
 - Support for recurring appointments.
 - Integration with popular calendar services.
 - Improved accessibility and localization support.
-- Performance optimizations for handling large data sets.
 
 We are continuously working on enhancing react-big-schedule and welcome your feedback and suggestions for future improvements.
 
@@ -111,6 +110,10 @@ We are continuously working on enhancing react-big-schedule and welcome your fee
 ## Supported versions
 
 Only **9.0.0 or later** is supported. All earlier versions are deprecated on npm; issues and security reports for them are not handled, please upgrade to the latest release first.
+
+### Upgrading to 10.0
+
+No code changes are needed. Virtual rendering (see Virtual rendering above) is on by default once a scheduler has more than 50 rows or 500 events, and rows and events outside the viewport are no longer in the DOM; set `virtualRendering: false` in the config if your code queries them. Switching between day, week, month, quarter, year and the vertical resource view is also much faster with many events.
 
 ### Upgrading to 9.0
 

@@ -239,3 +239,51 @@ html {
 .site-light .tk-attr { color: #c2410c; }
 .site-light .tk-fn { color: #854d0e; }
 .site-light .tk-type { color: #0e7490; }
+
+/* Print: only the page content, on paper white (the site chrome, glows and dark theme stay on screen) */
+@media print {
+  .print-hide {
+    display: none !important;
+  }
+  .site-bg,
+  .site-light {
+    --color-white: #14161c;
+    --panel: #fff;
+    --panel-line: #d9d4c9;
+    --pop: #fff;
+    --code: #f5f5f5;
+    background: #fff !important;
+    color: #14161c !important;
+    min-height: 0 !important;
+  }
+  .site-bg::before,
+  .site-bg::after {
+    display: none !important;
+  }
+  .page-glows {
+    background: none !important;
+  }
+  .card {
+    background: #fff !important;
+    border-color: #cfcfcf !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+  .card,
+  .rbs-container {
+    break-inside: avoid;
+  }
+  /* the calendar's dark/cream surfaces would otherwise win over the library's own print tokens */
+  .site-bg [data-rbs-theme],
+  .site-bg [data-rbs-theme] :is(.rbs-container, .rbs-calendar, .rbs-add-more-popover-overlay) {
+    --rbs-surface: #fff !important;
+    --rbs-group-bg: #fff !important;
+    --rbs-border: #999 !important;
+    --rbs-text: #000 !important;
+  }
+  .demos-grid {
+    display: block !important;
+    max-width: none !important;
+    padding: 0 !important;
+  }
+}
