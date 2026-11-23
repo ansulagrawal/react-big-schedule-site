@@ -83,8 +83,8 @@ data.setEvents(events);
 const missed: { title: string; text: string; status: string; tone: string }[] = [
   {
     title: 'Screen reader ready',
-    text: 'ARIA grids, roving focus and full keyboard navigation are built in. A manual NVDA, JAWS and VoiceOver audit is next.',
-    status: 'Built in · audit planned',
+    text: 'ARIA grids, roving focus, keyboard move and resize, and readable contrast are built in, checked with axe-core on every view. A manual NVDA, JAWS and VoiceOver pass is next.',
+    status: 'Built in · manual audit pending',
     tone: 'text-emerald-300',
   },
   {
@@ -117,13 +117,14 @@ const roadmap: [string, string[]][] = [
       'Themes, dark mode, print styles',
       'TypeScript source, no UI library',
       'Virtual rendering for 10k+ events, faster view switching',
+      'Accessibility pass: keyboard move and resize, ARIA structure, contrast',
     ],
   ],
   [
     'Next',
     [
       'Touch long-press and scroll-pane tuning',
-      'Screen-reader audit and fixes',
+      'Manual screen-reader pass (NVDA, JAWS, VoiceOver)',
       '“+N more” popover in time grid',
       'Resource columns in <Calendar>',
     ],

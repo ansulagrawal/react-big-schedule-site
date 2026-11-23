@@ -16,7 +16,7 @@
     "dayjs": "^1.11.23",
     "marked": "^18.1.0",
     "react": "^19.3.0",
-    "react-big-schedule": "^10.0.1",
+    "react-big-schedule": "^10.1.0",
     "react-dom": "^19.3.0"
   },
   "devDependencies": {
