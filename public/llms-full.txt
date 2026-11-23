@@ -895,6 +895,8 @@ eventItemPopoverTemplateResolver(schedulerData, eventItem, title, start, end, st
 
 Use this function, you can customize the event's popover style. Refer to [this example](https://react-big-schedule.ansulagrawal.com/demos/custom-content).
 
+If the resolver is not a function, throws, or returns `null`/`undefined`, the default popover is rendered instead (thrown errors are logged with `console.error`).
+
 #### slotItemTemplateResolver
 
 ```js

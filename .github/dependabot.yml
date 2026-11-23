@@ -1,0 +1,9 @@
+version: 2
+updates:
+  # Keep the site on the latest published react-big-schedule; merging the PR redeploys on Vercel.
+  - package-ecosystem: "bun"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    allow:
+      - dependency-name: "react-big-schedule"
