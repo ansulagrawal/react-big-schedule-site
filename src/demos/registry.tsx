@@ -4,10 +4,11 @@ import 'dayjs/locale/es';
 import 'dayjs/locale/fr';
 import 'dayjs/locale/ja';
 import { type ReactNode, useState } from 'react';
-import { Calendar, type CalendarEvent, type Resource, type SchedulerEvent, ViewType } from 'react-big-schedule';
+import { Calendar, type CalendarEvent, type SchedulerEvent, ViewType } from 'react-big-schedule';
 import { CalendarView, type LookProps } from '../components/LiveCalendar';
 import { SHADES } from '../sample';
 import TimelineDemo from '../components/TimelineDemo';
+import VirtualDemo from '../components/VirtualDemo';
 
 export type Status = 'free' | 'pro' | 'soon';
 
@@ -161,16 +162,6 @@ function LocaleDemo(look: LookProps) {
   );
 }
 
-/** 10,000 events over 300 resources across the current month, for the virtual rendering demo. */
-const bigResources: Resource[] = Array.from({ length: 300 }, (_, i) => ({ id: `v${i}`, name: `Resource ${i + 1}` }));
-const bigEvents: SchedulerEvent[] = (() => {
-  const month = dayjs().startOf('month');
-  return Array.from({ length: 10000 }, (_, i) => {
-    const start = month.add(((i * 7919) % (28 * 24)), 'hour');
-    return { id: 10000 + i, resourceId: `v${i % 300}`, title: `Event ${i + 1}`, start: start.format('YYYY-MM-DD HH:mm:ss'), end: start.add(4 + (i % 5) * 6, 'hour').format('YYYY-MM-DD HH:mm:ss') };
-  });
-})();
-
 const cal = (initialView: string, views: string[], extra = '') =>
   `import { Calendar } from 'react-big-schedule';
 import 'react-big-schedule/dist/css/style.css';
@@ -295,7 +286,7 @@ wouldConflict(events, droppedEvent);   // true | false` },
   { id: 'realtime', title: 'Realtime collaboration', group: 'Pro', status: 'soon', blurb: 'Presence and live updates when several people edit the same calendar.', note: 'Planned for Pro.', code: `const { events, presence } = useRealtimeEvents(roomId);` },
 
   // ---- Core roadmap ----
-  { id: 'virtual', title: 'Virtual rendering', group: 'Resources', status: 'free', isNew: true, blurb: '10,000 events across 300 resources, scrolling stays smooth: only the rows and events near the viewport are mounted.', render: l => <TimelineDemo {...l} viewType={ViewType.Month} resources={bigResources} events={bigEvents} config={{ schedulerContentHeight: '640px' }} />, code: `// 10,000 events x 300 resources. Virtual rendering is on by default\n// (more than 50 rows or 500 events), tune it in the config:\nconst data = new SchedulerData(new Date(), ViewType.Month, false, false, {\n  schedulerContentHeight: '640px', // a scrolling content area\n  virtualRendering: true,\n  virtualOverscan: 400, // px mounted beyond the viewport\n});\ndata.setResources(resources); // 300 rows\ndata.setEvents(events); // 10,000 events` },
+  { id: 'virtual', title: 'Virtual rendering', group: 'Resources', status: 'free', isNew: true, blurb: '10,000 events across 1,000 rooms stay smooth: only the rows and events near the viewport are mounted.', render: l => <VirtualDemo {...l} />, code: `// 10,000 events x 1,000 rooms. Virtual rendering is on by default\n// (more than 50 rows or 500 events), tune it in the config:\nconst data = new SchedulerData(new Date(), ViewType.Month, false, false, {\n  schedulerContentHeight: '640px', // a scrolling content area\n  virtualRendering: true,\n  virtualOverscan: 400, // px mounted beyond the viewport\n});\ndata.setResources(resources); // 1,000 rows\ndata.setEvents(events); // 10,000 events` },
   { id: 'calendar-resources', title: 'Resources in Calendar', group: 'Coming to the core', status: 'soon', blurb: 'Resource columns inside the day and week time grids.', note: 'Planned for the free core. Today use the vertical resource view above.', code: `<Calendar resources={rooms} initialView="resourceTimeGridDay" />` },
   { id: 'touch', title: 'Touch long-press', group: 'Coming to the core', status: 'soon', blurb: 'Long-press to drag, tuned for competing scroll panes on phones and tablets.', note: 'Planned for the free core.', code: `<Calendar eventLongPressDelay={400} />` },
 ];
