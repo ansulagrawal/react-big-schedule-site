@@ -12,8 +12,8 @@ const badge: Record<Status, [string, string] | null> = {
 
 const useDemoId = () => usePath().split('/')[2] || demos[0]?.id || 'month';
 
-function StatusChip({ status }: { status: Status }) {
-  const b = badge[status];
+function StatusChip({ status, isNew }: { status: Status; isNew?: boolean }) {
+  const b = isNew ? (['NEW', 'bg-emerald-400/15 text-emerald-300'] as const) : badge[status];
   return b ? <span className={`rounded px-1.5 py-0.5 text-[10px] font-bold tracking-wide ${b[1]}`}>{b[0]}</span> : null;
 }
 
@@ -43,7 +43,7 @@ export default function Demos() {
               {items.map(d => (
                 <option key={d.id} value={d.id}>
                   {d.title}
-                  {d.status === 'pro' ? ' (Pro)' : d.status === 'soon' ? ' (coming soon)' : ''}
+                  {d.isNew ? ' (new)' : d.status === 'pro' ? ' (Pro)' : d.status === 'soon' ? ' (coming soon)' : ''}
                 </option>
               ))}
             </optgroup>
@@ -64,7 +64,7 @@ export default function Demos() {
                       }`}
                     >
                       <span>{d.title}</span>
-                      <StatusChip status={d.status} />
+                      <StatusChip status={d.status} isNew={d.isNew} />
                     </a>
                   </li>
                 ))}
@@ -78,7 +78,7 @@ export default function Demos() {
         <header className="mb-6">
           <div className="flex flex-wrap items-center gap-3">
             <h1 className="text-4xl font-extrabold tracking-tight">{demo.title}</h1>
-            <StatusChip status={demo.status} />
+            <StatusChip status={demo.status} isNew={demo.isNew} />
           </div>
           <p className="mt-2 max-w-2xl text-white/65">{demo.blurb}</p>
         </header>

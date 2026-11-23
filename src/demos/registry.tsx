@@ -8,6 +8,7 @@ import { Calendar, type CalendarEvent, type SchedulerEvent, ViewType } from 'rea
 import { CalendarView, type LookProps } from '../components/LiveCalendar';
 import { SHADES } from '../sample';
 import TimelineDemo from '../components/TimelineDemo';
+import VirtualDemo from '../components/VirtualDemo';
 
 export type Status = 'free' | 'pro' | 'soon';
 
@@ -23,6 +24,8 @@ export interface Demo {
   code: string;
   /** Shown for pro / soon items. */
   note?: string;
+  /** Marks a recently added demo with a NEW tag. */
+  isNew?: boolean;
 }
 
 const day = (offset: number, time: string) => dayjs().add(offset, 'day').format(`YYYY-MM-DD[T]${time}`);
@@ -283,7 +286,7 @@ wouldConflict(events, droppedEvent);   // true | false` },
   { id: 'realtime', title: 'Realtime collaboration', group: 'Pro', status: 'soon', blurb: 'Presence and live updates when several people edit the same calendar.', note: 'Planned for Pro.', code: `const { events, presence } = useRealtimeEvents(roomId);` },
 
   // ---- Core roadmap ----
-  { id: 'virtual', title: 'Virtual rendering', group: 'Coming to the core', status: 'soon', blurb: 'Render only what is visible so 10,000 events on one day stay smooth.', note: 'Planned for the free core.', code: `<Calendar events={tenThousandEvents} virtualize />` },
+  { id: 'virtual', title: 'Virtual rendering', group: 'Resources', status: 'free', isNew: true, blurb: '10,000 events across 1,000 rooms stay smooth: only the rows and events near the viewport are mounted.', render: l => <VirtualDemo {...l} />, code: `// 10,000 events x 1,000 rooms. Virtual rendering is on by default\n// (more than 50 rows or 500 events), tune it in the config:\nconst data = new SchedulerData(new Date(), ViewType.Month, false, false, {\n  schedulerContentHeight: '640px', // a scrolling content area\n  virtualRendering: true,\n  virtualOverscan: 400, // px mounted beyond the viewport\n});\ndata.setResources(resources); // 1,000 rows\ndata.setEvents(events); // 10,000 events` },
   { id: 'calendar-resources', title: 'Resources in Calendar', group: 'Coming to the core', status: 'soon', blurb: 'Resource columns inside the day and week time grids.', note: 'Planned for the free core. Today use the vertical resource view above.', code: `<Calendar resources={rooms} initialView="resourceTimeGridDay" />` },
   { id: 'touch', title: 'Touch long-press', group: 'Coming to the core', status: 'soon', blurb: 'Long-press to drag, tuned for competing scroll panes on phones and tablets.', note: 'Planned for the free core.', code: `<Calendar eventLongPressDelay={400} />` },
 ];
