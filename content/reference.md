@@ -309,6 +309,16 @@ While an event, task or resource is dragged over a row, the cells where it would
 
 With more than 50 rows or 500 events the Scheduler mounts only the rows and events near the viewport; spacer rows keep the scroll height and the resource column aligned, so scrolling feels the same. Set `virtualRendering: false` in the `SchedulerData` config to turn it off, and `virtualOverscan` (default `400`, in pixels) to change how far beyond the viewport content stays mounted. It needs a scrolling content area (a fixed `schedulerContentHeight` such as `'600px'`). In the Calendar list views, off-screen days skip layout and paint.
 
+#### Touch
+
+On touch screens an event is picked up after a long press, so a plain swipe still scrolls the calendar. Hold for `longPressDelay` ms (default `400`), the event lifts (and the device vibrates briefly where supported), then drag. The same applies to selecting a range. Mouse and pen are not affected.
+
+- `longPressDelay`: delay for all touch drags and selections. `0` drags at once, and then a finger resting on an event can't scroll the page.
+- `eventLongPressDelay`: only moving and resizing events (falls back to `longPressDelay`).
+- `selectLongPressDelay`: only range selection (falls back to `longPressDelay`).
+
+The Scheduler timeline is mouse-first and does not use these options yet. Refer to [this example](/demos/touch).
+
 #### Accessibility
 
 The Calendar views and the Scheduler follow the ARIA grid pattern and were checked with axe-core in the light and dark themes. Day cells are named by their date, events by what you see (time first, then title), and a live region announces moves.

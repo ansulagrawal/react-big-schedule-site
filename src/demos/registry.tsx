@@ -259,6 +259,45 @@ function LocaleDemo(look: LookProps) {
   );
 }
 
+/** Pick the touch long-press delay and try it on a phone or in touch emulation. */
+function TouchDemo(look: LookProps) {
+  const [delay, setDelay] = useState(400);
+  return (
+    <div>
+      <div className="flex flex-wrap items-center gap-3 px-4 pt-4 text-sm">
+        <label htmlFor="touch-delay" className="flex items-center gap-2">
+          Long-press delay
+          <select
+            id="touch-delay"
+            value={delay}
+            onChange={e => setDelay(Number(e.target.value))}
+            className="rounded-lg border border-white/20 bg-pop px-2 py-1 text-white"
+          >
+            {[0, 250, 400, 600, 1000].map(ms => (
+              <option key={ms} value={ms}>
+                {ms === 0 ? '0 ms (drag at once)' : `${ms} ms`}
+              </option>
+            ))}
+          </select>
+        </label>
+        <p className="text-white/60">
+          On a touch screen hold an event for the delay, then drag; a swipe still scrolls. Mouse is unaffected.
+        </p>
+      </div>
+      <CalendarView
+        key={delay}
+        {...look}
+        height={620}
+        initialView="timeGridWeek"
+        views={['timeGridWeek', 'timeGridDay', 'dayGridMonth']}
+        longPressDelay={delay}
+        editable
+        selectable
+      />
+    </div>
+  );
+}
+
 const cal = (initialView: string, views: string[], extra = '') =>
   `import { Calendar } from 'react-big-schedule';
 import 'react-big-schedule/dist/css/style.css';
@@ -750,11 +789,18 @@ wouldConflict(events, droppedEvent);   // true | false`,
   {
     id: 'touch',
     title: 'Touch long-press',
-    group: 'Coming to the core',
-    status: 'soon',
-    blurb: 'Long-press to drag, tuned for competing scroll panes on phones and tablets.',
-    note: 'Planned for the free core.',
-    code: `<Calendar eventLongPressDelay={400} />`,
+    group: 'Options',
+    status: 'free',
+    isNew: true,
+    blurb: 'Hold an event to pick it up and drag; a plain swipe still scrolls. The delay is configurable.',
+    render: l => <TouchDemo {...l} />,
+    code: `<Calendar
+  editable
+  selectable
+  longPressDelay={400} // all touch drags and selections (0 = drag at once)
+  eventLongPressDelay={300} // only moving / resizing events
+  selectLongPressDelay={500} // only range selection
+/>`,
   },
 ];
 
