@@ -1,5 +1,5 @@
 import { type CSSProperties, useEffect, useState } from 'react';
-import { DemoData, Scheduler, SchedulerData, type SchedulerConfig, type SchedulerEvent, ViewType, wrapperFun } from 'react-big-schedule';
+import { DemoData, Scheduler, SchedulerData, type Resource, type SchedulerConfig, type SchedulerEvent, ViewType, wrapperFun } from 'react-big-schedule';
 import { SHADES } from '../sample';
 import type { LookProps } from './LiveCalendar';
 
@@ -20,10 +20,11 @@ export default function TimelineDemo({
   config,
   infinite,
   events = DemoData.events,
-}: LookProps & { infinite?: boolean; viewType?: ViewType; config?: Partial<SchedulerConfig>; events?: SchedulerEvent[] }) {
+  resources = DemoData.resources,
+}: LookProps & { infinite?: boolean; resources?: Resource[]; viewType?: ViewType; config?: Partial<SchedulerConfig>; events?: SchedulerEvent[] }) {
   const [data, setData] = useState(() => {
     const d = new SchedulerData(new Date(), viewType, false, false, { theme, look, palette, ...config });
-    d.setResources(DemoData.resources);
+    d.setResources(resources);
     d.setEvents(shaded(events));
     return d;
   });
