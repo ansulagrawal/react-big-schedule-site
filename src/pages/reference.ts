@@ -1,11 +1,18 @@
 import { marked } from 'marked';
-import { highlightHtml } from '../highlight';
 import reference from '../../content/reference.md?raw';
+import { highlightHtml } from '../highlight';
 
-const slug = (s: string) => s.toLowerCase().replace(/<[^>]*>/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const slug = (s: string) =>
+  s
+    .toLowerCase()
+    .replace(/<[^>]*>/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
 
 // the detailed Scheduler API: from "Use and Setup" on, without the "run the examples locally" steps
-const body = reference.slice(reference.indexOf('## Use and Setup')).replace(/### Run examples locally[\s\S]*?(?=\n# API)/, '');
+const body = reference
+  .slice(reference.indexOf('## Use and Setup'))
+  .replace(/### Run examples locally[\s\S]*?(?=\n# API)/, '');
 
 interface Head {
   type: 'heading';
@@ -16,7 +23,12 @@ interface Head {
 }
 
 // "SchedulerData.config(See the [config file](https://...) for details)" -> "SchedulerData.config"
-const titleOf = (raw: string) => raw.replace(/\[([^\]]*)\]\([^)]*\)/g, '$1').replace(/`/g, '').replace(/\(.*$/, '').trim();
+const titleOf = (raw: string) =>
+  raw
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+    .replace(/`/g, '')
+    .replace(/\(.*$/, '')
+    .trim();
 
 // one pass assigns every heading its id, so the table of contents and the rendered headings always agree
 const tokens = marked.lexer(body);

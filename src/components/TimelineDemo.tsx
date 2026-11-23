@@ -1,5 +1,14 @@
 import { type CSSProperties, useEffect, useState } from 'react';
-import { DemoData, Scheduler, SchedulerData, type Resource, type SchedulerConfig, type SchedulerEvent, ViewType, wrapperFun } from 'react-big-schedule';
+import {
+  DemoData,
+  type Resource,
+  Scheduler,
+  type SchedulerConfig,
+  SchedulerData,
+  type SchedulerEvent,
+  ViewType,
+  wrapperFun,
+} from 'react-big-schedule';
 import { SHADES } from '../sample';
 import type { LookProps } from './LiveCalendar';
 
@@ -21,7 +30,13 @@ export default function TimelineDemo({
   infinite,
   events = DemoData.events,
   resources = DemoData.resources,
-}: LookProps & { infinite?: boolean; resources?: Resource[]; viewType?: ViewType; config?: Partial<SchedulerConfig>; events?: SchedulerEvent[] }) {
+}: LookProps & {
+  infinite?: boolean;
+  resources?: Resource[];
+  viewType?: ViewType;
+  config?: Partial<SchedulerConfig>;
+  events?: SchedulerEvent[];
+}) {
   const [data, setData] = useState(() => {
     const d = new SchedulerData(new Date(), viewType, false, false, { theme, look, palette, ...config });
     d.setResources(resources);
@@ -51,8 +66,24 @@ export default function TimelineDemo({
           d.toggleExpandStatus(slotId);
           setData(copyOf(d));
         }}
-        onScrollRight={infinite ? (d, content, max) => { d.next(); next(d); content.scrollLeft = max - 10; } : undefined}
-        onScrollLeft={infinite ? (d, content) => { d.prev(); next(d); content.scrollLeft = 10; } : undefined}
+        onScrollRight={
+          infinite
+            ? (d, content, max) => {
+                d.next();
+                next(d);
+                content.scrollLeft = max - 10;
+              }
+            : undefined
+        }
+        onScrollLeft={
+          infinite
+            ? (d, content) => {
+                d.prev();
+                next(d);
+                content.scrollLeft = 10;
+              }
+            : undefined
+        }
         schedulerData={data}
         style={style}
         prevClick={d => {

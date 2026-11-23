@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import { type Look, LOOKS, PALETTE, useSite } from '../site';
+import { LOOKS, type Look, PALETTE, useSite } from '../site';
+
+const WEEKDAYS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 
 // how each look is sketched in its tile: corner radius, border strength, how "today" is marked
 const SKETCH: Record<Look, { r: number; line: number; today: 'dot' | 'bar' | 'fill'; header?: boolean }> = {
@@ -23,8 +25,7 @@ function Tile({ look, accent }: { look: Look; accent: string }) {
       style={{ borderRadius: k.r, border: `1px solid color-mix(in srgb, var(--color-white) ${k.line}%, transparent)` }}
       aria-hidden="true"
     >
-      {k.header &&
-        Array.from({ length: 7 }, (_, i) => <span key={`h${i}`} className="h-1.5 bg-white/15" />)}
+      {k.header && WEEKDAYS.map(d => <span key={d} className="h-1.5 bg-white/15" />)}
       {cells.map(i => (
         <span
           key={i}
@@ -39,7 +40,12 @@ function Tile({ look, accent }: { look: Look; accent: string }) {
           {i === 9 && k.today === 'dot' && (
             <i className="absolute right-0.5 top-0.5 h-1.5 w-1.5 rounded-full" style={{ background: accent }} />
           )}
-          {i === 2 && <i className="absolute inset-x-0.5 bottom-0.5 h-1 rounded-sm" style={{ background: accent, opacity: 0.85 }} />}
+          {i === 2 && (
+            <i
+              className="absolute inset-x-0.5 bottom-0.5 h-1 rounded-sm"
+              style={{ background: accent, opacity: 0.85 }}
+            />
+          )}
         </span>
       ))}
     </div>
@@ -81,7 +87,13 @@ export default function ThemePanel() {
           style={{ background: current ?? 'conic-gradient(#d9703f, #5f8a73, #6366f1, #d9703f)' }}
         />
         <span className="hidden sm:inline">Theme</span>
-        <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true" className={`transition-transform ${open ? 'rotate-180' : ''}`}>
+        <svg
+          width="10"
+          height="10"
+          viewBox="0 0 10 10"
+          aria-hidden="true"
+          className={`transition-transform ${open ? 'rotate-180' : ''}`}
+        >
           <path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
         </svg>
       </button>
@@ -118,6 +130,7 @@ export default function ThemePanel() {
           {palettes.length > 1 ? (
             <div className="mt-2 flex flex-wrap gap-2" role="radiogroup" aria-label="Palette">
               {palettes.map(p => (
+                // biome-ignore lint/a11y/useSemanticElements: styled radio buttons in an ARIA radiogroup
                 <button
                   key={p}
                   type="button"
@@ -134,19 +147,26 @@ export default function ThemePanel() {
               ))}
             </div>
           ) : (
-            <p className="mt-2 text-xs text-white/50">{look === 'default' ? 'The original site colours.' : 'This style has a single palette.'}</p>
+            <p className="mt-2 text-xs text-white/50">
+              {look === 'default' ? 'The original site colours.' : 'This style has a single palette.'}
+            </p>
           )}
-          <label className="mt-4 flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-white/50">
+          <label
+            htmlFor="theme-radius"
+            className="mt-4 flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-white/50"
+          >
             Corner radius
-            <span className="font-medium normal-case tracking-normal text-white/70">{radius ?? LIB_RADIUS[look]}px</span>
+            <span className="font-medium normal-case tracking-normal text-white/70">
+              {radius ?? LIB_RADIUS[look]}px
+            </span>
           </label>
           <input
+            id="theme-radius"
             type="range"
             min={0}
             max={16}
             value={radius ?? LIB_RADIUS[look]}
             onChange={e => setRadius(Number(e.target.value))}
-            aria-label="Corner radius"
             className="mt-2 w-full"
           />
           <p className="mt-4 text-xs text-white/40">Changes every calendar and the colours of this site.</p>

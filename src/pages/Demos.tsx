@@ -60,7 +60,9 @@ export default function Demos() {
                       href={`/demos/${d.id}`}
                       aria-current={d.id === demo.id ? 'page' : undefined}
                       className={`flex items-center justify-between gap-2 rounded-lg px-3 py-2 text-sm ${
-                        d.id === demo.id ? 'bg-white/10 font-semibold text-white' : 'text-white/70 hover:bg-white/5 hover:text-white'
+                        d.id === demo.id
+                          ? 'bg-white/10 font-semibold text-white'
+                          : 'text-white/70 hover:bg-white/5 hover:text-white'
                       }`}
                     >
                       <span>{d.title}</span>
@@ -115,7 +117,10 @@ export default function Demos() {
                 : 'This is on the roadmap and not shipped yet. The code above is the API we are aiming for and can change.'}
             </p>
             <div className="mt-6 flex justify-center gap-3">
-              <a href="/pricing" className="rounded-full border border-white/30 px-5 py-2 text-sm font-semibold hover:bg-white/10">
+              <a
+                href="/pricing"
+                className="rounded-full border border-white/30 px-5 py-2 text-sm font-semibold hover:bg-white/10"
+              >
                 About Pro
               </a>
               <a

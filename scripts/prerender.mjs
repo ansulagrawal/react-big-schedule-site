@@ -4,13 +4,15 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 const { render, routes } = await import(pathToFileURL(path.resolve('dist-ssr/entry-server.js')).href);
-const { SITE, HOME } = await import(pathToFileURL(path.resolve('dist-ssr/seo.js')).href).catch(() => ({ SITE: 'https://react-big-schedule.ansulagrawal.com', HOME: null }));
+const { SITE } = await import(pathToFileURL(path.resolve('dist-ssr/seo.js')).href).catch(() => ({
+  SITE: 'https://react-big-schedule.ansulagrawal.com',
+}));
 const template = fs.readFileSync('dist/index.html', 'utf8');
 const esc = s => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 
 for (const route of routes) {
   const { html, meta } = render(route);
-  let out = template
+  const out = template
     .replace('<div id="root"></div>', `<div id="root">${html}</div>`)
     .replace(/<title>.*?<\/title>/, `<title>${esc(meta.title)}</title>`)
     .replace(/(<meta name="description" content=")[^"]*/, `$1${esc(meta.description)}`)

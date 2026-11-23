@@ -11,7 +11,8 @@ export function useRegistryStats(): RegistryStats {
   const [stats, setStats] = useState<RegistryStats>({});
   useEffect(() => {
     const ctrl = new AbortController();
-    const get = <T,>(url: string) => fetch(url, { signal: ctrl.signal }).then(r => (r.ok ? (r.json() as Promise<T>) : Promise.reject(r.status)));
+    const get = <T>(url: string) =>
+      fetch(url, { signal: ctrl.signal }).then(r => (r.ok ? (r.json() as Promise<T>) : Promise.reject(r.status)));
     const set = (patch: RegistryStats) => setStats(s => ({ ...s, ...patch }));
     get<{ downloads: number }>('https://api.npmjs.org/downloads/point/last-month/react-big-schedule')
       .then(d => set({ downloads: d.downloads }))

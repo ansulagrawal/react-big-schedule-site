@@ -7,9 +7,23 @@ import TimelineDemo from './TimelineDemo';
 
 const ROOMS = 1000;
 const TOTAL = 10000;
-const TITLES = ['Stand-up', 'Design review', 'Deep work', 'Customer call', 'Planning', 'Interview', 'Workshop', '1:1', 'Demo', 'Onboarding'];
+const TITLES = [
+  'Stand-up',
+  'Design review',
+  'Deep work',
+  'Customer call',
+  'Planning',
+  'Interview',
+  'Workshop',
+  '1:1',
+  'Demo',
+  'Onboarding',
+];
 
-const resources: Resource[] = Array.from({ length: ROOMS }, (_, i) => ({ id: `v${i}`, name: `Room ${String(i + 1).padStart(4, '0')}` }));
+const resources: Resource[] = Array.from({ length: ROOMS }, (_, i) => ({
+  id: `v${i}`,
+  name: `Room ${String(i + 1).padStart(4, '0')}`,
+}));
 
 // 10,000 long meetings and shifts spread over the current work week, 10 per room
 const events: SchedulerEvent[] = (() => {
@@ -37,7 +51,10 @@ export default function VirtualDemo(look: LookProps) {
     const count = () => {
       const el = root.current;
       if (!el) return;
-      const next = { events: el.querySelectorAll('.event-container > *').length, rows: el.querySelectorAll('.scheduler-content-table tr').length };
+      const next = {
+        events: el.querySelectorAll('.event-container > *').length,
+        rows: el.querySelectorAll('.scheduler-content-table tr').length,
+      };
       setMounted(p => (p.events === next.events && p.rows === next.rows ? p : next));
     };
     count();
@@ -47,7 +64,11 @@ export default function VirtualDemo(look: LookProps) {
 
   const stat = (value: string, label: string, accent?: boolean) => (
     <div className="min-w-0 flex-1 rounded-xl border border-white/10 bg-white/5 px-4 py-3">
-      <div className={`text-2xl font-extrabold tracking-tight tabular-nums ${accent ? 'text-emerald-300' : 'text-white'}`}>{value}</div>
+      <div
+        className={`text-2xl font-extrabold tracking-tight tabular-nums ${accent ? 'text-emerald-300' : 'text-white'}`}
+      >
+        {value}
+      </div>
       <div className="text-xs text-white/55">{label}</div>
     </div>
   );
@@ -60,8 +81,16 @@ export default function VirtualDemo(look: LookProps) {
         {stat(fmt(mounted.events), 'events mounted right now', true)}
         {stat(`${mounted.rows} / ${fmt(ROOMS)}`, 'rows mounted', true)}
       </div>
-      <TimelineDemo {...look} viewType={ViewType.Week} resources={resources} events={events} config={{ schedulerContentHeight: '560px', displayWeekend: false, dayCellWidth: 160 }} />
-      <p className="px-4 pb-3 text-xs text-white/50">Scroll down: rows and events mount and unmount as they enter the viewport, so the page stays fast.</p>
+      <TimelineDemo
+        {...look}
+        viewType={ViewType.Week}
+        resources={resources}
+        events={events}
+        config={{ schedulerContentHeight: '560px', displayWeekend: false, dayCellWidth: 160 }}
+      />
+      <p className="px-4 pb-3 text-xs text-white/50">
+        Scroll down: rows and events mount and unmount as they enter the viewport, so the page stays fast.
+      </p>
     </div>
   );
 }

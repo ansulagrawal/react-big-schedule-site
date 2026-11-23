@@ -21,7 +21,11 @@ export function RouterProvider({ path: initial, children }: { path?: string; chi
     history.pushState(null, '', url.pathname + url.search + url.hash);
     setPath(clean(url.pathname));
     // let the new page render, then jump to the #anchor (or the top)
-    requestAnimationFrame(() => (url.hash && document.getElementById(url.hash.slice(1))?.scrollIntoView()) || (!url.hash && window.scrollTo(0, 0)));
+    requestAnimationFrame(
+      () =>
+        (url.hash && document.getElementById(url.hash.slice(1))?.scrollIntoView()) ||
+        (!url.hash && window.scrollTo(0, 0)),
+    );
   }, []);
 
   // a pre-rendered page is replaced by the live app on load: jump to the #anchor again afterwards
@@ -35,7 +39,8 @@ export function RouterProvider({ path: initial, children }: { path?: string; chi
     const onClick = (e: MouseEvent) => {
       const a = (e.target as Element).closest('a');
       const href = a?.getAttribute('href');
-      if (!a || !href || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      if (!a || !href || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)
+        return;
       if (a.target || !href.startsWith('/') || href.startsWith('//')) return;
       e.preventDefault();
       navigate(href);

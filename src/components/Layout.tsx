@@ -1,8 +1,8 @@
 import { type CSSProperties, type ReactNode, useEffect, useState } from 'react';
+import { metaFor } from '../seo';
+import { PALETTE, useSite } from '../site';
 import Footer from './Footer';
 import Logo from './Logo';
-import { PALETTE, useSite } from '../site';
-import { metaFor } from '../seo';
 import ThemePanel from './ThemePanel';
 import ThemeSwitch from './ThemeSwitch';
 
@@ -45,7 +45,13 @@ export default function Layout({ route, children }: { route: string; children: R
       className={`site-bg min-h-screen antialiased ${theme === 'light' ? 'site-light' : ''}`}
       style={
         colours
-          ? ({ '--site-btn': colours.a, '--site-ga': colours.a, '--site-gb': colours.b, '--site-ink-dark': `color-mix(in srgb, ${colours.a} 55%, white)`, '--site-ink': theme === 'light' ? colours.a : `color-mix(in srgb, ${colours.a} 55%, white)` } as CSSProperties)
+          ? ({
+              '--site-btn': colours.a,
+              '--site-ga': colours.a,
+              '--site-gb': colours.b,
+              '--site-ink-dark': `color-mix(in srgb, ${colours.a} 55%, white)`,
+              '--site-ink': theme === 'light' ? colours.a : `color-mix(in srgb, ${colours.a} 55%, white)`,
+            } as CSSProperties)
           : undefined
       }
     >
@@ -78,16 +84,16 @@ export default function Layout({ route, children }: { route: string; children: R
           <div className="flex items-center gap-2 justify-self-end sm:gap-4">
             <ThemePanel />
             <ThemeSwitch />
-          <a
-            href={GITHUB}
-            aria-label="GitHub"
-            className="inline-flex items-center gap-2 rounded-full border border-white/25 p-2 text-sm font-medium text-white hover:bg-white/10 sm:px-3.5 sm:py-1.5"
-          >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-              <path d="M8 0a8 8 0 0 0-2.5 15.6c.4.1.5-.2.5-.4v-1.4c-2.2.5-2.7-1-2.7-1-.4-.9-.9-1.2-.9-1.2-.7-.5.1-.5.1-.5.8.1 1.2.8 1.2.8.7 1.2 1.9.9 2.3.7.1-.5.3-.9.5-1.1-1.8-.2-3.6-.9-3.6-4 0-.9.3-1.6.8-2.1-.1-.2-.4-1 .1-2.1 0 0 .7-.2 2.2.8a7.5 7.5 0 0 1 4 0c1.5-1 2.2-.8 2.2-.8.4 1.1.2 1.9.1 2.1.5.6.8 1.3.8 2.1 0 3.1-1.9 3.8-3.6 4 .3.3.6.8.6 1.5v2.2c0 .2.1.5.6.4A8 8 0 0 0 8 0z" />
-            </svg>
-            <span className="hidden sm:inline">GitHub</span>
-          </a>
+            <a
+              href={GITHUB}
+              aria-label="GitHub"
+              className="inline-flex items-center gap-2 rounded-full border border-white/25 p-2 text-sm font-medium text-white hover:bg-white/10 sm:px-3.5 sm:py-1.5"
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <path d="M8 0a8 8 0 0 0-2.5 15.6c.4.1.5-.2.5-.4v-1.4c-2.2.5-2.7-1-2.7-1-.4-.9-.9-1.2-.9-1.2-.7-.5.1-.5.1-.5.8.1 1.2.8 1.2.8.7 1.2 1.9.9 2.3.7.1-.5.3-.9.5-1.1-1.8-.2-3.6-.9-3.6-4 0-.9.3-1.6.8-2.1-.1-.2-.4-1 .1-2.1 0 0 .7-.2 2.2.8a7.5 7.5 0 0 1 4 0c1.5-1 2.2-.8 2.2-.8.4 1.1.2 1.9.1 2.1.5.6.8 1.3.8 2.1 0 3.1-1.9 3.8-3.6 4 .3.3.6.8.6 1.5v2.2c0 .2.1.5.6.4A8 8 0 0 0 8 0z" />
+              </svg>
+              <span className="hidden sm:inline">GitHub</span>
+            </a>
           </div>
         </nav>
       </header>

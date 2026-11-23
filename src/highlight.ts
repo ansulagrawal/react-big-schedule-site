@@ -15,9 +15,21 @@ const JSON_ =
   /(?<prop>"(?:\\.|[^"\\\n])*"(?=\s*:))|(?<string>"(?:\\.|[^"\\\n])*")|(?<number>-?\b\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\b)|(?<keyword>\b(?:true|false|null)\b)/g;
 
 const LANGS: Record<string, RegExp> = {
-  js: JS, jsx: JS, ts: JS, tsx: JS, javascript: JS, typescript: JS, html: JS, vue: JS,
-  css: CSS, scss: CSS,
-  sh: SH, bash: SH, shell: SH, zsh: SH, terminal: SH,
+  js: JS,
+  jsx: JS,
+  ts: JS,
+  tsx: JS,
+  javascript: JS,
+  typescript: JS,
+  html: JS,
+  vue: JS,
+  css: CSS,
+  scss: CSS,
+  sh: SH,
+  bash: SH,
+  shell: SH,
+  zsh: SH,
+  terminal: SH,
   json: JSON_,
 };
 

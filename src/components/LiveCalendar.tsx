@@ -28,7 +28,9 @@ export function CalendarView({
 }: LookProps & { height?: number; initialView?: CalendarViewName; views?: CalendarViewName[] } & Partial<
     Omit<CalendarProps, 'theme' | 'style' | 'height' | 'initialView' | 'views'>
   >) {
-  const [events, setEvents] = useState<CalendarEvent[]>(() => (Array.isArray(initialEvents) ? initialEvents : makeEvents()));
+  const [events, setEvents] = useState<CalendarEvent[]>(() =>
+    Array.isArray(initialEvents) ? initialEvents : makeEvents(),
+  );
   const [log, setLog] = useState('Drag, resize, click or select something');
   const patch = (next: CalendarEvent) => setEvents(list => list.map(e => (e.id === next.id ? next : e)));
   const style = (radius === undefined ? {} : { '--rbs-radius': `${radius}px` }) as CSSProperties;
@@ -79,7 +81,14 @@ export default function LiveCalendar({
 
   return (
     <div className="live-cal overflow-hidden rounded-2xl border border-panel-line bg-panel text-white">
-      <CalendarView theme={theme} look={look} palette={palette} radius={radius} height={height} initialView={initialView} />
+      <CalendarView
+        theme={theme}
+        look={look}
+        palette={palette}
+        radius={radius}
+        height={height}
+        initialView={initialView}
+      />
     </div>
   );
 }

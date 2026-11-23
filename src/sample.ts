@@ -24,7 +24,14 @@ const base = (): CalendarEvent[] => [
   { id: 6, title: 'Release freeze', start: day(-2), allDay: true, color: '#ef4444' },
   { id: 7, title: 'Architecture', start: at(2, '13:00'), end: at(2, '14:30'), color: P3 },
   { id: 8, title: 'Retro', start: at(4, '16:00'), end: at(4, '17:00'), color: P5 },
-  { id: 9, title: 'Lunch', start: at(0, '12:00'), end: at(0, '13:00'), display: 'background', color: 'color-mix(in srgb, var(--rbs-accent) 35%, transparent)' },
+  {
+    id: 9,
+    title: 'Lunch',
+    start: at(0, '12:00'),
+    end: at(0, '13:00'),
+    display: 'background',
+    color: 'color-mix(in srgb, var(--rbs-accent) 35%, transparent)',
+  },
   { id: 10, title: 'Quarter close', start: at(8, '09:00'), end: at(8, '17:00'), color: P2 },
   { id: 11, title: 'Planning', start: at(-6, '10:00'), end: at(-6, '11:00'), color: P1 },
   { id: 12, title: 'Hiring', start: at(10, '14:00'), end: at(10, '15:00'), color: P6 },
@@ -50,9 +57,22 @@ const yearEvents = (): CalendarEvent[] => {
       const date = first.date(e.d);
       const color = COLORS[(m + i) % COLORS.length];
       return e.days
-        ? { id: 1000 + m * 10 + i, title: e.title, start: date.format('YYYY-MM-DD'), end: date.add(e.days + 1, 'day').format('YYYY-MM-DD'), allDay: true, color }
-        : { id: 1000 + m * 10 + i, title: e.title, start: date.format(`YYYY-MM-DD[T]${e.from}`), end: date.format(`YYYY-MM-DD[T]${e.to}`), color };
-    })
+        ? {
+            id: 1000 + m * 10 + i,
+            title: e.title,
+            start: date.format('YYYY-MM-DD'),
+            end: date.add(e.days + 1, 'day').format('YYYY-MM-DD'),
+            allDay: true,
+            color,
+          }
+        : {
+            id: 1000 + m * 10 + i,
+            title: e.title,
+            start: date.format(`YYYY-MM-DD[T]${e.from}`),
+            end: date.format(`YYYY-MM-DD[T]${e.to}`),
+            color,
+          };
+    }),
   );
 };
 

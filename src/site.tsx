@@ -94,7 +94,7 @@ export function SiteProvider({ children }: { children: ReactNode }) {
       radius,
       setRadius,
     }),
-    [theme, lp, radius]
+    [theme, lp, radius],
   );
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }
