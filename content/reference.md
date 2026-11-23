@@ -309,6 +309,15 @@ While an event, task or resource is dragged over a row, the cells where it would
 
 With more than 50 rows or 500 events the Scheduler mounts only the rows and events near the viewport; spacer rows keep the scroll height and the resource column aligned, so scrolling feels the same. Set `virtualRendering: false` in the `SchedulerData` config to turn it off, and `virtualOverscan` (default `400`, in pixels) to change how far beyond the viewport content stays mounted. It needs a scrolling content area (a fixed `schedulerContentHeight` such as `'600px'`). In the Calendar list views, off-screen days skip layout and paint.
 
+#### Accessibility
+
+The Calendar views and the Scheduler follow the ARIA grid pattern and were checked with axe-core in the light and dark themes. Day cells are named by their date, events by what you see (time first, then title), and a live region announces moves.
+
+- Arrow keys move between days, Enter or Space activates.
+- On an editable event, **Alt + arrow keys** move it (a day, or a time slot in the time grid) and **Shift + arrow keys** change its length. Focus stays on the event.
+- Event text switches between white and near-black to stay readable on any hex, `rgb()` or basic named event colour.
+- A manual pass with NVDA, JAWS and VoiceOver has not been done yet.
+
 #### Weekly / monthly columns
 
 Columns are days or hours by default. A custom view (`ViewType.Custom`, `Custom1`, `Custom2`) picks its own cadence through `behaviors.getCustomDateFunc`, which returns `cellUnit: CellUnit.Week`, `CellUnit.Month`, `CellUnit.Quarter` or `CellUnit.Year` along with the date range. Events then span the week/month cells they overlap. Header text comes from `nonAgendaWeekCellHeaderFormat` / `nonAgendaMonthCellHeaderFormat` / `nonAgendaQuarterCellHeaderFormat` / `nonAgendaYearCellHeaderFormat` (use `|` to split a header into lines). Per-cell totals come from `behaviors.getSummaryFunc`. Refer to [this example](/demos/resource-cadence).
