@@ -61,8 +61,9 @@ export default function Compare() {
         </tbody>
       </table>
       <p className="border-t border-white/10 px-5 py-4 text-xs leading-relaxed text-white/45">
-        “Paid” means the feature needs a commercial licence or tier; “Planned” is on our roadmap and not shipped yet. Competitor columns are
-        summarised from each vendor’s public documentation and pricing pages and can change; please check them before you decide.
+        “Paid” means the feature needs a commercial licence or tier; “Planned” is on our roadmap and not shipped yet.
+        Competitor columns are summarised from each vendor’s public documentation and pricing pages and can change;
+        please check them before you decide.
       </p>
     </div>
   );

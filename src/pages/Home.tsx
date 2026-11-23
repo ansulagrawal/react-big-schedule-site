@@ -1,8 +1,8 @@
 import Code from '../components/Code';
 import Compare from '../components/Compare';
-import { compact, useRegistryStats } from '../components/useRegistryStats';
 import LiveCalendar from '../components/LiveCalendar';
 import ResourceShowcase from '../components/ResourceShowcase';
+import { compact, useRegistryStats } from '../components/useRegistryStats';
 
 const Heading = ({ eyebrow, title, sub }: { eyebrow: string; title: string; sub?: string }) => (
   <div className="mx-auto mb-10 max-w-2xl text-center">
@@ -108,9 +108,36 @@ const missed: { title: string; text: string; status: string; tone: string }[] = 
 ];
 
 const roadmap: [string, string[]][] = [
-  ['Shipped', ['Calendar: month, week, day, list, year', 'Free resource timeline and vertical view', 'Event sources, recurrence, time zones', 'Themes, dark mode, print styles', 'TypeScript source, no UI library', 'Virtual rendering for 10k+ events, faster view switching']],
-  ['Next', ['Touch long-press and scroll-pane tuning', 'Screen-reader audit and fixes', '“+N more” popover in time grid', 'Resource columns in <Calendar>']],
-  ['Pro (coming soon)', ['iCal and CSV export, PDF export', 'Undo / redo and conflict engine', 'Nested resource tree, Gantt dependencies', 'Google and Outlook sync', 'Priority support']],
+  [
+    'Shipped',
+    [
+      'Calendar: month, week, day, list, year',
+      'Free resource timeline and vertical view',
+      'Event sources, recurrence, time zones',
+      'Themes, dark mode, print styles',
+      'TypeScript source, no UI library',
+      'Virtual rendering for 10k+ events, faster view switching',
+    ],
+  ],
+  [
+    'Next',
+    [
+      'Touch long-press and scroll-pane tuning',
+      'Screen-reader audit and fixes',
+      '“+N more” popover in time grid',
+      'Resource columns in <Calendar>',
+    ],
+  ],
+  [
+    'Pro (coming soon)',
+    [
+      'iCal and CSV export, PDF export',
+      'Undo / redo and conflict engine',
+      'Nested resource tree, Gantt dependencies',
+      'Google and Outlook sync',
+      'Priority support',
+    ],
+  ],
 ];
 
 export default function Home() {
@@ -135,14 +162,17 @@ export default function Home() {
             ))}
           </div>
           <p className="mx-auto mt-10 max-w-2xl text-lg leading-relaxed text-white/80">
-            A free, open-source React calendar and resource timeline: month, week, day, list and year views, drag and drop, themes and
-            TypeScript, with nothing to unlearn.
+            A free, open-source React calendar and resource timeline: month, week, day, list and year views, drag and
+            drop, themes and TypeScript, with nothing to unlearn.
           </p>
           <div className="mt-9 flex justify-center gap-3">
             <a href="/docs" className="rounded-full keep-white site-btn px-6 py-3 font-semibold text-white">
               Get started
             </a>
-            <a href="/demos" className="rounded-full border border-white/40 px-6 py-3 font-semibold text-white hover:bg-white/10">
+            <a
+              href="/demos"
+              className="rounded-full border border-white/40 px-6 py-3 font-semibold text-white hover:bg-white/10"
+            >
               View demos
             </a>
           </div>
@@ -169,17 +199,29 @@ export default function Home() {
       </section>
 
       <section className="mx-auto mt-24 max-w-6xl px-4">
-        <Heading eyebrow="Live demo" title="Drag it, theme it, make it yours" sub="Everything on this page is the real library. Pick a theme and palette in the navbar, and change the corner radius." />
+        <Heading
+          eyebrow="Live demo"
+          title="Drag it, theme it, make it yours"
+          sub="Everything on this page is the real library. Pick a theme and palette in the navbar, and change the corner radius."
+        />
         <LiveCalendar height={680} />
       </section>
 
       <section className="mx-auto mt-28 max-w-6xl px-4">
-        <Heading eyebrow="Resource scheduling" title="Timeline and vertical resource views, free" sub="Plan rooms, people and machines on a timeline, or one column per resource. It is the real Scheduler, not a screenshot." />
+        <Heading
+          eyebrow="Resource scheduling"
+          title="Timeline and vertical resource views, free"
+          sub="Plan rooms, people and machines on a timeline, or one column per resource. It is the real Scheduler, not a screenshot."
+        />
         <ResourceShowcase />
       </section>
 
       <section className="mx-auto mt-28 max-w-6xl px-4">
-        <Heading eyebrow="Build with it" title="From install to calendar in minutes" sub="Each feature is a prop or a function. Here is the code for all of them." />
+        <Heading
+          eyebrow="Build with it"
+          title="From install to calendar in minutes"
+          sub="Each feature is a prop or a function. Here is the code for all of them."
+        />
         <div className="grid gap-6 lg:grid-cols-2">
           {features.map(f => (
             <article key={f.title} className="card flex flex-col gap-4 p-6">
@@ -194,7 +236,11 @@ export default function Home() {
       </section>
 
       <section className="mx-auto mt-28 max-w-6xl px-4">
-        <Heading eyebrow="The details" title="The things you (or your LLM) would have missed" sub="We are honest about what ships today and what is coming." />
+        <Heading
+          eyebrow="The details"
+          title="The things you (or your LLM) would have missed"
+          sub="We are honest about what ships today and what is coming."
+        />
         <div className="grid gap-6 sm:grid-cols-2">
           {missed.map(m => (
             <article key={m.title} className="card p-7">
@@ -207,7 +253,11 @@ export default function Home() {
       </section>
 
       <section id="compare" className="mx-auto mt-28 max-w-6xl scroll-mt-10 px-4">
-        <Heading eyebrow="Compare" title="How it stacks up" sub="What other libraries offer, what we ship today, and what is still coming." />
+        <Heading
+          eyebrow="Compare"
+          title="How it stacks up"
+          sub="What other libraries offer, what we ship today, and what is still coming."
+        />
         <Compare />
       </section>
 
@@ -232,15 +282,21 @@ export default function Home() {
 
       <section className="mx-auto mt-28 max-w-4xl px-4">
         <div className="card p-10 text-center">
-          <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Free forever at the core. Pro when you need more.</h2>
+          <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
+            Free forever at the core. Pro when you need more.
+          </h2>
           <p className="mx-auto mt-4 max-w-xl text-white/65">
-            The MIT-licensed core includes the resource timeline. Pro adds export, undo and redo, a conflict engine and priority support.
+            The MIT-licensed core includes the resource timeline. Pro adds export, undo and redo, a conflict engine and
+            priority support.
           </p>
           <div className="mt-7 flex justify-center gap-3">
             <a href="/docs" className="rounded-full keep-white site-btn px-6 py-3 font-semibold">
               Get started
             </a>
-            <a href="/pricing" className="rounded-full border border-white/40 px-6 py-3 font-semibold hover:bg-white/10">
+            <a
+              href="/pricing"
+              className="rounded-full border border-white/40 px-6 py-3 font-semibold hover:bg-white/10"
+            >
               See pricing
             </a>
           </div>

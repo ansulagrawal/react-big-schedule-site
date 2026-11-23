@@ -1,10 +1,10 @@
-node_modules
-dist
-.next
-.vercel
-.claude/
-*.log
-dist-ssr
 
 # macOS
+*.log
 .DS_Store
+.claude/
+.next
+.vercel
+dist
+dist-ssr
+node_modules

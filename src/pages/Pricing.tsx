@@ -3,14 +3,26 @@ const tiers = [
     name: 'Standard',
     price: 'Free',
     note: 'MIT licence, commercial use included',
-    items: ['All calendar views', 'Resource timeline and vertical resource view', 'Drag and drop, resize, select', 'Themes, dark mode, print styles', 'Community support'],
+    items: [
+      'All calendar views',
+      'Resource timeline and vertical resource view',
+      'Drag and drop, resize, select',
+      'Themes, dark mode, print styles',
+      'Community support',
+    ],
     cta: ['Get started', '/docs'],
   },
   {
     name: 'Pro',
     price: 'Coming soon',
     note: 'Pricing to be announced',
-    items: ['iCal and CSV export', 'Undo and redo history', 'Conflict and availability engine', 'Priority email support', 'Everything in Standard'],
+    items: [
+      'iCal and CSV export',
+      'Undo and redo history',
+      'Conflict and availability engine',
+      'Priority email support',
+      'Everything in Standard',
+    ],
     cta: ['Join the waitlist', 'https://github.com/ansulagrawal/react-big-schedule/discussions'],
   },
 ] as const;

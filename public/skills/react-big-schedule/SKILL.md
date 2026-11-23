@@ -1,4 +1,5 @@
 ---
+
 name: react-big-schedule
 description: Build calendars and resource schedulers in React with react-big-schedule 9. Use when the user wants a month/week/day/list/year calendar, drag-and-drop events, recurring events, time zones, a resource timeline (rooms, people, machines), or to theme/restyle such a component. Also use when upgrading from react-big-schedule 8 or react-big-scheduler.
 ---
@@ -33,14 +34,20 @@ const events: CalendarEvent[] = [
   events={events}
   initialView="dayGridMonth"
   views={['dayGridMonth', 'timeGridWeek', 'timeGridDay', 'listWeek', 'multiMonthYear']}
-  editable selectable nowIndicator businessHours dayMaxEvents
+  editable
+  selectable
+  nowIndicator
+  businessHours
+  dayMaxEvents
   height={640}
-  theme="dark" look="material" palette="purple"
+  theme="dark"
+  look="material"
+  palette="purple"
   onEventClick={({ event }) => {}}
   onSelect={({ start, end, allDay }) => {}}
   onEventDrop={({ event, oldEvent, revert }) => {}}
   onEventResize={({ event, oldEvent, revert }) => {}}
-/>
+/>;
 ```
 
 - Views: `dayGridMonth|dayGridWeek|dayGridDay|timeGridWeek|timeGridDay|listDay|listWeek|listMonth|listYear|multiMonthYear|multiMonthStack|multiMonthContinuous`.
@@ -69,9 +76,25 @@ import dayjs from 'dayjs';
 const DndScheduler = wrapperFun(Scheduler); // adds the drag and drop context; do not use <Scheduler> bare for DnD
 
 const make = () => {
-  const d = new SchedulerData(dayjs().format(DATE_FORMAT), ViewType.Week, false, false, { theme: 'dark', look: 'fluent', palette: 'blue' });
-  d.setResources([{ id: 'r1', name: 'Room A' }, { id: 'r2', name: 'Room B' }]);
-  d.setEvents([{ id: 1, resourceId: 'r1', title: 'Meeting', start: '2026-10-12 09:00:00', end: '2026-10-12 11:00:00', bgColor: 'var(--rbs-accent)' }]);
+  const d = new SchedulerData(dayjs().format(DATE_FORMAT), ViewType.Week, false, false, {
+    theme: 'dark',
+    look: 'fluent',
+    palette: 'blue',
+  });
+  d.setResources([
+    { id: 'r1', name: 'Room A' },
+    { id: 'r2', name: 'Room B' },
+  ]);
+  d.setEvents([
+    {
+      id: 1,
+      resourceId: 'r1',
+      title: 'Meeting',
+      start: '2026-10-12 09:00:00',
+      end: '2026-10-12 11:00:00',
+      bgColor: 'var(--rbs-accent)',
+    },
+  ]);
   return d;
 };
 ```
