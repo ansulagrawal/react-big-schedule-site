@@ -44,7 +44,7 @@ const columns: { title: string; links: [string, string][] }[] = [
 
 export default function Footer() {
   return (
-    <footer className="mt-28 border-t border-white/10 bg-black/30">
+    <footer className="print-hide mt-28 border-t border-white/10 bg-black/30">
       <div className="mx-auto grid max-w-352 gap-10 px-4 py-14 lg:px-8 md:grid-cols-[1.4fr_repeat(4,1fr)]">
         <div>
           <Logo />

@@ -49,14 +49,14 @@ export default function Layout({ route, children }: { route: string; children: R
           : undefined
       }
     >
-      <div className="flex h-9 items-center justify-center keep-white bg-black/50 px-4 text-xs text-white/90">
-        <span>New in v9: TypeScript, no antd, a brand-new Calendar.</span>
+      <div className="print-hide flex h-9 items-center justify-center keep-white bg-black/50 px-4 text-xs text-white/90">
+        <span>New in v10: virtual rendering for 10,000+ events and much faster view switching.</span>
         <a href="/docs" className="ml-2 font-semibold text-site-ink-dark hover:underline">
           Read the upgrade guide →
         </a>
       </div>
       <header
-        className={`sticky top-0 z-40 border-b text-white transition-[background-color,backdrop-filter,border-color] duration-200 ${
+        className={`print-hide sticky top-0 z-40 border-b text-white transition-[background-color,backdrop-filter,border-color] duration-200 ${
           scrolled ? 'border-white/10 bg-chrome/75 backdrop-blur-md' : 'border-transparent bg-transparent'
         }`}
       >
